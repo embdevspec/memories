@@ -829,12 +829,74 @@
   }
 
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let swooshNoiseBuffer = null;
+  function getSwooshNoiseBuffer() {
+    if (swooshNoiseBuffer) return swooshNoiseBuffer;
+    const duration = 0.24;
+    const length = Math.floor(audioCtx.sampleRate * duration);
+    const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    // Slightly smoothed noise for a silky air-swoosh texture
+    let prev = 0;
+    for (let i = 0; i < length; i++) {
+      const white = Math.random() * 2 - 1;
+      prev = prev * 0.35 + white * 0.65;
+      data[i] = prev;
+    }
+    swooshNoiseBuffer = buffer;
+    return buffer;
+  }
+
   function unlockAudio() {
     if (audioCtx.state === 'suspended') {
       audioCtx.resume().catch(() => {});
     }
   }
   window.addEventListener('pointerdown', unlockAudio, { once: true });
+  window.addEventListener('keydown', unlockAudio, { once: true });
+
+  function playSwooshSound() {
+    if (!soundEnabled || audioCtx.state !== 'running') return;
+    const now = audioCtx.currentTime;
+
+    // 1. Filtered airy whoosh sweep
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = getSwooshNoiseBuffer();
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.Q.setValueAtTime(2.0, now);
+    filter.frequency.setValueAtTime(480, now);
+    filter.frequency.exponentialRampToValueAtTime(2900, now + 0.14);
+    filter.frequency.exponentialRampToValueAtTime(1600, now + 0.22);
+
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.setValueAtTime(0.001, now);
+    noiseGain.gain.linearRampToValueAtTime(0.14, now + 0.045);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.21);
+
+    noise.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    noise.start(now);
+    noise.stop(now + 0.22);
+
+    // 2. Soft tonal upward glide underneath for iOS-like polish
+    const osc = audioCtx.createOscillator();
+    const oscGain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(360, now);
+    osc.frequency.exponentialRampToValueAtTime(840, now + 0.15);
+
+    oscGain.gain.setValueAtTime(0.001, now);
+    oscGain.gain.linearRampToValueAtTime(0.045, now + 0.035);
+    oscGain.gain.exponentialRampToValueAtTime(0.0008, now + 0.18);
+
+    osc.connect(oscGain);
+    oscGain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.19);
+  }
 
   function playPopSound(isIncoming) {
     if (!soundEnabled || audioCtx.state !== 'running') return;
@@ -913,20 +975,86 @@
     chatStream.scrollTop = chatStream.scrollHeight;
   }
 
-  function playKeyClickSound() {
+  let keyClickNoiseBuffer = null;
+  function getKeyClickNoiseBuffer() {
+    if (keyClickNoiseBuffer) return keyClickNoiseBuffer;
+    const duration = 0.025;
+    const length = Math.floor(audioCtx.sampleRate * duration);
+    const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) {
+      const env = Math.exp(-i / (length * 0.28));
+      data[i] = (Math.random() * 2 - 1) * env;
+    }
+    keyClickNoiseBuffer = buffer;
+    return buffer;
+  }
+
+  function playKeyClickSound(kind = 'key') {
     if (!soundEnabled || audioCtx.state !== 'running') return;
+    const now = audioCtx.currentTime;
+    const isBackspace = kind === 'backspace';
+    const isSpace = kind === 'space';
+
+    // 1. Crisp percussive click transient (iOS keyboard tap feel)
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = getKeyClickNoiseBuffer();
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.Q.setValueAtTime(isBackspace ? 1.8 : 2.4, now);
+    const filterFreq = isBackspace
+      ? (1050 + Math.random() * 180)
+      : isSpace
+        ? (1380 + Math.random() * 180)
+        : (2150 + Math.random() * 520);
+    filter.frequency.setValueAtTime(filterFreq, now);
+
+    const noiseGain = audioCtx.createGain();
+    const peakGain = isBackspace ? 0.2 : (isSpace ? 0.19 : 0.17);
+    noiseGain.gain.setValueAtTime(peakGain, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + (isBackspace ? 0.022 : 0.017));
+
+    noise.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    noise.start(now);
+    noise.stop(now + 0.025);
+
+    // 2. Subtle woody "tock" body underneath the click
     const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+    const oscGain = audioCtx.createGain();
     osc.type = 'triangle';
-    const baseFreq = 920 + Math.random() * 240;
-    osc.frequency.setValueAtTime(baseFreq, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.022);
-    gain.gain.setValueAtTime(0.018, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0008, audioCtx.currentTime + 0.024);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.026);
+    const startFreq = isBackspace
+      ? (540 + Math.random() * 80)
+      : isSpace
+        ? (680 + Math.random() * 90)
+        : (1020 + Math.random() * 220);
+    const endFreq = isBackspace ? 190 : (isSpace ? 240 : 340);
+    osc.frequency.setValueAtTime(startFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.016);
+
+    oscGain.gain.setValueAtTime(isBackspace ? 0.08 : 0.065, now);
+    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
+
+    osc.connect(oscGain);
+    oscGain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.02);
+  }
+
+  const QWERTY_NEIGHBORS = {
+    q: 'wa', w: 'qeas', e: 'wrsd', r: 'etdf', t: 'ryfg', y: 'tugh', u: 'yihj', i: 'uojk', o: 'ipkl', p: 'ol',
+    a: 'qwsz', s: 'wedxza', d: 'erfcxs', f: 'rtgvcd', g: 'tyhbvf', h: 'yujnbg', j: 'uikmnh', k: 'iolmj', l: 'opk',
+    z: 'asx', x: 'zsdc', c: 'xdfv', v: 'cfgb', b: 'vghn', n: 'bhjm', m: 'njk'
+  };
+
+  function getNearbyTypoChar(ch) {
+    const lower = ch.toLowerCase();
+    const neighbors = QWERTY_NEIGHBORS[lower];
+    if (!neighbors) return null;
+    const pick = neighbors[Math.floor(Math.random() * neighbors.length)];
+    return ch === ch.toUpperCase() && ch !== lower ? pick.toUpperCase() : pick;
   }
 
   function getGraphemes(str) {
@@ -962,6 +1090,38 @@
 
     // Keep longer messages brisk so they don't drag out
     const scale = chars.length > 55 ? Math.max(0.45, 55 / chars.length) : 1;
+    const TYPO_RATE = 0.11;
+    let typed = '';
+    let typoCooldown = 0;
+
+    async function appendVisibleChar(c, delayMs) {
+      if (!(await wait(delayMs, token))) {
+        clearComposerTyping();
+        return false;
+      }
+      composerText.textContent += c;
+      composerActionIcon.classList.add('send-ready');
+      composerPill.scrollTop = composerPill.scrollHeight;
+      playKeyClickSound(c === ' ' ? 'space' : 'key');
+      return true;
+    }
+
+    async function backspaceChars(count) {
+      let current = getGraphemes(composerText.textContent);
+      for (let b = 0; b < count; b++) {
+        const bsDelay = (58 + Math.random() * 38) * Math.max(0.7, scale);
+        if (!(await wait(bsDelay, token))) {
+          clearComposerTyping();
+          return false;
+        }
+        current.pop();
+        composerText.textContent = current.join('');
+        if (current.length === 0) composerActionIcon.classList.remove('send-ready');
+        composerPill.scrollTop = composerPill.scrollHeight;
+        playKeyClickSound('backspace');
+      }
+      return true;
+    }
 
     for (let i = 0; i < chars.length; i++) {
       const ch = chars[i];
@@ -970,16 +1130,66 @@
       else if (i > 0 && /[,;:]/.test(chars[i - 1])) delay += 65 * scale;
       else if (ch === ' ') delay += 20 * scale;
 
-      if (!(await wait(delay, token))) {
-        clearComposerTyping();
-        return false;
+      const isEligibleLetter = /^[a-zA-Z]$/.test(ch);
+      if (isEligibleLetter && typoCooldown <= 0 && Math.random() < TYPO_RATE) {
+        const wrongChar = getNearbyTypoChar(ch);
+        if (wrongChar) {
+          const remaining = chars.length - 1 - i;
+          // ~45% multi-char overshoot / transposition before noticing; ~55% quick single-char slip
+          const doMulti = remaining >= 2 && Math.random() < 0.45;
+          const mistakeSeq = [];
+
+          if (doMulti) {
+            const nextCh = chars[i + 1];
+            const canTranspose = /^[a-zA-Z]$/.test(nextCh) && nextCh.toLowerCase() !== ch.toLowerCase();
+            if (canTranspose && Math.random() < 0.4) {
+              // e.g. typing "teh" instead of "the"
+              mistakeSeq.push(nextCh, ch);
+              if (remaining >= 2 && Math.random() < 0.65) {
+                mistakeSeq.push(chars[i + 2]);
+              }
+            } else {
+              // Wrong key + keep typing 1-3 characters before catching it
+              mistakeSeq.push(wrongChar);
+              const maxOvershoot = Math.min(3, remaining);
+              const overshoot = 1 + Math.floor(Math.random() * maxOvershoot);
+              for (let k = 1; k <= overshoot; k++) {
+                mistakeSeq.push(chars[i + k]);
+              }
+            }
+          } else {
+            mistakeSeq.push(wrongChar);
+          }
+
+          for (let m = 0; m < mistakeSeq.length; m++) {
+            const stepDelay = m === 0 ? delay : (38 + Math.random() * 34) * scale;
+            if (!(await appendVisibleChar(mistakeSeq[m], stepDelay))) return false;
+          }
+
+          // Human "wait, oops" notice pause before hitting Backspace
+          const noticePause = (doMulti ? (210 + Math.random() * 140) : (130 + Math.random() * 100)) * Math.max(0.65, scale);
+          if (!(await wait(noticePause, token))) {
+            clearComposerTyping();
+            return false;
+          }
+
+          if (!(await backspaceChars(mistakeSeq.length))) return false;
+          composerText.textContent = typed;
+
+          // Short beat before typing the corrected letter
+          delay = (85 + Math.random() * 55) * Math.max(0.7, scale);
+          typoCooldown = 5 + Math.floor(Math.random() * 3);
+        }
+      } else if (typoCooldown > 0) {
+        typoCooldown--;
       }
 
-      composerText.textContent += ch;
-      composerActionIcon.classList.add('send-ready');
-      composerPill.scrollTop = composerPill.scrollHeight;
-      if (ch !== ' ') playKeyClickSound();
+      if (!(await appendVisibleChar(ch, delay))) return false;
+      typed += ch;
     }
+
+    // Ensure exact message integrity before sending
+    composerText.textContent = displayText;
 
     // Brief pause before tapping Send
     if (!(await wait(260, token))) {
@@ -1111,7 +1321,8 @@
 
     chatStream.appendChild(row);
     chatStream.scrollTop = chatStream.scrollHeight;
-    playPopSound(msg.direction === 'incoming');
+    if (msg.direction === 'incoming') playSwooshSound();
+    else playPopSound(false);
     return { row, reactionsBar };
   }
 

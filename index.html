@@ -175,22 +175,53 @@
 
   .composer-bar {
     background: var(--composer-bg); border-top: 1px solid var(--header-border);
-    padding: 10px 12px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    padding: 10px 12px; display: flex; align-items: flex-end; gap: 8px; flex-shrink: 0;
+    position: relative; z-index: 12;
     transition: background 0.25s ease, border-color 0.25s ease;
   }
   .composer-icon {
     width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    color: var(--muted); flex-shrink: 0;
+    color: var(--muted); flex-shrink: 0; margin-bottom: 3px;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
   }
+  .composer-icon .icon-send { display: none; }
+  .composer-icon.send-ready { background: var(--outgoing-bg); color: #ffffff; }
+  .composer-icon.send-ready .icon-mic { display: none; }
+  .composer-icon.send-ready .icon-send { display: block; }
+  .composer-icon.send-ready.sending { transform: scale(0.84); }
+
   .composer-pill {
     flex: 1; background: var(--composer-pill); border: 1px solid var(--composer-border);
-    border-radius: 22px; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between;
+    border-radius: 20px; padding: 7px 13px; min-height: 36px; max-height: 82px; overflow-y: auto;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;
     color: var(--muted); font-size: 14px; user-select: none;
-    transition: background 0.25s ease, border-color 0.25s ease;
+    transition: background 0.25s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .composer-pill::-webkit-scrollbar { width: 4px; }
+  .composer-pill::-webkit-scrollbar-thumb { background: rgba(154,160,166,0.3); border-radius: 4px; }
+  .composer-pill.typing {
+    border-color: var(--outgoing-bg); color: var(--header-text);
+  }
+  .composer-text-wrap {
+    flex: 1; min-width: 0; line-height: 1.35; word-break: break-word; white-space: pre-wrap;
+  }
+  .composer-text.placeholder { color: var(--muted); }
+  .composer-caret {
+    display: none; width: 2px; height: 1.12em; background: var(--outgoing-bg);
+    vertical-align: -0.18em; margin-left: 1px; border-radius: 1px;
+    animation: caretBlink 0.9s steps(1) infinite;
+  }
+  .composer-pill.typing .composer-caret { display: inline-block; }
+  .composer-emoji-icon { flex-shrink: 0; margin-bottom: 1px; }
+  .composer-pill.typing .composer-emoji-icon { display: none; }
+
+  @keyframes caretBlink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
   }
 
   .playback-pill {
-    position: absolute; bottom: 68px; left: 50%; transform: translateX(-50%);
+    position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
     background: rgba(32, 33, 36, 0.86); color: #e8eaed; backdrop-filter: blur(6px);
     padding: 5px 14px; border-radius: 999px; font-size: 12px; font-weight: 600;
     cursor: pointer; z-index: 10; opacity: 0.85; transition: opacity 0.2s, transform 0.15s;
@@ -352,6 +383,26 @@
     display: flex; justify-content: space-between; gap: 8px;
     padding: 10px 14px; border-top: 1px solid #303645;
   }
+
+  .ctx-menu {
+    position: fixed; z-index: 60; min-width: 205px;
+    background: #1e222b; color: #e8eaed; border: 1px solid #3d4454;
+    border-radius: 10px; padding: 5px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    display: none; flex-direction: column; gap: 2px;
+  }
+  .ctx-menu.open { display: flex; }
+  .ctx-item {
+    width: 100%; text-align: left; background: transparent; border: none; color: #e8eaed;
+    padding: 8px 10px; border-radius: 7px; font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer;
+  }
+  .ctx-item:hover { background: #2d3545; }
+  .ctx-badge {
+    background: #334155; color: #cbd5e1; border-radius: 999px;
+    padding: 1px 7px; font-size: 11px; font-variant-numeric: tabular-nums;
+  }
+  .ctx-sep { height: 1px; background: #303645; margin: 4px 6px; }
 </style>
 </head>
 <body data-theme="ios">
@@ -384,7 +435,7 @@
 </div>
 
 <div class="phone-frame">
-  <div class="chat-header">
+  <div class="chat-header" title="Right-click for Unmask All & controls">
     <div class="header-back" aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
     </div>
@@ -396,7 +447,7 @@
     </div>
     <div class="header-info">
       <h2 id="threadTitle">Siblings, Spouses, and Spencer</h2>
-      <span id="statusText">RCS chat</span>
+      <span id="statusText">iMessage</span>
     </div>
     <div class="header-actions">
       <button class="header-icon-btn" id="headerMenuBtn" title="Toggle controls (Esc / Right-click)" aria-label="Menu">
@@ -414,14 +465,32 @@
     <div class="composer-icon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
     </div>
-    <div class="composer-pill">
-      <span>RCS message</span>
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+    <div class="composer-pill" id="composerPill">
+      <div class="composer-text-wrap"><span class="composer-text placeholder" id="composerText">iMessage</span><span class="composer-caret" id="composerCaret"></span></div>
+      <svg class="composer-emoji-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
     </div>
-    <div class="composer-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>
+    <div class="composer-icon" id="composerActionIcon">
+      <svg class="icon-mic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>
+      <svg class="icon-send" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
     </div>
   </div>
+</div>
+
+<div class="ctx-menu" id="ctxMenu" role="menu">
+  <button class="ctx-item" id="ctxUnmaskAllBtn" type="button" role="menuitem">
+    <span>👁️ Unmask All</span>
+    <span class="ctx-badge" id="ctxMaskedBadge">0</span>
+  </button>
+  <button class="ctx-item" id="ctxManageMasksBtn" type="button" role="menuitem">
+    <span>🙈 Manage Masked…</span>
+  </button>
+  <button class="ctx-item" id="ctxExportJsonBtn" type="button" role="menuitem">
+    <span>💾 Export JSON</span>
+  </button>
+  <div class="ctx-sep"></div>
+  <button class="ctx-item" id="ctxToggleToolbarBtn" type="button" role="menuitem">
+    <span>⚙️ Toggle Toolbar</span>
+  </button>
 </div>
 
 <div class="mask-panel" id="maskPanel" role="dialog" aria-label="Masked messages">
@@ -483,6 +552,51 @@
   const closeMaskPanelBtn = document.getElementById('closeMaskPanelBtn');
   const unmaskAllBtn = document.getElementById('unmaskAllBtn');
   const panelExportJsonBtn = document.getElementById('panelExportJsonBtn');
+  const composerPill = document.getElementById('composerPill');
+  const composerText = document.getElementById('composerText');
+  const composerActionIcon = document.getElementById('composerActionIcon');
+  const ctxMenu = document.getElementById('ctxMenu');
+  const ctxUnmaskAllBtn = document.getElementById('ctxUnmaskAllBtn');
+  const ctxMaskedBadge = document.getElementById('ctxMaskedBadge');
+  const ctxManageMasksBtn = document.getElementById('ctxManageMasksBtn');
+  const ctxExportJsonBtn = document.getElementById('ctxExportJsonBtn');
+  const ctxToggleToolbarBtn = document.getElementById('ctxToggleToolbarBtn');
+
+  function getThemeChatLabel() {
+    return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS chat';
+  }
+
+  function getThemeComposerPlaceholder() {
+    return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS message';
+  }
+
+  function syncThemeLabels() {
+    if (!document.getElementById('typingIndicator')) {
+      statusEl.textContent = getThemeChatLabel();
+    }
+    if (!composerPill.classList.contains('typing')) {
+      composerText.textContent = getThemeComposerPlaceholder();
+      composerText.classList.add('placeholder');
+    }
+  }
+
+  function closeContextMenu() {
+    ctxMenu.classList.remove('open');
+  }
+
+  function openContextMenu(clientX, clientY) {
+    const msgs = threadData.messages || [];
+    const maskedCount = msgs.filter(isMessageMasked).length;
+    ctxMaskedBadge.textContent = String(maskedCount);
+    ctxMenu.classList.add('open');
+
+    const rect = ctxMenu.getBoundingClientRect();
+    const pad = 8;
+    const x = Math.min(window.innerWidth - rect.width - pad, Math.max(pad, clientX));
+    const y = Math.min(window.innerHeight - rect.height - pad, Math.max(pad, clientY));
+    ctxMenu.style.left = `${x}px`;
+    ctxMenu.style.top = `${y}px`;
+  }
 
   function isMessageMasked(msg) {
     return Boolean(msg && msg.mask !== null && msg.mask !== undefined && msg.mask !== false && msg.mask !== '');
@@ -544,8 +658,9 @@
     maskToast.classList.remove('visible');
   }
 
-  function showMaskToast(label) {
+  function showMaskToast(label, showUndo = true) {
     maskToastText.textContent = label;
+    undoMaskBtn.style.display = showUndo ? '' : 'none';
     maskToast.classList.add('visible');
     if (maskToastTimer) clearTimeout(maskToastTimer);
     maskToastTimer = setTimeout(() => {
@@ -558,6 +673,7 @@
     const msgs = threadData.messages || [];
     const maskedCount = msgs.filter(isMessageMasked).length;
     maskedBtn.textContent = `🙈 Masked: ${maskedCount}`;
+    ctxMaskedBadge.textContent = String(maskedCount);
     if (maskPanel.classList.contains('open')) {
       renderMaskPanel();
     }
@@ -640,16 +756,21 @@
 
   function unmaskAllMessages() {
     const msgs = threadData.messages || [];
+    let clearedCount = 0;
     msgs.forEach((msg, idx) => {
-      if (isMessageMasked(msg)) {
-        msg.mask = null;
-        saveMaskOverride(getMessageKey(msg, idx), null);
-      }
+      if (isMessageMasked(msg)) clearedCount++;
+      msg.mask = null;
+      saveMaskOverride(getMessageKey(msg, idx), null);
     });
+    try {
+      if (localStorage.getItem('sms_player_last_thread')) {
+        localStorage.setItem('sms_player_last_thread', JSON.stringify(threadData));
+      }
+    } catch (e) {}
     lastMaskedAction = null;
-    hideMaskToast();
     populateStartSelector(msgs);
     updateMaskedUI();
+    showMaskToast(clearedCount > 0 ? `Unmasked all (${clearedCount}) messages` : 'All message masks cleared', false);
   }
 
   function exportThreadJson() {
@@ -792,8 +913,92 @@
     chatStream.scrollTop = chatStream.scrollHeight;
   }
 
+  function playKeyClickSound() {
+    if (!soundEnabled || audioCtx.state !== 'running') return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    const baseFreq = 920 + Math.random() * 240;
+    osc.frequency.setValueAtTime(baseFreq, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.022);
+    gain.gain.setValueAtTime(0.018, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0008, audioCtx.currentTime + 0.024);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.026);
+  }
+
+  function getGraphemes(str) {
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+      return Array.from(seg.segment(str), s => s.segment);
+    }
+    return Array.from(str);
+  }
+
+  function clearComposerTyping() {
+    composerPill.classList.remove('typing');
+    composerText.textContent = getThemeComposerPlaceholder();
+    composerText.classList.add('placeholder');
+    composerActionIcon.classList.remove('send-ready', 'sending');
+    composerPill.scrollTop = 0;
+  }
+
+  async function typeOutgoingMessage(rawText, token) {
+    const displayText = normalizeEmojiPresentation(rawText || '');
+    const chars = getGraphemes(displayText);
+
+    composerPill.classList.add('typing');
+    composerText.textContent = '';
+    composerText.classList.remove('placeholder');
+    composerActionIcon.classList.remove('send-ready', 'sending');
+
+    // Brief focus beat with blinking caret before the first keystroke
+    if (!(await wait(240, token))) {
+      clearComposerTyping();
+      return false;
+    }
+
+    // Keep longer messages brisk so they don't drag out
+    const scale = chars.length > 55 ? Math.max(0.45, 55 / chars.length) : 1;
+
+    for (let i = 0; i < chars.length; i++) {
+      const ch = chars[i];
+      let delay = (42 + Math.random() * 36) * scale;
+      if (i > 0 && /[.!?]/.test(chars[i - 1])) delay += 110 * scale;
+      else if (i > 0 && /[,;:]/.test(chars[i - 1])) delay += 65 * scale;
+      else if (ch === ' ') delay += 20 * scale;
+
+      if (!(await wait(delay, token))) {
+        clearComposerTyping();
+        return false;
+      }
+
+      composerText.textContent += ch;
+      composerActionIcon.classList.add('send-ready');
+      composerPill.scrollTop = composerPill.scrollHeight;
+      if (ch !== ' ') playKeyClickSound();
+    }
+
+    // Brief pause before tapping Send
+    if (!(await wait(260, token))) {
+      clearComposerTyping();
+      return false;
+    }
+
+    composerActionIcon.classList.add('sending');
+    if (!(await wait(140, token))) {
+      clearComposerTyping();
+      return false;
+    }
+
+    clearComposerTyping();
+    return true;
+  }
+
   function removeTyping() {
-    statusEl.textContent = 'RCS chat';
+    statusEl.textContent = getThemeChatLabel();
     const existing = document.getElementById('typingIndicator');
     if (existing) existing.remove();
   }
@@ -840,6 +1045,7 @@
       row.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        closeContextMenu();
         maskMessageAtIndex(msgIdx, row);
       });
     }
@@ -940,7 +1146,7 @@
           if (!ok) return;
           removeTyping();
         } else {
-          const ok = await wait(1100, token);
+          const ok = await typeOutgoingMessage(msg.text, token);
           if (!ok) return;
         }
 
@@ -1014,6 +1220,7 @@
     isPlaying = false;
     cancelToken.cancelled = true;
     removeTyping();
+    clearComposerTyping();
     currentIndex = startIndex;
     chatStream.innerHTML = '';
     updatePlaybackUI();
@@ -1027,7 +1234,7 @@
     isPlaying = !isPlaying;
     updatePlaybackUI();
     if (isPlaying) runPlayback();
-    else { cancelToken.cancelled = true; removeTyping(); }
+    else { cancelToken.cancelled = true; removeTyping(); clearComposerTyping(); }
   }
 
   function loadThread(data, persist = false, sourceHint = '') {
@@ -1066,6 +1273,33 @@
   window.addEventListener('contextmenu', (e) => {
     if (e.target.closest('.msg-row, .mask-panel, .mask-toast')) return;
     e.preventDefault();
+    openContextMenu(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('click', (e) => {
+    if (!e.target.closest('#ctxMenu')) closeContextMenu();
+  });
+
+  ctxMenu.addEventListener('click', (e) => e.stopPropagation());
+
+  ctxUnmaskAllBtn.addEventListener('click', () => {
+    closeContextMenu();
+    unmaskAllMessages();
+  });
+
+  ctxManageMasksBtn.addEventListener('click', () => {
+    closeContextMenu();
+    renderMaskPanel();
+    maskPanel.classList.add('open');
+  });
+
+  ctxExportJsonBtn.addEventListener('click', () => {
+    closeContextMenu();
+    exportThreadJson();
+  });
+
+  ctxToggleToolbarBtn.addEventListener('click', () => {
+    closeContextMenu();
     toolbar.classList.toggle('hidden');
   });
 
@@ -1112,6 +1346,7 @@
   themeSelect.addEventListener('change', (e) => {
     document.body.setAttribute('data-theme', e.target.value);
     refreshRenderedSenderColors();
+    syncThemeLabels();
   });
 
   startSelect.addEventListener('change', (e) => {
@@ -1126,7 +1361,13 @@
 
   playPauseBtn.addEventListener('click', togglePlayback);
   playbackPill.addEventListener('click', togglePlayback);
-  chatStream.addEventListener('click', togglePlayback);
+  chatStream.addEventListener('click', () => {
+    if (ctxMenu.classList.contains('open')) {
+      closeContextMenu();
+      return;
+    }
+    togglePlayback();
+  });
 
   document.getElementById('restartBtn').addEventListener('click', () => {
     resetToStartPoint();
@@ -1151,7 +1392,8 @@
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (maskPanel.classList.contains('open')) maskPanel.classList.remove('open');
+      if (ctxMenu.classList.contains('open')) closeContextMenu();
+      else if (maskPanel.classList.contains('open')) maskPanel.classList.remove('open');
       else toolbar.classList.toggle('hidden');
     }
     if (e.code === 'Space' && document.activeElement !== speedSlider && !maskPanel.classList.contains('open')) {

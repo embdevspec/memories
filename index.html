@@ -229,8 +229,7 @@
     border: 1px solid rgba(255,255,255,0.08);
   }
   .playback-pill:hover { opacity: 1; transform: translateX(-50%) scale(1.03); }
-  .playback-pill.playing { opacity: 0.22; }
-  .playback-pill.playing:hover { opacity: 0.92; }
+  .playback-pill.playing { opacity: 0; pointer-events: none; }
 
   .msg-row {
     display: flex; flex-direction: column; max-width: 85%; position: relative;
@@ -302,6 +301,7 @@
   .typing-wrap {
     align-self: flex-start; display: flex; flex-direction: column; gap: 3px;
     padding-left: 36px;
+    animation: popIn 0.24s ease forwards;
   }
   .typing-sender {
     font-size: 11.5px; font-weight: 500; margin-left: 10px;
@@ -571,7 +571,7 @@
   }
 
   function syncThemeLabels() {
-    if (!document.getElementById('typingIndicator')) {
+    if (activeTypers.size === 0) {
       statusEl.textContent = getThemeChatLabel();
     }
     if (!composerPill.classList.contains('typing')) {
@@ -950,14 +950,31 @@
     });
   }
 
-  function showTyping(senderName) {
-    removeTyping();
+  const activeTypers = new Map();
+
+  function updateTypingStatus() {
+    const names = Array.from(activeTypers.keys());
+    if (names.length === 0) {
+      statusEl.textContent = getThemeChatLabel();
+    } else if (names.length === 1) {
+      statusEl.textContent = `${names[0]} is typing...`;
+    } else if (names.length === 2) {
+      statusEl.textContent = `${names[0]} and ${names[1]} are typing...`;
+    } else {
+      statusEl.textContent = `${names[0]}, ${names[1]}, and ${names.length - 2} more are typing...`;
+    }
+  }
+
+  function addTyping(senderName) {
     const name = formatSenderName(senderName, false) || "Someone";
-    statusEl.textContent = `${name} is typing...`;
+    if (activeTypers.has(name)) {
+      repositionTypingIndicators();
+      return;
+    }
 
     const wrap = document.createElement('div');
     wrap.className = 'typing-wrap';
-    wrap.id = 'typingIndicator';
+    wrap.dataset.typingSender = name;
 
     const label = document.createElement('div');
     label.className = 'typing-sender';
@@ -971,8 +988,54 @@
     row.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
     wrap.appendChild(row);
 
+    activeTypers.set(name, wrap);
     chatStream.appendChild(wrap);
+    updateTypingStatus();
     chatStream.scrollTop = chatStream.scrollHeight;
+  }
+
+  function showTyping(senderName) {
+    removeTyping();
+    addTyping(senderName);
+  }
+
+  function removeTypingFor(senderName) {
+    const name = formatSenderName(senderName, false) || "Someone";
+    const wrap = activeTypers.get(name);
+    if (wrap) {
+      wrap.remove();
+      activeTypers.delete(name);
+      updateTypingStatus();
+    }
+  }
+
+  function repositionTypingIndicators() {
+    if (activeTypers.size === 0) return;
+    activeTypers.forEach((wrap) => {
+      chatStream.appendChild(wrap);
+    });
+  }
+
+  function findNextUnmaskedIndex(fromIdx) {
+    const msgs = threadData.messages || [];
+    for (let i = fromIdx; i < msgs.length; i++) {
+      if (!isMessageMasked(msgs[i])) return i;
+    }
+    return -1;
+  }
+
+  function pickOtherIncomingSender(excludeName) {
+    const msgs = threadData.messages || [];
+    const candidates = new Set();
+    for (let i = 0; i < msgs.length; i++) {
+      const m = msgs[i];
+      if (m.direction !== 'incoming' || isMessageMasked(m)) continue;
+      const n = formatSenderName(m.sender || "Rene'", false) || "Someone";
+      if (n !== excludeName && !activeTypers.has(n)) candidates.add(n);
+    }
+    const list = Array.from(candidates);
+    if (list.length === 0) return null;
+    return list[Math.floor(Math.random() * list.length)];
   }
 
   let keyClickNoiseBuffer = null;
@@ -1073,9 +1136,11 @@
     composerPill.scrollTop = 0;
   }
 
-  async function typeOutgoingMessage(rawText, token) {
+  async function typeOutgoingMessage(rawText, token, onMidTyping = null) {
     const displayText = normalizeEmojiPresentation(rawText || '');
     const chars = getGraphemes(displayText);
+    const midPoint = Math.max(1, Math.floor(chars.length * (0.38 + Math.random() * 0.2)));
+    let midTriggered = false;
 
     composerPill.classList.add('typing');
     composerText.textContent = '';
@@ -1088,14 +1153,23 @@
       return false;
     }
 
-    // Keep longer messages brisk so they don't drag out
-    const scale = chars.length > 55 ? Math.max(0.45, 55 / chars.length) : 1;
+    // Consistent human keystroke cadence with light jitter so total typing time scales naturally with length
+    const BASE_KEYSTROKE_MS = 64;
+    const KEYSTROKE_JITTER_MS = 18; // +/- 18ms around base (~46-82ms per key)
     // Full 11% typo rate on short messages, tapering down to half (5.5%) on longer messages
     const longFactor = Math.min(1, Math.max(0, (chars.length - 30) / 25));
     const typoRate = 0.11 * (1 - 0.5 * longFactor);
     const baseCooldown = Math.round(5 + 5 * longFactor);
     let typed = '';
     let typoCooldown = 0;
+
+    function nextKeystrokeDelay(prevChar, currChar) {
+      let d = BASE_KEYSTROKE_MS + (Math.random() * 2 - 1) * KEYSTROKE_JITTER_MS;
+      if (prevChar && /[.!?]/.test(prevChar)) d += 95;
+      else if (prevChar && /[,;:]/.test(prevChar)) d += 55;
+      else if (currChar === ' ') d += 18;
+      return d;
+    }
 
     async function appendVisibleChar(c, delayMs) {
       if (!(await wait(delayMs, token))) {
@@ -1112,7 +1186,7 @@
     async function backspaceChars(count) {
       let current = getGraphemes(composerText.textContent);
       for (let b = 0; b < count; b++) {
-        const bsDelay = (58 + Math.random() * 38) * Math.max(0.7, scale);
+        const bsDelay = 68 + Math.random() * 26;
         if (!(await wait(bsDelay, token))) {
           clearComposerTyping();
           return false;
@@ -1128,10 +1202,7 @@
 
     for (let i = 0; i < chars.length; i++) {
       const ch = chars[i];
-      let delay = (42 + Math.random() * 36) * scale;
-      if (i > 0 && /[.!?]/.test(chars[i - 1])) delay += 110 * scale;
-      else if (i > 0 && /[,;:]/.test(chars[i - 1])) delay += 65 * scale;
-      else if (ch === ' ') delay += 20 * scale;
+      let delay = nextKeystrokeDelay(i > 0 ? chars[i - 1] : '', ch);
 
       const isEligibleLetter = /^[a-zA-Z]$/.test(ch);
       if (isEligibleLetter && typoCooldown <= 0 && Math.random() < typoRate) {
@@ -1165,12 +1236,12 @@
           }
 
           for (let m = 0; m < mistakeSeq.length; m++) {
-            const stepDelay = m === 0 ? delay : (38 + Math.random() * 34) * scale;
+            const stepDelay = m === 0 ? delay : nextKeystrokeDelay(mistakeSeq[m - 1], mistakeSeq[m]);
             if (!(await appendVisibleChar(mistakeSeq[m], stepDelay))) return false;
           }
 
           // Human "wait, oops" notice pause before hitting Backspace
-          const noticePause = (doMulti ? (210 + Math.random() * 140) : (130 + Math.random() * 100)) * Math.max(0.65, scale);
+          const noticePause = doMulti ? (210 + Math.random() * 130) : (135 + Math.random() * 90);
           if (!(await wait(noticePause, token))) {
             clearComposerTyping();
             return false;
@@ -1180,7 +1251,7 @@
           composerText.textContent = typed;
 
           // Short beat before typing the corrected letter
-          delay = (85 + Math.random() * 55) * Math.max(0.7, scale);
+          delay = 85 + Math.random() * 45;
           typoCooldown = baseCooldown + Math.floor(Math.random() * 4);
         }
       } else if (typoCooldown > 0) {
@@ -1189,6 +1260,16 @@
 
       if (!(await appendVisibleChar(ch, delay))) return false;
       typed += ch;
+
+      if (onMidTyping && !midTriggered && i + 1 >= midPoint) {
+        midTriggered = true;
+        onMidTyping();
+      }
+    }
+
+    if (onMidTyping && !midTriggered) {
+      midTriggered = true;
+      onMidTyping();
     }
 
     // Ensure exact message integrity before sending
@@ -1211,9 +1292,9 @@
   }
 
   function removeTyping() {
+    activeTypers.forEach((wrap) => wrap.remove());
+    activeTypers.clear();
     statusEl.textContent = getThemeChatLabel();
-    const existing = document.getElementById('typingIndicator');
-    if (existing) existing.remove();
   }
 
   function trimOldMessages() {
@@ -1323,6 +1404,7 @@
     }
 
     chatStream.appendChild(row);
+    repositionTypingIndicators();
     chatStream.scrollTop = chatStream.scrollHeight;
     if (msg.direction === 'incoming') playSwooshSound();
     else playPopSound(false);
@@ -1343,28 +1425,90 @@
     const token = { cancelled: false };
     cancelToken = token;
 
+    const SIMULTANEOUS_TYPING_CHANCE = 0.07;
+    let preStartedTyping = null;
+
     while (isPlaying) {
       while (currentIndex < threadData.messages.length && isPlaying) {
         const msgIdx = currentIndex;
         const msg = threadData.messages[msgIdx];
 
         if (isMessageMasked(msg)) {
+          if (preStartedTyping && preStartedTyping.msgIdx === msgIdx) {
+            removeTypingFor(preStartedTyping.senderName);
+            preStartedTyping = null;
+          }
           currentIndex++;
           continue;
         }
 
+        let decoyTyper = null;
+
         if (msg.direction === 'incoming') {
-          const typingDuration = Math.min(3800, Math.max(1200, msg.text.length * 55));
-          showTyping(msg.sender || "Rene'");
-          const ok = await wait(typingDuration, token);
-          if (!ok) return;
-          removeTyping();
+          const senderName = formatSenderName(msg.sender || "Rene'", false) || "Someone";
+          let typingDuration = Math.min(3800, Math.max(1200, msg.text.length * 55));
+
+          if (preStartedTyping && preStartedTyping.msgIdx === msgIdx) {
+            // Already visibly typing from overlap with previous message
+            addTyping(senderName);
+            typingDuration = Math.max(700, Math.round(typingDuration * 0.55));
+            preStartedTyping = null;
+          } else {
+            addTyping(senderName);
+          }
+
+          if (activeTypers.size === 1 && Math.random() < SIMULTANEOUS_TYPING_CHANCE) {
+            const nextIdx = findNextUnmaskedIndex(msgIdx + 1);
+            const nextMsg = nextIdx !== -1 ? threadData.messages[nextIdx] : null;
+            const nextSender = (nextMsg && nextMsg.direction === 'incoming')
+              ? (formatSenderName(nextMsg.sender || "Rene'", false) || "Someone")
+              : null;
+
+            const coTyper = (nextSender && nextSender !== senderName)
+              ? nextSender
+              : pickOtherIncomingSender(senderName);
+
+            if (coTyper) {
+              const splitRatio = 0.35 + Math.random() * 0.25;
+              const firstPart = Math.round(typingDuration * splitRatio);
+              const secondPart = Math.max(450, typingDuration - firstPart);
+
+              if (!(await wait(firstPart, token))) return;
+              addTyping(coTyper);
+              if (nextSender && coTyper === nextSender) {
+                preStartedTyping = { msgIdx: nextIdx, senderName: coTyper };
+              } else {
+                decoyTyper = coTyper;
+              }
+              if (!(await wait(secondPart, token))) return;
+            } else {
+              if (!(await wait(typingDuration, token))) return;
+            }
+          } else {
+            if (!(await wait(typingDuration, token))) return;
+          }
+
+          removeTypingFor(senderName);
         } else {
-          const ok = await typeOutgoingMessage(msg.text, token);
+          // Outgoing message: ~7% of the time, the next incoming sender starts typing while you type
+          const nextIdx = findNextUnmaskedIndex(msgIdx + 1);
+          const nextMsg = nextIdx !== -1 ? threadData.messages[nextIdx] : null;
+          let onMidTyping = null;
+
+          if (nextMsg && nextMsg.direction === 'incoming' && activeTypers.size === 0 && Math.random() < SIMULTANEOUS_TYPING_CHANCE) {
+            const nextSender = formatSenderName(nextMsg.sender || "Rene'", false) || "Someone";
+            onMidTyping = () => {
+              addTyping(nextSender);
+              preStartedTyping = { msgIdx: nextIdx, senderName: nextSender };
+            };
+          }
+
+          const ok = await typeOutgoingMessage(msg.text, token, onMidTyping);
           if (!ok) return;
         }
 
         if (isMessageMasked(msg)) {
+          if (decoyTyper) removeTypingFor(decoyTyper);
           currentIndex++;
           continue;
         }
@@ -1373,8 +1517,12 @@
 
         if (msg.reactions && msg.reactions.length > 0) {
           row.classList.add('has-reactions');
-          for (const r of msg.reactions) {
-            const ok = await wait(1200, token);
+          for (let rIdx = 0; rIdx < msg.reactions.length; rIdx++) {
+            const r = msg.reactions[rIdx];
+            const base = rIdx === 0 ? 650 : 550;
+            const spread = rIdx === 0 ? 1950 : 1250;
+            const reactionDelay = Math.round(base + Math.random() * spread);
+            const ok = await wait(reactionDelay, token);
             if (!ok) return;
             if (isMessageMasked(msg)) break;
             const pill = document.createElement('span');
@@ -1388,13 +1536,29 @@
 
         currentIndex++;
         if (!isMessageMasked(msg)) {
-          const readingPause = Math.min(2600, Math.max(1400, msg.text.length * 25));
-          const pauseBetween = await wait(readingPause, token);
-          if (!pauseBetween) return;
+          if (decoyTyper) {
+            const decoyPause = 550 + Math.random() * 350;
+            if (!(await wait(decoyPause, token))) return;
+            removeTypingFor(decoyTyper);
+            const restPause = Math.max(500, Math.min(2600, Math.max(1400, msg.text.length * 25)) - decoyPause);
+            if (!(await wait(restPause, token))) return;
+          } else if (preStartedTyping) {
+            // Next person is already actively typing below, keep the beat snappy
+            if (!(await wait(550, token))) return;
+          } else {
+            const readingPause = Math.min(2600, Math.max(1400, msg.text.length * 25));
+            const pauseBetween = await wait(readingPause, token);
+            if (!pauseBetween) return;
+          }
+        } else if (decoyTyper) {
+          removeTypingFor(decoyTyper);
         }
       }
 
       if (!isPlaying) return;
+
+      removeTyping();
+      preStartedTyping = null;
 
       if (autoLoop && threadData.messages.length > 0) {
         const hasAnyUnmasked = threadData.messages.some(m => !isMessageMasked(m));

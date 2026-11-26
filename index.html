@@ -1,0 +1,1058 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dad's Eulogy Exercise — Family Thread</title>
+    <style>
+        :root,
+        [data-theme="ios"] {
+            --page-bg: #e5e5ea;
+            --phone-bg: #ffffff;
+            --phone-border: #c7c7cc;
+            --header-bg: rgba(249, 249, 249, 0.96);
+            --header-border: #d1d1d6;
+            --header-text: #000000;
+            --incoming-bg: #e9e9eb;
+            --incoming-text: #000000;
+            --outgoing-bg: #007aff;
+            --outgoing-text: #ffffff;
+            --muted: #6e6e73;
+            --reaction-bg: #ffffff;
+            --reaction-text: #000000;
+            --reaction-border: #e5e5ea;
+            --bubble-radius: 18px;
+            --tail-radius: 4px;
+            --avatar-bg: #1e3a8a;
+        }
+
+        [data-theme="android-dark"] {
+            --page-bg: #0f1115;
+            --phone-bg: #161920;
+            --phone-border: #2a2f3a;
+            --header-bg: #1e222b;
+            --header-border: #282d38;
+            --header-text: #ffffff;
+            --incoming-bg: #262b36;
+            --incoming-text: #f1f3f5;
+            --outgoing-bg: #2563eb;
+            --outgoing-text: #ffffff;
+            --muted: #8b949e;
+            --reaction-bg: #2d3340;
+            --reaction-text: #ffffff;
+            --reaction-border: #161920;
+            --bubble-radius: 18px;
+            --tail-radius: 4px;
+            --avatar-bg: #3b82f6;
+        }
+
+        [data-theme="android-light"] {
+            --page-bg: #e5e7eb;
+            --phone-bg: #ffffff;
+            --phone-border: #d1d5db;
+            --header-bg: #f8fafc;
+            --header-border: #e2e8f0;
+            --header-text: #0f172a;
+            --incoming-bg: #f1f3f4;
+            --incoming-text: #1f2937;
+            --outgoing-bg: #0b57d0;
+            --outgoing-text: #ffffff;
+            --muted: #64748b;
+            --reaction-bg: #ffffff;
+            --reaction-text: #1f2937;
+            --reaction-border: #e2e8f0;
+            --bubble-radius: 20px;
+            --tail-radius: 4px;
+            --avatar-bg: #0b57d0;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--page-bg);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 16px;
+            transition: background 0.25s ease;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            background: #1e222b;
+            padding: 10px 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+            max-width: 880px;
+            z-index: 20;
+        }
+
+        .toolbar.hidden {
+            display: none;
+        }
+
+        button,
+        label.file-btn,
+        select {
+            background: #2d3340;
+            color: #fff;
+            border: 1px solid #3d4454;
+            padding: 7px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.15s;
+        }
+
+        select#startSelect {
+            max-width: 210px;
+            text-overflow: ellipsis;
+        }
+
+        button:hover,
+        label.file-btn:hover,
+        select:hover {
+            background: #3b4252;
+        }
+
+        button.primary {
+            background: #2563eb;
+            border-color: #3b82f6;
+        }
+
+        button.primary:hover {
+            background: #1d4ed8;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #2d3340;
+            border: 1px solid #3d4454;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .slider-group input[type="range"] {
+            width: 110px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .slider-val {
+            min-width: 42px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            color: #93c5fd;
+        }
+
+        .phone-frame {
+            width: 420px;
+            max-width: 100%;
+            height: 760px;
+            max-height: 88vh;
+            background: var(--phone-bg);
+            border-radius: 34px;
+            border: 4px solid var(--phone-border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        /* Edge-to-edge mobile layout */
+        @media (max-width: 520px) {
+            body {
+                padding: 0;
+            }
+
+            .toolbar {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                margin-bottom: 0;
+            }
+
+            .phone-frame {
+                width: 100vw;
+                height: 100dvh;
+                max-height: 100dvh;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+            }
+        }
+
+        .chat-header {
+            background: var(--header-bg);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--header-border);
+            color: var(--header-text);
+            transition: background 0.25s ease, color 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        [data-theme="ios"] .chat-header {
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 18px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--avatar-bg);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        [data-theme="ios"] .avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+
+        .header-info {
+            width: 100%;
+        }
+
+        .header-info .prompt-sender {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+
+        .header-info h2 {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .header-info span {
+            font-size: 11px;
+            color: var(--muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        [data-theme="ios"] .header-info span {
+            display: none;
+        }
+
+        .chat-stream {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 14px 48px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            scroll-behavior: smooth;
+            cursor: pointer;
+        }
+
+        .chat-stream::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-stream::-webkit-scrollbar-thumb {
+            background: rgba(128, 128, 128, 0.3);
+            border-radius: 4px;
+        }
+
+        /* Subtle floating status pill at bottom of phone screen for mobile tap-to-pause/replay */
+        .playback-pill {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30, 34, 43, 0.82);
+            color: #fff;
+            backdrop-filter: blur(6px);
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.85;
+            transition: opacity 0.2s, transform 0.15s;
+            user-select: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .playback-pill:hover {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.03);
+        }
+
+        .playback-pill.playing {
+            opacity: 0.35;
+        }
+
+        .playback-pill.playing:hover {
+            opacity: 0.9;
+        }
+
+        .msg-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+            position: relative;
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .msg-row.incoming {
+            align-self: flex-start;
+        }
+
+        .msg-row.outgoing {
+            align-self: flex-end;
+            align-items: flex-end;
+        }
+
+        .msg-row.has-reactions {
+            margin-top: 6px;
+        }
+
+        .incoming-layout {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .mini-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-bottom: 16px;
+        }
+
+        .incoming-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .sender-label {
+            font-size: 11.5px;
+            font-weight: 700;
+            margin: 0 0 3px 6px;
+            letter-spacing: 0.01em;
+        }
+
+        .outgoing .sender-label {
+            margin: 0 6px 3px 0;
+            color: #374151;
+        }
+
+        [data-theme="android-dark"] .outgoing .sender-label {
+            color: #9ca3af;
+        }
+
+        .bubble-wrap {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+        }
+
+        .bubble {
+            padding: 10px 14px;
+            border-radius: var(--bubble-radius);
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            position: relative;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .incoming .bubble {
+            background: var(--incoming-bg);
+            color: var(--incoming-text);
+            border-bottom-left-radius: var(--tail-radius);
+        }
+
+        .outgoing .bubble {
+            background: var(--outgoing-bg);
+            color: var(--outgoing-text);
+            border-bottom-right-radius: var(--tail-radius);
+        }
+
+        .bubble.jumbo {
+            background: transparent !important;
+            padding: 2px 4px;
+            font-size: 42px;
+            line-height: 1.1;
+        }
+
+        .reactions-bar {
+            display: flex;
+            gap: 4px;
+            margin-top: -8px;
+            z-index: 2;
+            padding: 0 6px;
+        }
+
+        .outgoing .reactions-bar {
+            justify-content: flex-end;
+        }
+
+        [data-theme="ios"] .reactions-bar {
+            position: absolute;
+            top: -14px;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        [data-theme="ios"] .incoming .reactions-bar {
+            right: -8px;
+        }
+
+        [data-theme="ios"] .outgoing .reactions-bar {
+            left: -8px;
+        }
+
+        .reaction-pill {
+            background: var(--reaction-bg);
+            color: var(--reaction-text);
+            border: 1.5px solid var(--reaction-border);
+            border-radius: 12px;
+            padding: 2px 7px;
+            font-size: 13px;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+            animation: reactionPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
+        }
+
+        [data-theme="ios"] .reaction-pill {
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 4px;
+            padding: 0 6px;
+        }
+
+        .typing-wrap {
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .typing-sender {
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .typing-row {
+            background: var(--incoming-bg);
+            padding: 12px 16px;
+            border-radius: var(--bubble-radius);
+            border-bottom-left-radius: var(--tail-radius);
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            width: fit-content;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--muted);
+            border-radius: 50%;
+            animation: bounce 1.3s infinite ease-in-out;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.18s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.36s;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes reactionPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+
+            70% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            30% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="ios">
+
+    <div class="toolbar hidden" id="toolbar">
+        <label class="file-btn">
+            📂 Load JSON
+            <input type="file" id="fileInput" accept=".json">
+        </label>
+        <select id="themeSelect" title="Switch visual style">
+            <option value="ios" selected>💬 iOS iMessage</option>
+            <option value="android-light">☀️ Android Light</option>
+            <option value="android-dark">🌙 Android Dark</option>
+        </select>
+        <select id="startSelect" title="Choose starting message/timestamp"></select>
+        <button class="primary" id="playPauseBtn">▶ Play</button>
+        <button id="restartBtn">↺ Restart</button>
+
+        <label class="slider-group" title="Adjust playback speed in real time">
+            <span>Speed</span>
+            <input type="range" id="speedSlider" min="0.25" max="3.0" step="0.05" value="1.0">
+            <span class="slider-val" id="speedValue">1.00x</span>
+        </label>
+
+        <button id="soundBtn">🔊 Sound: On</button>
+        <button id="cleanBtn" title="Hide toolbar (Right-click or press Esc to restore)">🎥 Clean Mode</button>
+    </div>
+
+    <div class="phone-frame">
+        <div class="chat-header">
+            <div class="avatar" id="avatarInitial">R</div>
+            <div class="header-info">
+                <div class="prompt-sender" id="headerSender">Rene'</div>
+                <h2 id="threadTitle">Loading memories...</h2>
+                <span id="statusText">RCS chat</span>
+            </div>
+        </div>
+        <div class="chat-stream" id="chatStream" title="Tap anywhere to Play / Pause"></div>
+        <div class="playback-pill" id="playbackPill">▶ Play</div>
+    </div>
+
+    <script>
+        const defaultDemoData = {
+            title: "Family Thread",
+            messages: [
+                { id: "m1", direction: "incoming", sender: "Rene Gautreaux", time: "10:12 AM", text: "Quick exercise for Dad’s eulogy and everyone is encouraged to play: Name some of the simple things dad liked. Annnnnd go!", reactions: [{ emoji: "❤️", delayAfterMs: 1200 }] },
+                { id: "m2", direction: "outgoing", sender: "Paul", time: "10:14 AM", text: "A fresh cup of coffee in the morning ☕", reactions: [{ emoji: "👍", delayAfterMs: 1100 }] },
+                { id: "m3", direction: "incoming", sender: "Lil Sis", time: "10:15 AM", text: "Me calling him at the drugstore to bring home a surprise for me🤣", reactions: [{ emoji: "😂", delayAfterMs: 1200 }] }
+            ]
+        };
+
+        let threadData = defaultDemoData;
+        let isPlaying = false;
+        let startIndex = 0;
+        let currentIndex = 0;
+        let speedMultiplier = 1.0;
+        let soundEnabled = true;
+        let cancelToken = { cancelled: false };
+
+        const toolbar = document.getElementById('toolbar');
+        const chatStream = document.getElementById('chatStream');
+        const playbackPill = document.getElementById('playbackPill');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const startSelect = document.getElementById('startSelect');
+        const themeSelect = document.getElementById('themeSelect');
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        const headerSenderEl = document.getElementById('headerSender');
+        const threadTitleEl = document.getElementById('threadTitle');
+        const avatarEl = document.getElementById('avatarInitial');
+        const statusEl = document.getElementById('statusText');
+
+        function formatSenderName(rawName, isOutgoing = false) {
+            let name = (rawName || "").trim();
+            if (!name || (isOutgoing && name === "Me")) return "Paul";
+
+            const lower = name.toLowerCase();
+            if (lower === "lil sis") return "Amy";
+            if (lower === "rene" || lower === "rene'" || lower.startsWith("rene ")) return "Rene'";
+
+            if (/^[+\d\s().-]+$/.test(name)) return name;
+            return name.split(/\s+/)[0];
+        }
+
+        const darkSenderPalette = [
+            "#1e3a8a", "#7c2d12", "#064e3b", "#581c87",
+            "#831843", "#115e59", "#312e81", "#713f12", "#1f2937"
+        ];
+
+        const lightSenderPalette = [
+            "#38bdf8", "#f472b6", "#a78bfa", "#34d399",
+            "#fbbf24", "#fb7185", "#2dd4bf", "#818cf8", "#fb923c"
+        ];
+
+        function getSenderColor(name) {
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const isDarkTheme = document.body.getAttribute('data-theme') === 'android-dark';
+            const palette = isDarkTheme ? lightSenderPalette : darkSenderPalette;
+            return palette[Math.abs(hash) % palette.length];
+        }
+
+        function getInitials(name) {
+            const cleaned = (name || "?").replace(/[^a-zA-Z0-9\s]/g, '').trim();
+            if (!cleaned) return "?";
+            return cleaned[0].toUpperCase();
+        }
+
+        function normalizeEmojiPresentation(str) {
+            return (str || "").replace(/\u2764(?!\uFE0F)/g, '\u2764\uFE0F');
+        }
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function unlockAudio() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().catch(() => { });
+            }
+        }
+        window.addEventListener('pointerdown', unlockAudio, { once: true });
+
+        function playPopSound(isIncoming) {
+            if (!soundEnabled || audioCtx.state !== 'running') return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(isIncoming ? 580 : 440, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(isIncoming ? 880 : 620, audioCtx.currentTime + 0.09);
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.11);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.12);
+        }
+
+        function isEmojiOnly(str) {
+            const cleaned = str.replace(/[\s\uFE0F]/g, '');
+            return /^(?:\p{Emoji_Presentation}|\p{Extended_Pictographic}){1,3}$/u.test(cleaned);
+        }
+
+        function updatePlaybackUI() {
+            if (isPlaying) {
+                playPauseBtn.textContent = '⏸ Pause';
+                playbackPill.textContent = '⏸ Pause';
+                playbackPill.classList.add('playing');
+            } else if (currentIndex >= threadData.messages.length && threadData.messages.length > 0) {
+                playPauseBtn.textContent = '↺ Replay';
+                playbackPill.textContent = '↺ Replay';
+                playbackPill.classList.remove('playing');
+            } else {
+                playPauseBtn.textContent = '▶ Play';
+                playbackPill.textContent = '▶ Play';
+                playbackPill.classList.remove('playing');
+            }
+        }
+
+        function wait(ms, token) {
+            return new Promise((resolve) => {
+                let elapsed = 0;
+                let lastTime = performance.now();
+                function check(now) {
+                    if (token.cancelled) return resolve(false);
+                    const dt = now - lastTime;
+                    lastTime = now;
+                    elapsed += dt * speedMultiplier;
+                    if (elapsed >= ms) return resolve(true);
+                    requestAnimationFrame(check);
+                }
+                requestAnimationFrame(check);
+            });
+        }
+
+        function showTyping(senderName) {
+            removeTyping();
+            const name = formatSenderName(senderName, false) || "Someone";
+            statusEl.textContent = `${name} is typing...`;
+
+            const wrap = document.createElement('div');
+            wrap.className = 'typing-wrap';
+            wrap.id = 'typingIndicator';
+
+            const label = document.createElement('div');
+            label.className = 'typing-sender';
+            label.dataset.sender = name;
+            label.style.color = getSenderColor(name);
+            label.textContent = name;
+            wrap.appendChild(label);
+
+            const row = document.createElement('div');
+            row.className = 'typing-row';
+            row.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            wrap.appendChild(row);
+
+            chatStream.appendChild(wrap);
+            chatStream.scrollTop = chatStream.scrollHeight;
+        }
+
+        function removeTyping() {
+            statusEl.textContent = 'RCS chat';
+            const existing = document.getElementById('typingIndicator');
+            if (existing) existing.remove();
+        }
+
+        function renderMessage(msg) {
+            const row = document.createElement('div');
+            row.className = `msg-row ${msg.direction}`;
+
+            const senderName = formatSenderName(msg.sender, msg.direction === 'outgoing');
+            const senderColor = getSenderColor(senderName);
+            const displayText = normalizeEmojiPresentation(msg.text);
+
+            const wrap = document.createElement('div');
+            wrap.className = 'bubble-wrap';
+
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble' + (isEmojiOnly(displayText) ? ' jumbo' : '');
+            bubble.textContent = displayText;
+            wrap.appendChild(bubble);
+
+            const reactionsBar = document.createElement('div');
+            reactionsBar.className = 'reactions-bar';
+            wrap.appendChild(reactionsBar);
+
+            if (msg.direction === 'incoming') {
+                const layout = document.createElement('div');
+                layout.className = 'incoming-layout';
+
+                const miniAvatar = document.createElement('div');
+                miniAvatar.className = 'mini-avatar';
+                miniAvatar.dataset.sender = senderName;
+                miniAvatar.style.background = senderColor;
+                miniAvatar.textContent = getInitials(senderName);
+                layout.appendChild(miniAvatar);
+
+                const col = document.createElement('div');
+                col.className = 'incoming-col';
+
+                const label = document.createElement('div');
+                label.className = 'sender-label';
+                label.dataset.sender = senderName;
+                label.style.color = senderColor;
+                label.textContent = senderName;
+                col.appendChild(label);
+
+                col.appendChild(wrap);
+
+                if (msg.time) {
+                    const ts = document.createElement('div');
+                    ts.className = 'timestamp';
+                    ts.textContent = msg.time;
+                    col.appendChild(ts);
+                }
+
+                layout.appendChild(col);
+                row.appendChild(layout);
+            } else {
+                const label = document.createElement('div');
+                label.className = 'sender-label';
+                label.textContent = senderName;
+                row.appendChild(label);
+
+                row.appendChild(wrap);
+
+                if (msg.time) {
+                    const ts = document.createElement('div');
+                    ts.className = 'timestamp';
+                    ts.textContent = msg.time;
+                    row.appendChild(ts);
+                }
+            }
+
+            chatStream.appendChild(row);
+            chatStream.scrollTop = chatStream.scrollHeight;
+            playPopSound(msg.direction === 'incoming');
+            return { row, reactionsBar };
+        }
+
+        function refreshRenderedSenderColors() {
+            document.querySelectorAll('.sender-label[data-sender], .typing-sender[data-sender]').forEach(el => {
+                el.style.color = getSenderColor(el.dataset.sender);
+            });
+            document.querySelectorAll('.mini-avatar[data-sender]').forEach(el => {
+                el.style.background = getSenderColor(el.dataset.sender);
+            });
+        }
+
+        async function runPlayback() {
+            cancelToken.cancelled = true;
+            const token = { cancelled: false };
+            cancelToken = token;
+
+            while (currentIndex < threadData.messages.length && isPlaying) {
+                const msg = threadData.messages[currentIndex];
+
+                if (msg.direction === 'incoming') {
+                    const typingDuration = Math.min(3800, Math.max(1200, msg.text.length * 55));
+                    showTyping(msg.sender || "Rene'");
+                    const ok = await wait(typingDuration, token);
+                    if (!ok) return;
+                    removeTyping();
+                } else {
+                    const ok = await wait(1100, token);
+                    if (!ok) return;
+                }
+
+                const { row, reactionsBar } = renderMessage(msg);
+
+                if (msg.reactions && msg.reactions.length > 0) {
+                    row.classList.add('has-reactions');
+                    for (const r of msg.reactions) {
+                        const ok = await wait(1200, token);
+                        if (!ok) return;
+                        const pill = document.createElement('span');
+                        pill.className = 'reaction-pill';
+                        pill.textContent = normalizeEmojiPresentation(r.emoji);
+                        reactionsBar.appendChild(pill);
+                        playPopSound(true);
+                        chatStream.scrollTop = chatStream.scrollHeight;
+                    }
+                }
+
+                currentIndex++;
+                const readingPause = Math.min(2600, Math.max(1400, msg.text.length * 25));
+                const pauseBetween = await wait(readingPause, token);
+                if (!pauseBetween) return;
+            }
+
+            if (currentIndex >= threadData.messages.length) {
+                isPlaying = false;
+                updatePlaybackUI();
+            }
+        }
+
+        function populateStartSelector(messages) {
+            startSelect.innerHTML = '';
+            messages.forEach((m, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                const timeTag = m.time ? `[${m.time}] ` : '';
+                const displaySender = formatSenderName(m.sender, m.direction === 'outgoing');
+                const preview = m.text.length > 26 ? m.text.slice(0, 26) + '…' : m.text;
+                opt.textContent = `#${idx + 1} ${timeTag}${displaySender}: ${preview}`;
+                startSelect.appendChild(opt);
+            });
+            startSelect.value = String(startIndex);
+        }
+
+        function resetToStartPoint() {
+            isPlaying = false;
+            cancelToken.cancelled = true;
+            removeTyping();
+            currentIndex = startIndex;
+            chatStream.innerHTML = '';
+            updatePlaybackUI();
+        }
+
+        function togglePlayback() {
+            unlockAudio();
+            if (currentIndex >= threadData.messages.length) {
+                resetToStartPoint();
+            }
+            isPlaying = !isPlaying;
+            updatePlaybackUI();
+            if (isPlaying) runPlayback();
+            else { cancelToken.cancelled = true; removeTyping(); }
+        }
+
+        function loadThread(data, persist = false) {
+            threadData = data;
+            const msgs = data.messages || [];
+
+            if (msgs.length > 0) {
+                const firstSender = formatSenderName(msgs[0].sender, msgs[0].direction === 'outgoing');
+                headerSenderEl.textContent = firstSender;
+                threadTitleEl.textContent = normalizeEmojiPresentation(msgs[0].text || data.title || "Conversation");
+                avatarEl.textContent = getInitials(firstSender);
+            } else {
+                headerSenderEl.textContent = "";
+                threadTitleEl.textContent = data.title || "Conversation";
+                avatarEl.textContent = getInitials(data.title || "C");
+            }
+
+            startIndex = 0;
+            populateStartSelector(msgs);
+            resetToStartPoint();
+            if (persist) {
+                try { localStorage.setItem('sms_player_last_thread', JSON.stringify(data)); } catch (e) { }
+            }
+        }
+
+        window.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            toolbar.classList.toggle('hidden');
+        });
+
+        themeSelect.addEventListener('change', (e) => {
+            document.body.setAttribute('data-theme', e.target.value);
+            refreshRenderedSenderColors();
+        });
+
+        startSelect.addEventListener('change', (e) => {
+            startIndex = parseInt(e.target.value, 10) || 0;
+            resetToStartPoint();
+        });
+
+        speedSlider.addEventListener('input', (e) => {
+            speedMultiplier = parseFloat(e.target.value);
+            speedValue.textContent = `${speedMultiplier.toFixed(2)}x`;
+        });
+
+        playPauseBtn.addEventListener('click', togglePlayback);
+        playbackPill.addEventListener('click', togglePlayback);
+        chatStream.addEventListener('click', togglePlayback);
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            resetToStartPoint();
+            isPlaying = true;
+            updatePlaybackUI();
+            runPlayback();
+        });
+
+        document.getElementById('soundBtn').addEventListener('click', (e) => {
+            soundEnabled = !soundEnabled;
+            e.target.textContent = soundEnabled ? '🔊 Sound: On' : '🔇 Sound: Off';
+        });
+
+        document.getElementById('cleanBtn').addEventListener('click', () => {
+            toolbar.classList.add('hidden');
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toolbar.classList.toggle('hidden');
+            if (e.code === 'Space' && document.activeElement !== speedSlider) {
+                e.preventDefault();
+                togglePlayback();
+            }
+        });
+
+        document.getElementById('fileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    const normalized = Array.isArray(parsed)
+                        ? { title: file.name.replace('.json', ''), messages: parsed }
+                        : parsed;
+                    loadThread(normalized, true);
+                } catch (err) {
+                    alert("Invalid JSON file.");
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        // Auto-load Eulogy_Exercise_Clip.json from the hosted folder and auto-play
+        fetch('./Eulogy_Exercise_Clip.json')
+            .then(res => {
+                if (!res.ok) throw new Error('Hosted JSON not found');
+                return res.json();
+            })
+            .then(data => {
+                const normalized = Array.isArray(data) ? { title: "Family Thread", messages: data } : data;
+                loadThread(normalized, false);
+                setTimeout(() => {
+                    if (!isPlaying) togglePlayback();
+                }, 900);
+            })
+            .catch(() => {
+                try {
+                    const saved = localStorage.getItem('sms_player_last_thread');
+                    if (saved) loadThread(JSON.parse(saved), false);
+                    else loadThread(defaultDemoData, false);
+                } catch (e) {
+                    loadThread(defaultDemoData, false);
+                }
+            });
+    </script>
+</body>
+
+</html>

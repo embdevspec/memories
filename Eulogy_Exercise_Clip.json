@@ -1,0 +1,2399 @@
+﻿{
+    "title":  "Family Thread",
+    "exportedAt":  "2026-11-26T06:02:57.715Z",
+    "messages":  [
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Quick exercise for Dad’s eulogy and everyone is encouraged to play: Name some of the simple things dad liked. Annnnnd go!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_44"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Peanuts and beer at my house on Sundays!",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_45"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Root beer floats",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_46"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Any sort of ice cream",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_47"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Mentos, caprese salad, cutting the grass, fudge, sitting outside doing nothing, Fox news",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_48"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Setting fires!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_49"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "FIRES!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_50"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Riding in the truck to nowhere, fires of any kind",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_51"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Debbie",
+                         "time":  "",
+                         "text":  "Gardening",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_52"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Knives",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_53"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Pedro",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_54"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Tinkering",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_55"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Fishing",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_56"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Debbie",
+                         "time":  "",
+                         "text":  "A new tv remote- 😂 just kidding",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_57"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Steak",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_58"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "The Saints when they win",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_59"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "A warm blanket",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_60"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Mom sometimes",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_61"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Salt",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_62"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Beef jerky",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_63"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Hot showers",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_64"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Debbie",
+                         "time":  "",
+                         "text":  "Certain pajama pants",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_65"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Not sunrise",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_66"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Gratons",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_67"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "MARGARITAS",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_68"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Olives",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_69"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "God damn it, you had to do this when I only have an hour before my haircut",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_70"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nHe was indeed picky about his clothes",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_71"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s the tism. Talk to me and Spencer.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_72"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "only the black and red polo pjs",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_73"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Jl\u0027s chair",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_74"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nGood one",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_75"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Debbie",
+                         "time":  "",
+                         "text":  "Paul no rush",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_76"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Woodworking",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_77"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Werthers coffee candies",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_78"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Having his family around him",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_79"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Eggs until about three days before he died",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_80"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "HIS drugstore",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_81"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "I’d say pharmacy in general",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_82"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "McFrappe",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_83"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s a perfect perfection for the tism",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_84"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "When the bridge was working",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_85"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Getting lost!😂",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_86"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "All of us, apparently. Even though he never said it until the last minute.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_87"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "A heating pad",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_88"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Affrin",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_89"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Amy, you weren’t born yet, but Paul and Louise do yall remember the first time we took the boat out??",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_90"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Was that the one where we had to steal some gas and go through some red and white fences that were crossing the canal?",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_91"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Of course, he stole the gas and put a 20 under the other tank that he didn\u0027t take",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_92"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "When y’all got lost and the whole town was looking for yall!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_93"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "One block taxi rides in New York",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_94"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "“The only ones who should have been worried were in the boat”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_95"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I\u0027m guessing someone who was on land that we probably didn\u0027t file a float plan with like you\u0027re supposed to was the one that was concerned and worried",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_96"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "I believe it was uncle Gerry. ask mom!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_97"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "We got to do this again in person Friday night, folks. I\u0027m sure we\u0027ll think of more by then.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_98"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "Chili dogs",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_99"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Marlboro Lights back in the day",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_100"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "His hatred of squirrels.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_101"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Hanging with JL",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_102"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Remember he used to smoke Winston reds",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "‼",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_103"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "TAKING PICTURES",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_104"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "An alias for making memories",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_105"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "A good Old Fashion or a Margarita",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_106"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Mayonnaise on french fries",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_107"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Harry\u0027s roast beef",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "‼",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_108"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Saltines and deviled ham on a fishing trip!",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_109"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "Replied to a message:\nFuck out of here.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_110"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nGTFO! I never knew that!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_111"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "His garden. His shed. His table saw. His welding machine.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_112"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "TOOLS",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_113"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "His truck",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_114"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "Just being outside.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_115"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Buying virus protection on his computer",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_116"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "A perfectly straight two-by-four",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_117"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "25 nails where five would work just fine",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_118"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Working on the Volkswagen most of the time except when I first heard him use the f-word",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_119"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "3/4 inch plywood instead of particle board",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_120"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Overkill on everything",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_121"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Perfection",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_122"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nThis. This is it.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_123"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s the tism, I tell you",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_124"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Rene’s eulogy is gonna be over 5 minutes…😬",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_125"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "That\u0027s what they get for only one of us being allowed to speak",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_126"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Paul, do you want to say something?",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_127"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Originally I did, but I\u0027m good. I\u0027m sure you\u0027re going to proxy it for me, no problem. I can break down in my pew instead.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_128"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Louise",
+                         "time":  "",
+                         "text":  "Amy, o just left my house",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_129"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "🚨 the church packet specifically stated ONLY 1 PERSON CAN SPEAK.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_130"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "A good shave",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_131"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Only thing I insist is that the song yall choose is played after the eulogy. If I’m giving it, I can’t listen before because I’m going to bawl",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_132"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Using 3 towels when Paul bathed him🤣",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_133"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "They won’t let us play it!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_134"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nThank gawd",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_135"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "We will play it for the reception",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_136"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nBut who TF is running this show??!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_137"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "In the slideshow",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_138"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Replied to a message:\nLaughed at “But who TF is running this show??!”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_139"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I had permission from him to use five after we were scolded for using three",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_140"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Exiting the program",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_141"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "“I’m gonna pass”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_142"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "The last couple weeks or so, peeing in the jug in the living room",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_143"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "What you want me to do about it🤷🏼‍♀️",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_144"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "I PEED FOR THE TROPHY",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "🤣",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_145"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "One of the last clear sentences I heard from him was, “I think I need to go sherbet.”🤣🤣🤣",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_146"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nWe’re going to keep some of these for family only, tho",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_147"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Replied to a message:\nLiked “We’re going to keep some of these for family only, tho”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_148"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Another personal fave: “not till Christmas “",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❓",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_149"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Or, “your momma talks like she’s in a gymnasium!”",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_150"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "​‼️​ to “ Mentos, caprese salad, cutting the grass, fudge, sitting outside doing nothing, Fox news ”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_151"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Replied to a message:\nIf he was saying something and got interrupted a few times, then you’d ask what he was saying…",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_152"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "​❤️​ to “ Riding in the truck to nowhere, fires of any kind ”",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_153"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nAlso bouree",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_154"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Debbie",
+                         "time":  "",
+                         "text":  "Replied to a message:",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_155"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Not the electric life vest",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_156"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Only the berries on the hospital tray",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_157"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nOh hell naw",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_158"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Quiet. But he wouldn\u0027t tell you that because he didn\u0027t want to offend you.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_159"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Boucheries",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_160"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "FUCKING GRATONS!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_161"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Family reunions",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_162"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I think he ate them, actually",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_163"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "And mine from this morning",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_164"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Loved an image",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_165"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I suspect I know where you\u0027re going with all this. I think it\u0027s a great idea. Let me know if you need some tech support on it.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_166"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "I already have some of these but this is great",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_167"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "No tech support needed. It’s just writing.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_168"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It feels like you\u0027re doing something I had an idea for but no time to implement, but now I know how to do it",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_169"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "The first chilly day of the year",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "‼",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_170"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "The consistent sound of a weed eater that does not hit a dog turd",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_171"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Juno!",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "‼",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "😢",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_172"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "A new lawnmower",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_173"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "People that didn\u0027t chew ice",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_174"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s part of the tism, I tell you",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_175"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Having someone hold the light🤣",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "🤣",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_176"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Wrong!!!! Someone competent holding the light.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_177"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Mom bringing him lunch at the drugstore",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_178"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "René, shine it where my hands are, not in my face",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_179"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "And when mom would leave the drugstore with those bad ass kids🤣",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_180"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I love avocados with vinegar, salt, and pepper. Turns out I actually eat avocados myself now.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_181"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Whoa, he liked them. I don\u0027t like it with vinegar.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_182"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Taking anything apart and then having leftover screws",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_183"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Removing nails from a blown down Ida fence",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_184"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "It’s funny how we have most of the same memories",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_185"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "When someone “stole the street sign” so he couldn’t figure out where he was going",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_186"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I thought I was the only one that happened to",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_187"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Or when he liked something, the company would change it",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_188"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Gojo hand cleaner",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_189"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Pre-cancerous Round Up",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_190"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Anything and everything in the junk drawer",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_191"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "A blue pen that doesn\u0027t leak in his pocket",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_192"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Shoving random screws/nails in an old Tideland Drugstore pill bottle🤣",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_193"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Boxer shorts and then finally boxer briefs somewhere along the way",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_194"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Seinfeld",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_195"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Commander\u0027s Palace",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_196"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Christiano’s",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_197"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "T-Roms hardware store back in the day",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_198"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "A shoehorn",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_199"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Hankies",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_200"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "But I sure couldn\u0027t find one in the house the last three weeks",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_201"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Some of Neil Young\u0027s earlier work",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_202"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Sans-a-belt pants back in the day",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_203"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Florsheim shoes",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_204"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Earl Williams!",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_205"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "“All Right Now”",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_206"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Different building materials",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_207"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "He had good taste in music",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_208"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "A good tractor",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_209"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Culverted ditches",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_210"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "A yard without snakes",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_211"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Shooting armadillos",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "👍",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "💯",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_212"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "June and Coop. Josie way back when.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_213"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "A freshly bullseyed rabbit that didn\u0027t run",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_214"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "His VW",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_215"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "And that\u0027s why I\u0027m giving him back the screwdriver he gave me 50 years ago so he can take it on his next journey",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_216"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Paul, how old were you when you stuck that screwdriver in the outlet?",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_217"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "That’s going in but it absolutely has a point",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_218"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I would say between six and eight. So I would say seven.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_219"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Done",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_220"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Those goddamn little light fixtures that we would put in the pumpkin and they would never work.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_221"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "OK with you? I promise it won’t be embarrassing",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_222"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "That was my inspiration for the screwdriver in the hall in the nightlight",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_223"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Didn’t he use the f word then???",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_224"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s really hard to embarrass me if that\u0027s what you\u0027re asking. People have lost bets big time.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_225"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Cool",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_226"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Replied to a message:\nWe’ve seen your Christmas card… we know",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_227"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Only once that I heard in the back of the Volkswagen because they built the damn thing this way and the only one who can get to it with the tool is the mechanic",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_228"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "It’s a major story in the theme",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_229"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Effin mechanic",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_230"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "And he is 100% right. I think I said the same thing a few years ago working on my little car.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_231"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Building June and Coop’s “kennels”",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_232"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Never really finishing a project except for a couple of kennels",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_233"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "That too is the tism in action",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_234"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "It rained on Josie’s kennel and he was going to through the whole thing away! It also took less time to build my house than it did for him to build the kennel🤣",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_235"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "He build our Christmas tree stand with numbered sections so we wouldn’t fuck it up",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           },
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_236"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "I\u0027m off to get my haircut. You guys leave me a treasure trove to work with later.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_237"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Oh I remember, we’d get a tree, I was so excited cause it was probably already late in the year, and I’d hear…”wait, I’m gonna have to build a stand…”😩😩😩🤣",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_238"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Let\u0027s all look sharp when we send him off. I got a lot of work to do between now and then.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_239"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Replied to a message:Are you really saying that to US? 🤔",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_240"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It\u0027s more a note to self than you guys keeping me accountable",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_241"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "Replied to a message:\nYa boy took longer to build those kennels than it did to build our house. He needed it PERFECT!",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_242"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "It was ONE kennel. We only had Josie!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_243"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "It was never for himself",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_244"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Jean-Luc",
+                         "time":  "",
+                         "text":  "That’s right!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_245"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "He built Coop’s one 7 years later!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_246"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "No nails or screws!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_247"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nWait, what??",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_248"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Okay, I\u0027m trying to drive. I think I understand what you guys wake up to when I\u0027m up at night.",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "😂",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_249"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "The kennels he built are with Dollie’s and glue. Hook and groove fittings. No nails or screws in either of them",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_250"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "PERFECTION",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_251"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "OK, plenty to work with here. I thought I was about 1/3 done but you guys gave me a lot to work with.",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_252"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Never looking at a map despite having zero navigational skill",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_253"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Rene\u0027",
+                         "time":  "",
+                         "text":  "Replied to a message:\nJFC",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_254"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "YEP!",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_255"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "And from what I see, we all inherited that",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_256"
+                     },
+                     {
+                         "direction":  "outgoing",
+                         "sender":  "Paul",
+                         "time":  "",
+                         "text":  "Boiling seafood",
+                         "reactions":  [
+
+                                       ],
+                         "id":  "m_257"
+                     },
+                     {
+                         "direction":  "incoming",
+                         "sender":  "Amy",
+                         "time":  "",
+                         "text":  "Me calling him at the drugstore to bring home a surprise for me🤣",
+                         "reactions":  [
+                                           {
+                                               "emoji":  "❤",
+                                               "delayAfterMs":  1100
+                                           }
+                                       ],
+                         "id":  "m_258"
+                     }
+                 ]
+}

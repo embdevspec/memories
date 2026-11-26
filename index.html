@@ -1090,7 +1090,10 @@
 
     // Keep longer messages brisk so they don't drag out
     const scale = chars.length > 55 ? Math.max(0.45, 55 / chars.length) : 1;
-    const TYPO_RATE = 0.11;
+    // Full 11% typo rate on short messages, tapering down to half (5.5%) on longer messages
+    const longFactor = Math.min(1, Math.max(0, (chars.length - 30) / 25));
+    const typoRate = 0.11 * (1 - 0.5 * longFactor);
+    const baseCooldown = Math.round(5 + 5 * longFactor);
     let typed = '';
     let typoCooldown = 0;
 
@@ -1131,7 +1134,7 @@
       else if (ch === ' ') delay += 20 * scale;
 
       const isEligibleLetter = /^[a-zA-Z]$/.test(ch);
-      if (isEligibleLetter && typoCooldown <= 0 && Math.random() < TYPO_RATE) {
+      if (isEligibleLetter && typoCooldown <= 0 && Math.random() < typoRate) {
         const wrongChar = getNearbyTypoChar(ch);
         if (wrongChar) {
           const remaining = chars.length - 1 - i;
@@ -1178,7 +1181,7 @@
 
           // Short beat before typing the corrected letter
           delay = (85 + Math.random() * 55) * Math.max(0.7, scale);
-          typoCooldown = 5 + Math.floor(Math.random() * 3);
+          typoCooldown = baseCooldown + Math.floor(Math.random() * 4);
         }
       } else if (typoCooldown > 0) {
         typoCooldown--;

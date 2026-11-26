@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Siblings, Spouses, and Spencer — Google Messages</title>
+<title>Siblings, Spouses, and Spencer — Messages</title>
 <style>
   :root, [data-theme="ios"] {
     --page-bg: #e5e5ea;
@@ -300,9 +300,61 @@
     0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
     30% { transform: translateY(-5px); opacity: 1; }
   }
+
+  .msg-row.masking-out {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    pointer-events: none;
+  }
+
+  .mask-toast {
+    position: absolute; top: 68px; left: 50%; transform: translateX(-50%) translateY(-8px);
+    background: rgba(32, 33, 36, 0.94); color: #e8eaed; backdrop-filter: blur(8px);
+    padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; gap: 10px; z-index: 15;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12);
+    white-space: nowrap; max-width: 92%;
+  }
+  .mask-toast.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+  .mask-toast button {
+    background: #2563eb; border: none; color: #fff; padding: 3px 9px;
+    border-radius: 999px; font-size: 11.5px; font-weight: 600; cursor: pointer;
+  }
+  .mask-toast button:hover { background: #1d4ed8; }
+
+  .mask-panel {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 390px; max-width: 92vw; max-height: 70vh;
+    background: #1e222b; color: #e8eaed; border: 1px solid #3d4454;
+    border-radius: 14px; box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+    display: none; flex-direction: column; z-index: 50; overflow: hidden;
+  }
+  .mask-panel.open { display: flex; }
+  .mask-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; border-bottom: 1px solid #303645; font-size: 14px; font-weight: 600;
+  }
+  .mask-panel-list {
+    overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px;
+    font-size: 13px;
+  }
+  .mask-panel-empty { color: #9aa0a6; text-align: center; padding: 18px 8px; }
+  .mask-panel-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    background: #282e3b; padding: 8px 10px; border-radius: 8px;
+  }
+  .mask-panel-item-text {
+    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mask-panel-footer {
+    display: flex; justify-content: space-between; gap: 8px;
+    padding: 10px 14px; border-top: 1px solid #303645;
+  }
 </style>
 </head>
-<body data-theme="android-dark">
+<body data-theme="ios">
 
 <div class="toolbar hidden" id="toolbar">
   <label class="file-btn">
@@ -310,9 +362,9 @@
     <input type="file" id="fileInput" accept=".json">
   </label>
   <select id="themeSelect" title="Switch visual style">
-    <option value="android-dark" selected>🌙 Google Messages Dark</option>
+    <option value="android-dark">🌙 Google Messages Dark</option>
     <option value="android-light">☀️ Google Messages Light</option>
-    <option value="ios">💬 iOS iMessage</option>
+    <option value="ios" selected>💬 iOS iMessage</option>
   </select>
   <select id="startSelect" title="Choose starting message/timestamp"></select>
   <button class="primary" id="playPauseBtn">▶ Play</button>
@@ -326,6 +378,8 @@
 
   <button id="loopBtn">🔁 Loop: On</button>
   <button id="soundBtn">🔊 Sound: On</button>
+  <button id="maskedBtn" title="View or unmask hidden messages">🙈 Masked: 0</button>
+  <button id="exportJsonBtn" title="Download JSON with current masks">💾 Export JSON</button>
   <button id="cleanBtn" title="Hide toolbar (Right-click or press Esc to restore)">🎥 Clean Mode</button>
 </div>
 
@@ -350,7 +404,11 @@
       </button>
     </div>
   </div>
-  <div class="chat-stream" id="chatStream" title="Tap anywhere to Play / Pause"></div>
+  <div class="mask-toast" id="maskToast">
+    <span id="maskToastText">Message masked</span>
+    <button id="undoMaskBtn" type="button">Undo</button>
+  </div>
+  <div class="chat-stream" id="chatStream" title="Tap anywhere to Play / Pause (Right-click a message to mask)"></div>
   <div class="playback-pill" id="playbackPill">▶ Play</div>
   <div class="composer-bar" aria-hidden="true">
     <div class="composer-icon">
@@ -366,6 +424,18 @@
   </div>
 </div>
 
+<div class="mask-panel" id="maskPanel" role="dialog" aria-label="Masked messages">
+  <div class="mask-panel-header">
+    <span>Masked Messages</span>
+    <button id="closeMaskPanelBtn" type="button">✕</button>
+  </div>
+  <div class="mask-panel-list" id="maskPanelList"></div>
+  <div class="mask-panel-footer">
+    <button id="unmaskAllBtn" type="button">Unmask All</button>
+    <button class="primary" id="panelExportJsonBtn" type="button">💾 Export JSON</button>
+  </div>
+</div>
+
 <script>
   const defaultDemoData = {
     title: "Family Thread",
@@ -378,7 +448,13 @@
 
   const DEFAULT_THREAD_NAME = "Siblings, Spouses, and Spencer";
   const MAX_DOM_MESSAGES = 60;
+  const MASK_STORAGE_KEY = 'sms_player_masks_v1';
   let threadData = defaultDemoData;
+  let currentThreadKey = 'default';
+  let currentFileName = 'Eulogy_Exercise_Clip.json';
+  let baseMaskByKey = {};
+  let lastMaskedAction = null;
+  let maskToastTimer = null;
   let isPlaying = false;
   let autoLoop = true;
   let startIndex = 0;
@@ -397,6 +473,197 @@
   const speedValue = document.getElementById('speedValue');
   const threadTitleEl = document.getElementById('threadTitle');
   const statusEl = document.getElementById('statusText');
+  const maskedBtn = document.getElementById('maskedBtn');
+  const exportJsonBtn = document.getElementById('exportJsonBtn');
+  const maskToast = document.getElementById('maskToast');
+  const maskToastText = document.getElementById('maskToastText');
+  const undoMaskBtn = document.getElementById('undoMaskBtn');
+  const maskPanel = document.getElementById('maskPanel');
+  const maskPanelList = document.getElementById('maskPanelList');
+  const closeMaskPanelBtn = document.getElementById('closeMaskPanelBtn');
+  const unmaskAllBtn = document.getElementById('unmaskAllBtn');
+  const panelExportJsonBtn = document.getElementById('panelExportJsonBtn');
+
+  function isMessageMasked(msg) {
+    return Boolean(msg && msg.mask !== null && msg.mask !== undefined && msg.mask !== false && msg.mask !== '');
+  }
+
+  function getMessageKey(msg, idx) {
+    return (msg && msg.id != null && msg.id !== '') ? String(msg.id) : `idx_${idx}`;
+  }
+
+  function computeThreadKey(data, sourceHint = '') {
+    const msgs = data.messages || [];
+    const firstId = msgs[0] && msgs[0].id ? msgs[0].id : '';
+    return `${sourceHint || data.title || 'thread'}::${firstId}::${msgs.length}`;
+  }
+
+  function loadAllSavedMasks() {
+    try {
+      const raw = localStorage.getItem(MASK_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      return (parsed && typeof parsed === 'object') ? parsed : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveMaskOverride(msgKey, maskValue) {
+    try {
+      const all = loadAllSavedMasks();
+      if (!all[currentThreadKey] || typeof all[currentThreadKey] !== 'object') {
+        all[currentThreadKey] = {};
+      }
+      const baseVal = Object.prototype.hasOwnProperty.call(baseMaskByKey, msgKey) ? baseMaskByKey[msgKey] : null;
+      if (maskValue === baseVal) {
+        delete all[currentThreadKey][msgKey];
+      } else {
+        all[currentThreadKey][msgKey] = maskValue;
+      }
+      localStorage.setItem(MASK_STORAGE_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+
+  function applySavedMasks(data) {
+    const all = loadAllSavedMasks();
+    const saved = all[currentThreadKey];
+    if (!saved || typeof saved !== 'object') return;
+    (data.messages || []).forEach((msg, idx) => {
+      const key = getMessageKey(msg, idx);
+      if (Object.prototype.hasOwnProperty.call(saved, key)) {
+        msg.mask = saved[key];
+      }
+    });
+  }
+
+  function hideMaskToast() {
+    if (maskToastTimer) {
+      clearTimeout(maskToastTimer);
+      maskToastTimer = null;
+    }
+    maskToast.classList.remove('visible');
+  }
+
+  function showMaskToast(label) {
+    maskToastText.textContent = label;
+    maskToast.classList.add('visible');
+    if (maskToastTimer) clearTimeout(maskToastTimer);
+    maskToastTimer = setTimeout(() => {
+      maskToast.classList.remove('visible');
+      maskToastTimer = null;
+    }, 4500);
+  }
+
+  function updateMaskedUI() {
+    const msgs = threadData.messages || [];
+    const maskedCount = msgs.filter(isMessageMasked).length;
+    maskedBtn.textContent = `🙈 Masked: ${maskedCount}`;
+    if (maskPanel.classList.contains('open')) {
+      renderMaskPanel();
+    }
+  }
+
+  function renderMaskPanel() {
+    const msgs = threadData.messages || [];
+    maskPanelList.innerHTML = '';
+    const maskedEntries = msgs
+      .map((msg, idx) => ({ msg, idx }))
+      .filter(({ msg }) => isMessageMasked(msg));
+
+    if (maskedEntries.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'mask-panel-empty';
+      empty.textContent = 'No masked messages. Right-click any message in the chat to mask it.';
+      maskPanelList.appendChild(empty);
+      return;
+    }
+
+    maskedEntries.forEach(({ msg, idx }) => {
+      const item = document.createElement('div');
+      item.className = 'mask-panel-item';
+
+      const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
+      const label = document.createElement('div');
+      label.className = 'mask-panel-item-text';
+      label.title = `${sender}: ${msg.text}`;
+      label.textContent = `#${idx + 1} ${sender}: ${msg.text}`;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = 'Unmask';
+      btn.addEventListener('click', () => unmaskMessageAtIndex(idx));
+
+      item.appendChild(label);
+      item.appendChild(btn);
+      maskPanelList.appendChild(item);
+    });
+  }
+
+  function maskMessageAtIndex(msgIdx, rowEl = null) {
+    const msgs = threadData.messages || [];
+    const msg = msgs[msgIdx];
+    if (!msg) return;
+
+    const prevMask = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
+    msg.mask = true;
+    saveMaskOverride(getMessageKey(msg, msgIdx), true);
+
+    const parent = rowEl ? rowEl.parentNode : null;
+    const nextSibling = rowEl ? rowEl.nextSibling : null;
+
+    if (rowEl) {
+      rowEl.classList.add('masking-out');
+      setTimeout(() => {
+        if (isMessageMasked(msg) && rowEl.parentNode) {
+          rowEl.remove();
+        }
+      }, 230);
+    }
+
+    lastMaskedAction = { msgIdx, prevMask, rowEl, parent, nextSibling };
+    populateStartSelector(msgs);
+    updateMaskedUI();
+
+    const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
+    showMaskToast(`Masked ${sender}'s message`);
+  }
+
+  function unmaskMessageAtIndex(msgIdx) {
+    const msgs = threadData.messages || [];
+    const msg = msgs[msgIdx];
+    if (!msg) return;
+    msg.mask = null;
+    saveMaskOverride(getMessageKey(msg, msgIdx), null);
+    populateStartSelector(msgs);
+    updateMaskedUI();
+  }
+
+  function unmaskAllMessages() {
+    const msgs = threadData.messages || [];
+    msgs.forEach((msg, idx) => {
+      if (isMessageMasked(msg)) {
+        msg.mask = null;
+        saveMaskOverride(getMessageKey(msg, idx), null);
+      }
+    });
+    lastMaskedAction = null;
+    hideMaskToast();
+    populateStartSelector(msgs);
+    updateMaskedUI();
+  }
+
+  function exportThreadJson() {
+    const jsonStr = JSON.stringify(threadData, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = currentFileName || 'Eulogy_Exercise_Clip.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
 
   function formatSenderName(rawName, isOutgoing = false) {
     let name = (rawName || "").trim();
@@ -563,10 +830,19 @@
     }
   }
 
-  function renderMessage(msg) {
+  function renderMessage(msg, msgIdx) {
     trimOldMessages();
     const row = document.createElement('div');
     row.className = `msg-row ${msg.direction}`;
+    if (typeof msgIdx === 'number') {
+      row.dataset.msgIndex = String(msgIdx);
+      row.title = 'Right-click to mask this message';
+      row.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        maskMessageAtIndex(msgIdx, row);
+      });
+    }
 
     const senderName = formatSenderName(msg.sender, msg.direction === 'outgoing');
     const senderColor = getSenderColor(senderName);
@@ -649,7 +925,13 @@
 
     while (isPlaying) {
       while (currentIndex < threadData.messages.length && isPlaying) {
-        const msg = threadData.messages[currentIndex];
+        const msgIdx = currentIndex;
+        const msg = threadData.messages[msgIdx];
+
+        if (isMessageMasked(msg)) {
+          currentIndex++;
+          continue;
+        }
 
         if (msg.direction === 'incoming') {
           const typingDuration = Math.min(3800, Math.max(1200, msg.text.length * 55));
@@ -662,13 +944,19 @@
           if (!ok) return;
         }
 
-        const { row, reactionsBar } = renderMessage(msg);
+        if (isMessageMasked(msg)) {
+          currentIndex++;
+          continue;
+        }
+
+        const { row, reactionsBar } = renderMessage(msg, msgIdx);
 
         if (msg.reactions && msg.reactions.length > 0) {
           row.classList.add('has-reactions');
           for (const r of msg.reactions) {
             const ok = await wait(1200, token);
             if (!ok) return;
+            if (isMessageMasked(msg)) break;
             const pill = document.createElement('span');
             pill.className = 'reaction-pill';
             pill.textContent = normalizeEmojiPresentation(r.emoji);
@@ -679,16 +967,26 @@
         }
 
         currentIndex++;
-        const readingPause = Math.min(2600, Math.max(1400, msg.text.length * 25));
-        const pauseBetween = await wait(readingPause, token);
-        if (!pauseBetween) return;
+        if (!isMessageMasked(msg)) {
+          const readingPause = Math.min(2600, Math.max(1400, msg.text.length * 25));
+          const pauseBetween = await wait(readingPause, token);
+          if (!pauseBetween) return;
+        }
       }
 
       if (!isPlaying) return;
 
       if (autoLoop && threadData.messages.length > 0) {
+        const hasAnyUnmasked = threadData.messages.some(m => !isMessageMasked(m));
+        if (!hasAnyUnmasked) {
+          isPlaying = false;
+          updatePlaybackUI();
+          return;
+        }
         // Seamlessly wrap back to the start without clearing the stream
-        currentIndex = startIndex < threadData.messages.length ? startIndex : 0;
+        const nextStart = startIndex < threadData.messages.length ? startIndex : 0;
+        const hasUnmaskedFromStart = threadData.messages.slice(nextStart).some(m => !isMessageMasked(m));
+        currentIndex = hasUnmaskedFromStart ? nextStart : 0;
       } else {
         isPlaying = false;
         updatePlaybackUI();
@@ -702,10 +1000,11 @@
     messages.forEach((m, idx) => {
       const opt = document.createElement('option');
       opt.value = idx;
+      const maskedTag = isMessageMasked(m) ? '🚫 ' : '';
       const timeTag = m.time ? `[${m.time}] ` : '';
       const displaySender = formatSenderName(m.sender, m.direction === 'outgoing');
       const preview = m.text.length > 26 ? m.text.slice(0, 26) + '…' : m.text;
-      opt.textContent = `#${idx + 1} ${timeTag}${displaySender}: ${preview}`;
+      opt.textContent = `${maskedTag}#${idx + 1} ${timeTag}${displaySender}: ${preview}`;
       startSelect.appendChild(opt);
     });
     startSelect.value = String(startIndex);
@@ -731,15 +1030,28 @@
     else { cancelToken.cancelled = true; removeTyping(); }
   }
 
-  function loadThread(data, persist = false) {
+  function loadThread(data, persist = false, sourceHint = '') {
     threadData = data;
     const msgs = data.messages || [];
+
+    if (sourceHint && sourceHint.endsWith('.json')) {
+      currentFileName = sourceHint;
+    }
+    currentThreadKey = computeThreadKey(data, sourceHint);
+    baseMaskByKey = {};
+    msgs.forEach((msg, idx) => {
+      baseMaskByKey[getMessageKey(msg, idx)] = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
+    });
+    applySavedMasks(data);
+    lastMaskedAction = null;
+    hideMaskToast();
 
     const customTitle = data.title && data.title !== "Family Thread" ? data.title : DEFAULT_THREAD_NAME;
     threadTitleEl.textContent = normalizeEmojiPresentation(customTitle);
 
     startIndex = 0;
     populateStartSelector(msgs);
+    updateMaskedUI();
     resetToStartPoint();
     if (persist) {
       try { localStorage.setItem('sms_player_last_thread', JSON.stringify(data)); } catch (e) {}
@@ -752,9 +1064,50 @@
   });
 
   window.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.msg-row, .mask-panel, .mask-toast')) return;
     e.preventDefault();
     toolbar.classList.toggle('hidden');
   });
+
+  maskToast.addEventListener('click', (e) => e.stopPropagation());
+
+  undoMaskBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!lastMaskedAction) return;
+    const { msgIdx, prevMask, rowEl, parent, nextSibling } = lastMaskedAction;
+    const msg = (threadData.messages || [])[msgIdx];
+    if (msg) {
+      msg.mask = prevMask;
+      saveMaskOverride(getMessageKey(msg, msgIdx), prevMask);
+      if (rowEl && parent && parent.isConnected) {
+        rowEl.classList.remove('masking-out');
+        if (!rowEl.parentNode) {
+          if (nextSibling && nextSibling.parentNode === parent) {
+            parent.insertBefore(rowEl, nextSibling);
+          } else {
+            parent.appendChild(rowEl);
+          }
+        }
+      }
+      populateStartSelector(threadData.messages);
+      updateMaskedUI();
+    }
+    lastMaskedAction = null;
+    hideMaskToast();
+  });
+
+  maskedBtn.addEventListener('click', () => {
+    renderMaskPanel();
+    maskPanel.classList.toggle('open');
+  });
+
+  closeMaskPanelBtn.addEventListener('click', () => {
+    maskPanel.classList.remove('open');
+  });
+
+  unmaskAllBtn.addEventListener('click', unmaskAllMessages);
+  exportJsonBtn.addEventListener('click', exportThreadJson);
+  panelExportJsonBtn.addEventListener('click', exportThreadJson);
 
   themeSelect.addEventListener('change', (e) => {
     document.body.setAttribute('data-theme', e.target.value);
@@ -797,8 +1150,11 @@
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') toolbar.classList.toggle('hidden');
-    if (e.code === 'Space' && document.activeElement !== speedSlider) {
+    if (e.key === 'Escape') {
+      if (maskPanel.classList.contains('open')) maskPanel.classList.remove('open');
+      else toolbar.classList.toggle('hidden');
+    }
+    if (e.code === 'Space' && document.activeElement !== speedSlider && !maskPanel.classList.contains('open')) {
       e.preventDefault();
       togglePlayback();
     }
@@ -814,7 +1170,7 @@
         const normalized = Array.isArray(parsed)
           ? { title: file.name.replace('.json', ''), messages: parsed }
           : parsed;
-        loadThread(normalized, true);
+        loadThread(normalized, true, file.name);
       } catch (err) {
         alert("Invalid JSON file.");
       }
@@ -829,7 +1185,7 @@
     })
     .then(data => {
       const normalized = Array.isArray(data) ? { title: "Family Thread", messages: data } : data;
-      loadThread(normalized, false);
+      loadThread(normalized, false, 'Eulogy_Exercise_Clip.json');
       setTimeout(() => {
         if (!isPlaying) togglePlayback();
       }, 900);
@@ -837,10 +1193,10 @@
     .catch(() => {
       try {
         const saved = localStorage.getItem('sms_player_last_thread');
-        if (saved) loadThread(JSON.parse(saved), false);
-        else loadThread(defaultDemoData, false);
+        if (saved) loadThread(JSON.parse(saved), false, 'saved_local');
+        else loadThread(defaultDemoData, false, 'demo');
       } catch (e) {
-        loadThread(defaultDemoData, false);
+        loadThread(defaultDemoData, false, 'demo');
       }
     });
 </script>

@@ -1,1998 +1,2534 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Siblings, Spouses, and Spencer — Messages</title>
-<style>
-  :root, [data-theme="ios"] {
-    --page-bg: #e5e5ea;
-    --phone-bg: #ffffff;
-    --phone-border: #c7c7cc;
-    --header-bg: rgba(249, 249, 249, 0.96);
-    --header-border: #d1d1d6;
-    --header-text: #000000;
-    --incoming-bg: #e9e9eb;
-    --incoming-text: #000000;
-    --outgoing-bg: #007aff;
-    --outgoing-text: #ffffff;
-    --muted: #6e6e73;
-    --reaction-bg: #ffffff;
-    --reaction-text: #000000;
-    --reaction-border: #e5e5ea;
-    --composer-bg: #f6f6f6;
-    --composer-pill: #ffffff;
-    --composer-border: #d1d1d6;
-    --bubble-radius: 18px;
-    --tail-radius: 4px;
-    --avatar-bg: #1e3a8a;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Siblings, Spouses, and Spencer — Messages</title>
+  <style>
+    :root,
+    [data-theme="ios"] {
+      --page-bg: #e5e5ea;
+      --phone-bg: #ffffff;
+      --phone-border: #c7c7cc;
+      --header-bg: rgba(249, 249, 249, 0.96);
+      --header-border: #d1d1d6;
+      --header-text: #000000;
+      --incoming-bg: #e9e9eb;
+      --incoming-text: #000000;
+      --outgoing-bg: #007aff;
+      --outgoing-text: #ffffff;
+      --muted: #6e6e73;
+      --reaction-bg: #ffffff;
+      --reaction-text: #000000;
+      --reaction-border: #e5e5ea;
+      --composer-bg: #f6f6f6;
+      --composer-pill: #ffffff;
+      --composer-border: #d1d1d6;
+      --bubble-radius: 18px;
+      --tail-radius: 4px;
+      --avatar-bg: #1e3a8a;
+    }
 
-  [data-theme="android-dark"] {
-    --page-bg: #121314;
-    --phone-bg: #1b1c1e;
-    --phone-border: #2c2e32;
-    --header-bg: #202124;
-    --header-border: #2c2e32;
-    --header-text: #e8eaed;
-    --incoming-bg: #2e3033;
-    --incoming-text: #e8eaed;
-    --outgoing-bg: #1a73e8;
-    --outgoing-text: #ffffff;
-    --muted: #9aa0a6;
-    --reaction-bg: #2d2f33;
-    --reaction-text: #e8eaed;
-    --reaction-border: #1b1c1e;
-    --composer-bg: #1b1c1e;
-    --composer-pill: #282a2d;
-    --composer-border: #35373b;
-    --bubble-radius: 20px;
-    --tail-radius: 5px;
-    --avatar-bg: #1a73e8;
-  }
+    [data-theme="android-dark"] {
+      --page-bg: #121314;
+      --phone-bg: #1b1c1e;
+      --phone-border: #2c2e32;
+      --header-bg: #202124;
+      --header-border: #2c2e32;
+      --header-text: #e8eaed;
+      --incoming-bg: #2e3033;
+      --incoming-text: #e8eaed;
+      --outgoing-bg: #1a73e8;
+      --outgoing-text: #ffffff;
+      --muted: #9aa0a6;
+      --reaction-bg: #2d2f33;
+      --reaction-text: #e8eaed;
+      --reaction-border: #1b1c1e;
+      --composer-bg: #1b1c1e;
+      --composer-pill: #282a2d;
+      --composer-border: #35373b;
+      --bubble-radius: 20px;
+      --tail-radius: 5px;
+      --avatar-bg: #1a73e8;
+    }
 
-  [data-theme="android-light"] {
-    --page-bg: #e5e7eb;
-    --phone-bg: #ffffff;
-    --phone-border: #d1d5db;
-    --header-bg: #f8fafc;
-    --header-border: #e2e8f0;
-    --header-text: #0f172a;
-    --incoming-bg: #f1f3f4;
-    --incoming-text: #1f2937;
-    --outgoing-bg: #0b57d0;
-    --outgoing-text: #ffffff;
-    --muted: #64748b;
-    --reaction-bg: #ffffff;
-    --reaction-text: #1f2937;
-    --reaction-border: #e2e8f0;
-    --composer-bg: #ffffff;
-    --composer-pill: #f1f3f4;
-    --composer-border: #e2e8f0;
-    --bubble-radius: 20px;
-    --tail-radius: 5px;
-    --avatar-bg: #0b57d0;
-  }
+    [data-theme="android-light"] {
+      --page-bg: #e5e7eb;
+      --phone-bg: #ffffff;
+      --phone-border: #d1d5db;
+      --header-bg: #f8fafc;
+      --header-border: #e2e8f0;
+      --header-text: #0f172a;
+      --incoming-bg: #f1f3f4;
+      --incoming-text: #1f2937;
+      --outgoing-bg: #0b57d0;
+      --outgoing-text: #ffffff;
+      --muted: #64748b;
+      --reaction-bg: #ffffff;
+      --reaction-text: #1f2937;
+      --reaction-border: #e2e8f0;
+      --composer-bg: #ffffff;
+      --composer-pill: #f1f3f4;
+      --composer-border: #e2e8f0;
+      --bubble-radius: 20px;
+      --tail-radius: 5px;
+      --avatar-bg: #0b57d0;
+    }
 
-  * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif; }
-  body {
-    margin: 0; background: var(--page-bg); color: #fff;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh; padding: 16px; transition: background 0.25s ease;
-  }
-  .toolbar {
-    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;
-    margin-bottom: 14px; background: #1e222b; padding: 10px 14px; border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.28); max-width: 940px; z-index: 20;
-  }
-  .toolbar.hidden { display: none; }
-  button, label.file-btn, select {
-    background: #2d3340; color: #fff; border: 1px solid #3d4454;
-    padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500;
-    transition: background 0.15s;
-  }
-  select#startSelect { max-width: 210px; text-overflow: ellipsis; }
-  button:hover, label.file-btn:hover, select:hover { background: #3b4252; }
-  button.primary { background: #2563eb; border-color: #3b82f6; }
-  button.primary:hover { background: #1d4ed8; }
-  input[type="file"] { display: none; }
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    }
 
-  .slider-group {
-    display: flex; align-items: center; gap: 8px;
-    background: #2d3340; border: 1px solid #3d4454;
-    padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
-  }
-  .slider-group input[type="range"] {
-    width: 110px; accent-color: #3b82f6; cursor: pointer; margin: 0;
-  }
-  .slider-val {
-    min-width: 42px; text-align: right; font-variant-numeric: tabular-nums; color: #93c5fd;
-  }
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+      transition: background 0.25s ease;
+    }
 
-  .phone-frame {
-    width: 420px; max-width: 100%; height: 760px; max-height: 88vh;
-    background: var(--phone-bg); border-radius: 34px; border: 4px solid var(--phone-border);
-    display: flex; flex-direction: column; overflow: hidden; position: relative;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-    transition: background 0.25s ease, border-color 0.25s ease;
-  }
-
-  @media (max-width: 520px) {
-    body { padding: 0; }
     .toolbar {
-      position: fixed; top: 10px; left: 10px; right: 10px;
-      max-width: none; margin-bottom: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      background: #1e222b;
+      padding: 10px 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+      max-width: 940px;
+      z-index: 20;
     }
+
+    .toolbar.hidden {
+      display: none;
+    }
+
+    button,
+    label.file-btn,
+    select {
+      background: #2d3340;
+      color: #fff;
+      border: 1px solid #3d4454;
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    select#startSelect {
+      max-width: 210px;
+      text-overflow: ellipsis;
+    }
+
+    button:hover,
+    label.file-btn:hover,
+    select:hover {
+      background: #3b4252;
+    }
+
+    button.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+
+    button.primary:hover {
+      background: #1d4ed8;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .slider-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #2d3340;
+      border: 1px solid #3d4454;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .slider-group input[type="range"] {
+      width: 110px;
+      accent-color: #3b82f6;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .slider-val {
+      min-width: 42px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      color: #93c5fd;
+    }
+
     .phone-frame {
-      width: 100vw; height: 100dvh; max-height: 100dvh;
-      border-radius: 0; border: none; box-shadow: none;
+      width: 420px;
+      max-width: 100%;
+      height: 760px;
+      max-height: 88vh;
+      background: var(--phone-bg);
+      border-radius: 34px;
+      border: 4px solid var(--phone-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
-  }
 
-  .chat-header {
-    background: var(--header-bg); padding: 12px 14px;
-    display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--header-border);
-    color: var(--header-text); transition: background 0.25s ease, color 0.25s ease;
-    flex-shrink: 0;
-  }
-  .header-back {
-    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-    color: var(--muted); flex-shrink: 0; border-radius: 50%;
-  }
-  .group-avatar {
-    width: 36px; height: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    flex-shrink: 0;
-  }
-  .group-avatar .ga-dot {
-    width: 17px; height: 17px; border-radius: 50%; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9.5px; font-weight: 700; line-height: 1;
-  }
-  .header-info { flex: 1; min-width: 0; }
-  .header-info h2 {
-    margin: 0; font-size: 16px; font-weight: 500; line-height: 1.25;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .header-info span { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
-  .header-actions {
-    display: flex; align-items: center; gap: 2px; flex-shrink: 0;
-  }
-  .header-icon-btn {
-    background: transparent; border: none; color: var(--muted); padding: 6px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: background 0.15s, color 0.15s;
-  }
-  .header-icon-btn:hover { background: rgba(255,255,255,0.08); color: var(--header-text); }
-  [data-theme="ios"] .header-icon-btn:hover,
-  [data-theme="android-light"] .header-icon-btn:hover { background: rgba(0,0,0,0.06); }
+    @media (max-width: 520px) {
+      body {
+        padding: 0;
+      }
 
-  .chat-stream {
-    flex: 1; overflow-y: auto; padding: 16px 14px 24px 14px; display: flex; flex-direction: column; gap: 12px;
-    scroll-behavior: smooth; overflow-anchor: none; cursor: pointer;
-  }
-  .chat-stream::-webkit-scrollbar { width: 5px; }
-  .chat-stream::-webkit-scrollbar-thumb { background: rgba(154,160,166,0.28); border-radius: 4px; }
+      .toolbar {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        margin-bottom: 0;
+      }
 
-  .composer-bar {
-    background: var(--composer-bg); border-top: 1px solid var(--header-border);
-    padding: 10px 12px; display: flex; align-items: flex-end; gap: 8px; flex-shrink: 0;
-    position: relative; z-index: 12;
-    transition: background 0.25s ease, border-color 0.25s ease;
-  }
-  .composer-icon {
-    width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    color: var(--muted); flex-shrink: 0; margin-bottom: 3px;
-    transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
-  }
-  .composer-icon .icon-send { display: none; }
-  .composer-icon.send-ready { background: var(--outgoing-bg); color: #ffffff; }
-  .composer-icon.send-ready .icon-mic { display: none; }
-  .composer-icon.send-ready .icon-send { display: block; }
-  .composer-icon.send-ready.sending { transform: scale(0.84); }
+      .phone-frame {
+        width: 100vw;
+        height: 100dvh;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
 
-  .composer-pill {
-    flex: 1; background: var(--composer-pill); border: 1px solid var(--composer-border);
-    border-radius: 20px; padding: 7px 13px; min-height: 36px; max-height: 82px; overflow-y: auto;
-    display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;
-    color: var(--muted); font-size: 14px; user-select: none;
-    transition: background 0.25s ease, border-color 0.2s ease, color 0.2s ease;
-  }
-  .composer-pill::-webkit-scrollbar { width: 4px; }
-  .composer-pill::-webkit-scrollbar-thumb { background: rgba(154,160,166,0.3); border-radius: 4px; }
-  .composer-pill.typing {
-    border-color: var(--outgoing-bg); color: var(--header-text);
-  }
-  .composer-text-wrap {
-    flex: 1; min-width: 0; line-height: 1.35; word-break: break-word; white-space: pre-wrap;
-  }
-  .composer-text.placeholder { color: var(--muted); }
-  .composer-caret {
-    display: none; width: 2px; height: 1.12em; background: var(--outgoing-bg);
-    vertical-align: -0.18em; margin-left: 1px; border-radius: 1px;
-    animation: caretBlink 0.9s steps(1) infinite;
-  }
-  .composer-pill.typing .composer-caret { display: inline-block; }
-  .composer-emoji-icon { flex-shrink: 0; margin-bottom: 1px; }
-  .composer-pill.typing .composer-emoji-icon { display: none; }
+    .chat-header {
+      background: var(--header-bg);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--header-border);
+      color: var(--header-text);
+      transition: background 0.25s ease, color 0.25s ease;
+      flex-shrink: 0;
+    }
 
-  @keyframes caretBlink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
-  }
+    .header-back {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      flex-shrink: 0;
+      border-radius: 50%;
+    }
 
-  .playback-pill {
-    position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
-    background: rgba(32, 33, 36, 0.86); color: #e8eaed; backdrop-filter: blur(6px);
-    padding: 5px 14px; border-radius: 999px; font-size: 12px; font-weight: 600;
-    cursor: pointer; z-index: 10; opacity: 0.85; transition: opacity 0.2s, transform 0.15s;
-    user-select: none; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .playback-pill:hover { opacity: 1; transform: translateX(-50%) scale(1.03); }
-  .playback-pill.playing { opacity: 0; pointer-events: none; }
+    .group-avatar {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      flex-shrink: 0;
+    }
 
-  .msg-row {
-    display: flex; flex-direction: column; max-width: 85%; position: relative;
-    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  }
-  .msg-row.incoming { align-self: flex-start; }
-  .msg-row.outgoing { align-self: flex-end; align-items: flex-end; }
-  .msg-row.has-reactions { margin-top: 6px; }
+    .group-avatar .ga-dot {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9.5px;
+      font-weight: 700;
+      line-height: 1;
+    }
 
-  .incoming-layout {
-    display: flex; align-items: flex-end; gap: 8px;
-  }
-  .mini-avatar {
-    width: 28px; height: 28px; border-radius: 50%; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11.5px; font-weight: 600; flex-shrink: 0; margin-bottom: 2px;
-  }
-  .incoming-col {
-    display: flex; flex-direction: column; align-items: flex-start;
-  }
+    .header-info {
+      flex: 1;
+      min-width: 0;
+    }
 
-  .sender-label {
-    font-size: 12px; font-weight: 500; margin: 0 0 3px 10px;
-    letter-spacing: 0.01em;
-  }
+    .header-info h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-  .bubble-wrap { position: relative; display: inline-flex; flex-direction: column; }
+    .header-info span {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
 
-  .bubble {
-    padding: 10px 14px; border-radius: var(--bubble-radius); font-size: 15px; line-height: 1.4;
-    word-wrap: break-word; position: relative;
-    transition: background 0.25s ease, color 0.25s ease;
-  }
-  .incoming .bubble {
-    background: var(--incoming-bg); color: var(--incoming-text);
-    border-bottom-left-radius: var(--tail-radius);
-  }
-  .outgoing .bubble {
-    background: var(--outgoing-bg); color: var(--outgoing-text);
-    border-bottom-right-radius: var(--tail-radius);
-  }
-  .bubble.jumbo { background: transparent !important; padding: 2px 4px; font-size: 42px; line-height: 1.1; }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
 
-  .reactions-bar { display: flex; gap: 4px; margin-top: -8px; z-index: 2; padding: 0 6px; }
-  .outgoing .reactions-bar { justify-content: flex-end; }
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
 
-  [data-theme="ios"] .reactions-bar {
-    position: absolute; top: -14px; margin-top: 0; padding: 0;
-  }
-  [data-theme="ios"] .incoming .reactions-bar { right: -8px; }
-  [data-theme="ios"] .outgoing .reactions-bar { left: -8px; }
+    .header-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--header-text);
+    }
 
-  .reaction-pill {
-    background: var(--reaction-bg); color: var(--reaction-text);
-    border: 1.5px solid var(--reaction-border);
-    border-radius: 12px; padding: 2px 7px; font-size: 13px;
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-    animation: reactionPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
-  }
-  [data-theme="ios"] .reaction-pill {
-    border-radius: 50%; width: 26px; height: 26px; padding: 0;
-    display: flex; align-items: center; justify-content: center; font-size: 13px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  }
+    [data-theme="ios"] .header-icon-btn:hover,
+    [data-theme="android-light"] .header-icon-btn:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
 
-  .timestamp { font-size: 10px; color: var(--muted); margin-top: 4px; padding: 0 6px; }
+    .chat-stream {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 14px 24px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+      overflow-anchor: none;
+      cursor: pointer;
+    }
 
-  .typing-wrap {
-    align-self: flex-start; display: flex; flex-direction: column; gap: 3px;
-    padding-left: 36px;
-    animation: popIn 0.24s ease forwards;
-  }
-  .typing-sender {
-    font-size: 11.5px; font-weight: 500; margin-left: 10px;
-  }
-  .typing-row {
-    background: var(--incoming-bg); padding: 12px 16px;
-    border-radius: var(--bubble-radius); border-bottom-left-radius: var(--tail-radius);
-    display: flex; gap: 5px; align-items: center; width: fit-content;
-  }
-  .dot {
-    width: 7px; height: 7px; background: var(--muted); border-radius: 50%;
-    animation: bounce 1.3s infinite ease-in-out;
-  }
-  .dot:nth-child(2) { animation-delay: 0.18s; }
-  .dot:nth-child(3) { animation-delay: 0.36s; }
+    .chat-stream::-webkit-scrollbar {
+      width: 5px;
+    }
 
-  @keyframes popIn {
-    0% { opacity: 0; transform: translateY(10px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @keyframes reactionPop {
-    0% { opacity: 0; transform: scale(0.2); }
-    70% { transform: scale(1.2); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-  @keyframes bounce {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-5px); opacity: 1; }
-  }
+    .chat-stream::-webkit-scrollbar-thumb {
+      background: rgba(154, 160, 166, 0.28);
+      border-radius: 4px;
+    }
 
-  .msg-row.masking-out {
-    opacity: 0;
-    transform: scale(0.92);
-    transition: opacity 0.22s ease, transform 0.22s ease;
-    pointer-events: none;
-  }
+    .composer-bar {
+      background: var(--composer-bg);
+      border-top: 1px solid var(--header-border);
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 12;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
 
-  .mask-toast {
-    position: absolute; top: 68px; left: 50%; transform: translateX(-50%) translateY(-8px);
-    background: rgba(32, 33, 36, 0.94); color: #e8eaed; backdrop-filter: blur(8px);
-    padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
-    display: flex; align-items: center; gap: 10px; z-index: 15;
-    opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12);
-    white-space: nowrap; max-width: 92%;
-  }
-  .mask-toast.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-  .mask-toast button {
-    background: #2563eb; border: none; color: #fff; padding: 3px 9px;
-    border-radius: 999px; font-size: 11.5px; font-weight: 600; cursor: pointer;
-  }
-  .mask-toast button:hover { background: #1d4ed8; }
+    .composer-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-bottom: 3px;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+    }
 
-  .mask-panel {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 390px; max-width: 92vw; max-height: 70vh;
-    background: #1e222b; color: #e8eaed; border: 1px solid #3d4454;
-    border-radius: 14px; box-shadow: 0 18px 48px rgba(0,0,0,0.55);
-    display: none; flex-direction: column; z-index: 50; overflow: hidden;
-  }
-  .mask-panel.open { display: flex; }
-  .mask-panel-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 14px; border-bottom: 1px solid #303645; font-size: 14px; font-weight: 600;
-  }
-  .mask-panel-list {
-    overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px;
-    font-size: 13px;
-  }
-  .mask-panel-empty { color: #9aa0a6; text-align: center; padding: 18px 8px; }
-  .mask-panel-item {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    background: #282e3b; padding: 8px 10px; border-radius: 8px;
-  }
-  .mask-panel-item-text {
-    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .mask-panel-footer {
-    display: flex; justify-content: space-between; gap: 8px;
-    padding: 10px 14px; border-top: 1px solid #303645;
-  }
+    .composer-icon .icon-send {
+      display: none;
+    }
 
-  .ctx-menu {
-    position: fixed; z-index: 60; min-width: 205px;
-    background: #1e222b; color: #e8eaed; border: 1px solid #3d4454;
-    border-radius: 10px; padding: 5px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-    display: none; flex-direction: column; gap: 2px;
-  }
-  .ctx-menu.open { display: flex; }
-  .ctx-item {
-    width: 100%; text-align: left; background: transparent; border: none; color: #e8eaed;
-    padding: 8px 10px; border-radius: 7px; font-size: 13px; font-weight: 500;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer;
-  }
-  .ctx-item:hover { background: #2d3545; }
-  .ctx-badge {
-    background: #334155; color: #cbd5e1; border-radius: 999px;
-    padding: 1px 7px; font-size: 11px; font-variant-numeric: tabular-nums;
-  }
-  .ctx-sep { height: 1px; background: #303645; margin: 4px 6px; }
-</style>
+    .composer-icon.send-ready {
+      background: var(--outgoing-bg);
+      color: #ffffff;
+    }
+
+    .composer-icon.send-ready .icon-mic {
+      display: none;
+    }
+
+    .composer-icon.send-ready .icon-send {
+      display: block;
+    }
+
+    .composer-icon.send-ready.sending {
+      transform: scale(0.84);
+    }
+
+    .composer-pill {
+      flex: 1;
+      background: var(--composer-pill);
+      border: 1px solid var(--composer-border);
+      border-radius: 20px;
+      padding: 7px 13px;
+      min-height: 36px;
+      max-height: 82px;
+      overflow-y: auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      user-select: none;
+      transition: background 0.25s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .composer-pill::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .composer-pill::-webkit-scrollbar-thumb {
+      background: rgba(154, 160, 166, 0.3);
+      border-radius: 4px;
+    }
+
+    .composer-pill.typing {
+      border-color: var(--outgoing-bg);
+      color: var(--header-text);
+    }
+
+    .composer-text-wrap {
+      flex: 1;
+      min-width: 0;
+      line-height: 1.35;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .composer-text.placeholder {
+      color: var(--muted);
+    }
+
+    .composer-caret {
+      display: none;
+      width: 2px;
+      height: 1.12em;
+      background: var(--outgoing-bg);
+      vertical-align: -0.18em;
+      margin-left: 1px;
+      border-radius: 1px;
+      animation: caretBlink 0.9s steps(1) infinite;
+    }
+
+    .composer-pill.typing .composer-caret {
+      display: inline-block;
+    }
+
+    .composer-emoji-icon {
+      flex-shrink: 0;
+      margin-bottom: 1px;
+    }
+
+    .composer-pill.typing .composer-emoji-icon {
+      display: none;
+    }
+
+    @keyframes caretBlink {
+
+      0%,
+      49% {
+        opacity: 1;
+      }
+
+      50%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .playback-pill {
+      position: absolute;
+      bottom: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(32, 33, 36, 0.86);
+      color: #e8eaed;
+      backdrop-filter: blur(6px);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0.85;
+      transition: opacity 0.2s, transform 0.15s;
+      user-select: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .playback-pill:hover {
+      opacity: 1;
+      transform: translateX(-50%) scale(1.03);
+    }
+
+    .playback-pill.playing {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .msg-row {
+      display: flex;
+      flex-direction: column;
+      max-width: 85%;
+      position: relative;
+      animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .msg-row.incoming {
+      align-self: flex-start;
+    }
+
+    .msg-row.outgoing {
+      align-self: flex-end;
+      align-items: flex-end;
+    }
+
+    .msg-row.has-reactions {
+      margin-top: 6px;
+    }
+
+    .incoming-layout {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .mini-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-bottom: 2px;
+    }
+
+    .incoming-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sender-label {
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 0 3px 10px;
+      letter-spacing: 0.01em;
+    }
+
+    .bubble-wrap {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    .bubble {
+      padding: 10px 14px;
+      border-radius: var(--bubble-radius);
+      font-size: 15px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      position: relative;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .incoming .bubble {
+      background: var(--incoming-bg);
+      color: var(--incoming-text);
+      border-bottom-left-radius: var(--tail-radius);
+    }
+
+    .outgoing .bubble {
+      background: var(--outgoing-bg);
+      color: var(--outgoing-text);
+      border-bottom-right-radius: var(--tail-radius);
+    }
+
+    .bubble.jumbo {
+      background: transparent !important;
+      padding: 2px 4px;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    .reactions-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: -8px;
+      z-index: 2;
+      padding: 0 6px;
+    }
+
+    .outgoing .reactions-bar {
+      justify-content: flex-end;
+    }
+
+    [data-theme="ios"] .reactions-bar {
+      position: absolute;
+      top: -14px;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    [data-theme="ios"] .incoming .reactions-bar {
+      right: -8px;
+    }
+
+    [data-theme="ios"] .outgoing .reactions-bar {
+      left: -8px;
+    }
+
+    .reaction-pill {
+      background: var(--reaction-bg);
+      color: var(--reaction-text);
+      border: 1.5px solid var(--reaction-border);
+      border-radius: 12px;
+      padding: 2px 7px;
+      font-size: 13px;
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      animation: reactionPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
+    }
+
+    [data-theme="ios"] .reaction-pill {
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .timestamp {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      padding: 0 6px;
+    }
+
+    .typing-wrap {
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-left: 36px;
+      animation: popIn 0.24s ease forwards;
+    }
+
+    .typing-sender {
+      font-size: 11.5px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+
+    .typing-row {
+      background: var(--incoming-bg);
+      padding: 12px 16px;
+      border-radius: var(--bubble-radius);
+      border-bottom-left-radius: var(--tail-radius);
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--muted);
+      border-radius: 50%;
+      animation: bounce 1.3s infinite ease-in-out;
+    }
+
+    .dot:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    .dot:nth-child(3) {
+      animation-delay: 0.36s;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes reactionPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+
+      70% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .msg-row.masking-out {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      pointer-events: none;
+    }
+
+    .mask-toast {
+      position: absolute;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: rgba(32, 33, 36, 0.94);
+      color: #e8eaed;
+      backdrop-filter: blur(8px);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 15;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      white-space: nowrap;
+      max-width: 92%;
+    }
+
+    .mask-toast.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .mask-toast button {
+      background: #2563eb;
+      border: none;
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .mask-toast button:hover {
+      background: #1d4ed8;
+    }
+
+    .mask-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 390px;
+      max-width: 92vw;
+      max-height: 70vh;
+      background: #1e222b;
+      color: #e8eaed;
+      border: 1px solid #3d4454;
+      border-radius: 14px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+      display: none;
+      flex-direction: column;
+      z-index: 50;
+      overflow: hidden;
+    }
+
+    .mask-panel.open {
+      display: flex;
+    }
+
+    .mask-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid #303645;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .mask-panel-list {
+      overflow-y: auto;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .mask-panel-empty {
+      color: #9aa0a6;
+      text-align: center;
+      padding: 18px 8px;
+    }
+
+    .mask-panel-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #282e3b;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .mask-panel-item-text {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mask-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 14px;
+      border-top: 1px solid #303645;
+    }
+
+    .ctx-menu {
+      position: fixed;
+      z-index: 60;
+      min-width: 205px;
+      background: #1e222b;
+      color: #e8eaed;
+      border: 1px solid #3d4454;
+      border-radius: 10px;
+      padding: 5px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ctx-menu.open {
+      display: flex;
+    }
+
+    .ctx-item {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: #e8eaed;
+      padding: 8px 10px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .ctx-item:hover {
+      background: #2d3545;
+    }
+
+    .ctx-badge {
+      background: #334155;
+      color: #cbd5e1;
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ctx-sep {
+      height: 1px;
+      background: #303645;
+      margin: 4px 6px;
+    }
+  </style>
 </head>
+
 <body data-theme="ios">
 
-<div class="toolbar hidden" id="toolbar">
-  <label class="file-btn">
-    📂 Load JSON
-    <input type="file" id="fileInput" accept=".json">
-  </label>
-  <select id="themeSelect" title="Switch visual style">
-    <option value="android-dark">🌙 Google Messages Dark</option>
-    <option value="android-light">☀️ Google Messages Light</option>
-    <option value="ios" selected>💬 iOS iMessage</option>
-  </select>
-  <select id="startSelect" title="Choose starting message/timestamp"></select>
-  <button class="primary" id="playPauseBtn">▶ Play</button>
-  <button id="restartBtn">↺ Restart</button>
+  <div class="toolbar hidden" id="toolbar">
+    <label class="file-btn">
+      📂 Load JSON
+      <input type="file" id="fileInput" accept=".json">
+    </label>
+    <select id="themeSelect" title="Switch visual style">
+      <option value="android-dark">🌙 Google Messages Dark</option>
+      <option value="android-light">☀️ Google Messages Light</option>
+      <option value="ios" selected>💬 iOS iMessage</option>
+    </select>
+    <select id="startSelect" title="Choose starting message/timestamp"></select>
+    <button class="primary" id="playPauseBtn">▶ Play</button>
+    <button id="restartBtn">↺ Restart</button>
 
-  <label class="slider-group" title="Adjust playback speed in real time">
-    <span>Speed</span>
-    <input type="range" id="speedSlider" min="0.25" max="3.0" step="0.05" value="1.0">
-    <span class="slider-val" id="speedValue">1.00x</span>
-  </label>
+    <label class="slider-group" title="Adjust playback speed in real time">
+      <span>Speed</span>
+      <input type="range" id="speedSlider" min="0.25" max="3.0" step="0.05" value="1.0">
+      <span class="slider-val" id="speedValue">1.00x</span>
+    </label>
 
-  <button id="loopBtn">🔁 Loop: On</button>
-  <button id="soundBtn">🔊 Sound: On</button>
-  <button id="maskedBtn" title="View or unmask hidden messages">🙈 Masked: 0</button>
-  <button id="exportJsonBtn" title="Download JSON with current masks">💾 Export JSON</button>
-  <button id="cleanBtn" title="Hide toolbar (Right-click or press Esc to restore)">🎥 Clean Mode</button>
-</div>
+    <button id="loopBtn">🔁 Loop: On</button>
+    <button id="soundBtn">🔊 Sound: On</button>
+    <button id="maskedBtn" title="View or unmask hidden messages">🙈 Masked: 0</button>
+    <button id="exportJsonBtn" title="Download JSON with current masks">💾 Export JSON</button>
+    <button id="cleanBtn" title="Hide toolbar (Right-click or press Esc to restore)">🎥 Clean Mode</button>
+  </div>
 
-<div class="phone-frame">
-  <div class="chat-header" title="Right-click for Unmask All & controls">
-    <div class="header-back" aria-hidden="true">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+  <div class="phone-frame">
+    <div class="chat-header" title="Right-click for Unmask All & controls">
+      <div class="header-back" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5" />
+          <path d="M12 19l-7-7 7-7" />
+        </svg>
+      </div>
+      <div class="group-avatar" id="groupAvatar" aria-hidden="true">
+        <span class="ga-dot" style="background:#34a853">L</span>
+        <span class="ga-dot" style="background:#4285f4">R</span>
+        <span class="ga-dot" style="background:#a142f4">L</span>
+        <span class="ga-dot" style="background:#e37400">A</span>
+      </div>
+      <div class="header-info">
+        <h2 id="threadTitle">Siblings, Spouses, and Spencer</h2>
+        <span id="statusText">iMessage</span>
+      </div>
+      <div class="header-actions">
+        <button class="header-icon-btn" id="headerMenuBtn" title="Toggle controls (Esc / Right-click)"
+          aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="5" r="1.8" />
+            <circle cx="12" cy="12" r="1.8" />
+            <circle cx="12" cy="19" r="1.8" />
+          </svg>
+        </button>
+      </div>
     </div>
-    <div class="group-avatar" id="groupAvatar" aria-hidden="true">
-      <span class="ga-dot" style="background:#34a853">L</span>
-      <span class="ga-dot" style="background:#4285f4">R</span>
-      <span class="ga-dot" style="background:#a142f4">L</span>
-      <span class="ga-dot" style="background:#e37400">A</span>
+    <div class="mask-toast" id="maskToast">
+      <span id="maskToastText">Message masked</span>
+      <button id="undoMaskBtn" type="button">Undo</button>
     </div>
-    <div class="header-info">
-      <h2 id="threadTitle">Siblings, Spouses, and Spencer</h2>
-      <span id="statusText">iMessage</span>
-    </div>
-    <div class="header-actions">
-      <button class="header-icon-btn" id="headerMenuBtn" title="Toggle controls (Esc / Right-click)" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
-      </button>
+    <div class="chat-stream" id="chatStream" title="Tap anywhere to Play / Pause (Right-click a message to mask)"></div>
+    <div class="playback-pill" id="playbackPill">▶ Play</div>
+    <div class="composer-bar" aria-hidden="true">
+      <div class="composer-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 8v8M8 12h8" />
+        </svg>
+      </div>
+      <div class="composer-pill" id="composerPill">
+        <div class="composer-text-wrap"><span class="composer-text placeholder" id="composerText">iMessage</span><span
+            class="composer-caret" id="composerCaret"></span></div>
+        <svg class="composer-emoji-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2" />
+          <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
+          <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </div>
+      <div class="composer-icon" id="composerActionIcon">
+        <svg class="icon-mic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="3" width="6" height="11" rx="3" />
+          <path d="M5 11a7 7 0 0 0 14 0" />
+          <path d="M12 18v3" />
+        </svg>
+        <svg class="icon-send" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5" />
+          <path d="M5 12l7-7 7 7" />
+        </svg>
+      </div>
     </div>
   </div>
-  <div class="mask-toast" id="maskToast">
-    <span id="maskToastText">Message masked</span>
-    <button id="undoMaskBtn" type="button">Undo</button>
+
+  <div class="ctx-menu" id="ctxMenu" role="menu">
+    <button class="ctx-item" id="ctxUnmaskAllBtn" type="button" role="menuitem">
+      <span>👁️ Unmask All</span>
+      <span class="ctx-badge" id="ctxMaskedBadge">0</span>
+    </button>
+    <button class="ctx-item" id="ctxManageMasksBtn" type="button" role="menuitem">
+      <span>🙈 Manage Masked…</span>
+    </button>
+    <button class="ctx-item" id="ctxExportJsonBtn" type="button" role="menuitem">
+      <span>💾 Export JSON</span>
+    </button>
+    <div class="ctx-sep"></div>
+    <button class="ctx-item" id="ctxToggleToolbarBtn" type="button" role="menuitem">
+      <span>⚙️ Toggle Toolbar</span>
+    </button>
   </div>
-  <div class="chat-stream" id="chatStream" title="Tap anywhere to Play / Pause (Right-click a message to mask)"></div>
-  <div class="playback-pill" id="playbackPill">▶ Play</div>
-  <div class="composer-bar" aria-hidden="true">
-    <div class="composer-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+
+  <div class="mask-panel" id="maskPanel" role="dialog" aria-label="Masked messages">
+    <div class="mask-panel-header">
+      <span>Masked Messages</span>
+      <button id="closeMaskPanelBtn" type="button">✕</button>
     </div>
-    <div class="composer-pill" id="composerPill">
-      <div class="composer-text-wrap"><span class="composer-text placeholder" id="composerText">iMessage</span><span class="composer-caret" id="composerCaret"></span></div>
-      <svg class="composer-emoji-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
-    </div>
-    <div class="composer-icon" id="composerActionIcon">
-      <svg class="icon-mic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>
-      <svg class="icon-send" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    <div class="mask-panel-list" id="maskPanelList"></div>
+    <div class="mask-panel-footer">
+      <button id="unmaskAllBtn" type="button">Unmask All</button>
+      <button class="primary" id="panelExportJsonBtn" type="button">💾 Export JSON</button>
     </div>
   </div>
-</div>
 
-<div class="ctx-menu" id="ctxMenu" role="menu">
-  <button class="ctx-item" id="ctxUnmaskAllBtn" type="button" role="menuitem">
-    <span>👁️ Unmask All</span>
-    <span class="ctx-badge" id="ctxMaskedBadge">0</span>
-  </button>
-  <button class="ctx-item" id="ctxManageMasksBtn" type="button" role="menuitem">
-    <span>🙈 Manage Masked…</span>
-  </button>
-  <button class="ctx-item" id="ctxExportJsonBtn" type="button" role="menuitem">
-    <span>💾 Export JSON</span>
-  </button>
-  <div class="ctx-sep"></div>
-  <button class="ctx-item" id="ctxToggleToolbarBtn" type="button" role="menuitem">
-    <span>⚙️ Toggle Toolbar</span>
-  </button>
-</div>
+  <script>
+    const defaultDemoData = {
+      title: "Family Thread",
+      messages: [
+        { id: "m1", direction: "incoming", sender: "Rene Gautreaux", time: "10:12 AM", text: "Quick exercise for Dad’s eulogy and everyone is encouraged to play: Name some of the simple things dad liked. Annnnnd go!", reactions: [{ emoji: "❤️", delayAfterMs: 1200 }] },
+        { id: "m2", direction: "outgoing", sender: "Paul", time: "10:14 AM", text: "A fresh cup of coffee in the morning ☕", reactions: [{ emoji: "👍", delayAfterMs: 1100 }] },
+        { id: "m3", direction: "incoming", sender: "Lil Sis", time: "10:15 AM", text: "Me calling him at the drugstore to bring home a surprise for me🤣", reactions: [{ emoji: "😂", delayAfterMs: 1200 }] }
+      ]
+    };
 
-<div class="mask-panel" id="maskPanel" role="dialog" aria-label="Masked messages">
-  <div class="mask-panel-header">
-    <span>Masked Messages</span>
-    <button id="closeMaskPanelBtn" type="button">✕</button>
-  </div>
-  <div class="mask-panel-list" id="maskPanelList"></div>
-  <div class="mask-panel-footer">
-    <button id="unmaskAllBtn" type="button">Unmask All</button>
-    <button class="primary" id="panelExportJsonBtn" type="button">💾 Export JSON</button>
-  </div>
-</div>
+    const DEFAULT_THREAD_NAME = "We Remember Dad Enjoying...";
+    const MAX_DOM_MESSAGES = 60;
+    const MASK_STORAGE_KEY = 'sms_player_masks_v1';
+    let threadData = defaultDemoData;
+    let currentThreadKey = 'default';
+    let currentFileName = 'Eulogy_Exercise_Clip.json';
+    let baseMaskByKey = {};
+    let lastMaskedAction = null;
+    let maskToastTimer = null;
+    let isPlaying = false;
+    let autoLoop = true;
+    let startIndex = 0;
+    let currentIndex = 0;
+    let speedMultiplier = 1.0;
+    let soundEnabled = true;
+    let cancelToken = { cancelled: false };
 
-<script>
-  const defaultDemoData = {
-    title: "Family Thread",
-    messages: [
-      { id: "m1", direction: "incoming", sender: "Rene Gautreaux", time: "10:12 AM", text: "Quick exercise for Dad’s eulogy and everyone is encouraged to play: Name some of the simple things dad liked. Annnnnd go!", reactions: [{ emoji: "❤️", delayAfterMs: 1200 }] },
-      { id: "m2", direction: "outgoing", sender: "Paul", time: "10:14 AM", text: "A fresh cup of coffee in the morning ☕", reactions: [{ emoji: "👍", delayAfterMs: 1100 }] },
-      { id: "m3", direction: "incoming", sender: "Lil Sis", time: "10:15 AM", text: "Me calling him at the drugstore to bring home a surprise for me🤣", reactions: [{ emoji: "😂", delayAfterMs: 1200 }] }
-    ]
-  };
+    const toolbar = document.getElementById('toolbar');
+    const chatStream = document.getElementById('chatStream');
+    const playbackPill = document.getElementById('playbackPill');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const startSelect = document.getElementById('startSelect');
+    const themeSelect = document.getElementById('themeSelect');
+    const speedSlider = document.getElementById('speedSlider');
+    const speedValue = document.getElementById('speedValue');
+    const threadTitleEl = document.getElementById('threadTitle');
+    const statusEl = document.getElementById('statusText');
+    const maskedBtn = document.getElementById('maskedBtn');
+    const exportJsonBtn = document.getElementById('exportJsonBtn');
+    const maskToast = document.getElementById('maskToast');
+    const maskToastText = document.getElementById('maskToastText');
+    const undoMaskBtn = document.getElementById('undoMaskBtn');
+    const maskPanel = document.getElementById('maskPanel');
+    const maskPanelList = document.getElementById('maskPanelList');
+    const closeMaskPanelBtn = document.getElementById('closeMaskPanelBtn');
+    const unmaskAllBtn = document.getElementById('unmaskAllBtn');
+    const panelExportJsonBtn = document.getElementById('panelExportJsonBtn');
+    const composerPill = document.getElementById('composerPill');
+    const composerText = document.getElementById('composerText');
+    const composerActionIcon = document.getElementById('composerActionIcon');
+    const ctxMenu = document.getElementById('ctxMenu');
+    const ctxUnmaskAllBtn = document.getElementById('ctxUnmaskAllBtn');
+    const ctxMaskedBadge = document.getElementById('ctxMaskedBadge');
+    const ctxManageMasksBtn = document.getElementById('ctxManageMasksBtn');
+    const ctxExportJsonBtn = document.getElementById('ctxExportJsonBtn');
+    const ctxToggleToolbarBtn = document.getElementById('ctxToggleToolbarBtn');
 
-  const DEFAULT_THREAD_NAME = "Siblings, Spouses, and Spencer";
-  const MAX_DOM_MESSAGES = 60;
-  const MASK_STORAGE_KEY = 'sms_player_masks_v1';
-  let threadData = defaultDemoData;
-  let currentThreadKey = 'default';
-  let currentFileName = 'Eulogy_Exercise_Clip.json';
-  let baseMaskByKey = {};
-  let lastMaskedAction = null;
-  let maskToastTimer = null;
-  let isPlaying = false;
-  let autoLoop = true;
-  let startIndex = 0;
-  let currentIndex = 0;
-  let speedMultiplier = 1.0;
-  let soundEnabled = true;
-  let cancelToken = { cancelled: false };
-
-  const toolbar = document.getElementById('toolbar');
-  const chatStream = document.getElementById('chatStream');
-  const playbackPill = document.getElementById('playbackPill');
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  const startSelect = document.getElementById('startSelect');
-  const themeSelect = document.getElementById('themeSelect');
-  const speedSlider = document.getElementById('speedSlider');
-  const speedValue = document.getElementById('speedValue');
-  const threadTitleEl = document.getElementById('threadTitle');
-  const statusEl = document.getElementById('statusText');
-  const maskedBtn = document.getElementById('maskedBtn');
-  const exportJsonBtn = document.getElementById('exportJsonBtn');
-  const maskToast = document.getElementById('maskToast');
-  const maskToastText = document.getElementById('maskToastText');
-  const undoMaskBtn = document.getElementById('undoMaskBtn');
-  const maskPanel = document.getElementById('maskPanel');
-  const maskPanelList = document.getElementById('maskPanelList');
-  const closeMaskPanelBtn = document.getElementById('closeMaskPanelBtn');
-  const unmaskAllBtn = document.getElementById('unmaskAllBtn');
-  const panelExportJsonBtn = document.getElementById('panelExportJsonBtn');
-  const composerPill = document.getElementById('composerPill');
-  const composerText = document.getElementById('composerText');
-  const composerActionIcon = document.getElementById('composerActionIcon');
-  const ctxMenu = document.getElementById('ctxMenu');
-  const ctxUnmaskAllBtn = document.getElementById('ctxUnmaskAllBtn');
-  const ctxMaskedBadge = document.getElementById('ctxMaskedBadge');
-  const ctxManageMasksBtn = document.getElementById('ctxManageMasksBtn');
-  const ctxExportJsonBtn = document.getElementById('ctxExportJsonBtn');
-  const ctxToggleToolbarBtn = document.getElementById('ctxToggleToolbarBtn');
-
-  function getThemeChatLabel() {
-    return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS chat';
-  }
-
-  function getThemeComposerPlaceholder() {
-    return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS message';
-  }
-
-  function syncThemeLabels() {
-    if (activeTypers.size === 0) {
-      statusEl.textContent = getThemeChatLabel();
+    function getThemeChatLabel() {
+      return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS chat';
     }
-    if (!composerPill.classList.contains('typing')) {
-      composerText.textContent = getThemeComposerPlaceholder();
-      composerText.classList.add('placeholder');
+
+    function getThemeComposerPlaceholder() {
+      return document.body.getAttribute('data-theme') === 'ios' ? 'iMessage' : 'RCS message';
     }
-  }
 
-  function closeContextMenu() {
-    ctxMenu.classList.remove('open');
-  }
-
-  function openContextMenu(clientX, clientY) {
-    const msgs = threadData.messages || [];
-    const maskedCount = msgs.filter(isMessageMasked).length;
-    ctxMaskedBadge.textContent = String(maskedCount);
-    ctxMenu.classList.add('open');
-
-    const rect = ctxMenu.getBoundingClientRect();
-    const pad = 8;
-    const x = Math.min(window.innerWidth - rect.width - pad, Math.max(pad, clientX));
-    const y = Math.min(window.innerHeight - rect.height - pad, Math.max(pad, clientY));
-    ctxMenu.style.left = `${x}px`;
-    ctxMenu.style.top = `${y}px`;
-  }
-
-  function isMessageMasked(msg) {
-    return Boolean(msg && msg.mask !== null && msg.mask !== undefined && msg.mask !== false && msg.mask !== '');
-  }
-
-  function getMessageKey(msg, idx) {
-    return (msg && msg.id != null && msg.id !== '') ? String(msg.id) : `idx_${idx}`;
-  }
-
-  function computeThreadKey(data, sourceHint = '') {
-    const msgs = data.messages || [];
-    const firstId = msgs[0] && msgs[0].id ? msgs[0].id : '';
-    return `${sourceHint || data.title || 'thread'}::${firstId}::${msgs.length}`;
-  }
-
-  function loadAllSavedMasks() {
-    try {
-      const raw = localStorage.getItem(MASK_STORAGE_KEY);
-      const parsed = raw ? JSON.parse(raw) : {};
-      return (parsed && typeof parsed === 'object') ? parsed : {};
-    } catch (e) {
-      return {};
-    }
-  }
-
-  function saveMaskOverride(msgKey, maskValue) {
-    try {
-      const all = loadAllSavedMasks();
-      if (!all[currentThreadKey] || typeof all[currentThreadKey] !== 'object') {
-        all[currentThreadKey] = {};
+    function syncThemeLabels() {
+      if (activeTypers.size === 0) {
+        statusEl.textContent = getThemeChatLabel();
       }
-      const baseVal = Object.prototype.hasOwnProperty.call(baseMaskByKey, msgKey) ? baseMaskByKey[msgKey] : null;
-      if (maskValue === baseVal) {
-        delete all[currentThreadKey][msgKey];
-      } else {
-        all[currentThreadKey][msgKey] = maskValue;
+      if (!composerPill.classList.contains('typing')) {
+        composerText.textContent = getThemeComposerPlaceholder();
+        composerText.classList.add('placeholder');
       }
-      localStorage.setItem(MASK_STORAGE_KEY, JSON.stringify(all));
-    } catch (e) {}
-  }
+    }
 
-  function applySavedMasks(data) {
-    const all = loadAllSavedMasks();
-    const saved = all[currentThreadKey];
-    if (!saved || typeof saved !== 'object') return;
-    (data.messages || []).forEach((msg, idx) => {
-      const key = getMessageKey(msg, idx);
-      if (Object.prototype.hasOwnProperty.call(saved, key)) {
-        msg.mask = saved[key];
+    function closeContextMenu() {
+      ctxMenu.classList.remove('open');
+    }
+
+    function openContextMenu(clientX, clientY) {
+      const msgs = threadData.messages || [];
+      const maskedCount = msgs.filter(isMessageMasked).length;
+      ctxMaskedBadge.textContent = String(maskedCount);
+      ctxMenu.classList.add('open');
+
+      const rect = ctxMenu.getBoundingClientRect();
+      const pad = 8;
+      const x = Math.min(window.innerWidth - rect.width - pad, Math.max(pad, clientX));
+      const y = Math.min(window.innerHeight - rect.height - pad, Math.max(pad, clientY));
+      ctxMenu.style.left = `${x}px`;
+      ctxMenu.style.top = `${y}px`;
+    }
+
+    function isMessageMasked(msg) {
+      return Boolean(msg && msg.mask !== null && msg.mask !== undefined && msg.mask !== false && msg.mask !== '');
+    }
+
+    function getMessageKey(msg, idx) {
+      return (msg && msg.id != null && msg.id !== '') ? String(msg.id) : `idx_${idx}`;
+    }
+
+    function computeThreadKey(data, sourceHint = '') {
+      const msgs = data.messages || [];
+      const firstId = msgs[0] && msgs[0].id ? msgs[0].id : '';
+      return `${sourceHint || data.title || 'thread'}::${firstId}::${msgs.length}`;
+    }
+
+    function loadAllSavedMasks() {
+      try {
+        const raw = localStorage.getItem(MASK_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return (parsed && typeof parsed === 'object') ? parsed : {};
+      } catch (e) {
+        return {};
       }
-    });
-  }
-
-  function hideMaskToast() {
-    if (maskToastTimer) {
-      clearTimeout(maskToastTimer);
-      maskToastTimer = null;
-    }
-    maskToast.classList.remove('visible');
-  }
-
-  function showMaskToast(label, showUndo = true) {
-    maskToastText.textContent = label;
-    undoMaskBtn.style.display = showUndo ? '' : 'none';
-    maskToast.classList.add('visible');
-    if (maskToastTimer) clearTimeout(maskToastTimer);
-    maskToastTimer = setTimeout(() => {
-      maskToast.classList.remove('visible');
-      maskToastTimer = null;
-    }, 4500);
-  }
-
-  function updateMaskedUI() {
-    const msgs = threadData.messages || [];
-    const maskedCount = msgs.filter(isMessageMasked).length;
-    maskedBtn.textContent = `🙈 Masked: ${maskedCount}`;
-    ctxMaskedBadge.textContent = String(maskedCount);
-    if (maskPanel.classList.contains('open')) {
-      renderMaskPanel();
-    }
-  }
-
-  function renderMaskPanel() {
-    const msgs = threadData.messages || [];
-    maskPanelList.innerHTML = '';
-    const maskedEntries = msgs
-      .map((msg, idx) => ({ msg, idx }))
-      .filter(({ msg }) => isMessageMasked(msg));
-
-    if (maskedEntries.length === 0) {
-      const empty = document.createElement('div');
-      empty.className = 'mask-panel-empty';
-      empty.textContent = 'No masked messages. Right-click any message in the chat to mask it.';
-      maskPanelList.appendChild(empty);
-      return;
     }
 
-    maskedEntries.forEach(({ msg, idx }) => {
-      const item = document.createElement('div');
-      item.className = 'mask-panel-item';
-
-      const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
-      const label = document.createElement('div');
-      label.className = 'mask-panel-item-text';
-      label.title = `${sender}: ${msg.text}`;
-      label.textContent = `#${idx + 1} ${sender}: ${msg.text}`;
-
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = 'Unmask';
-      btn.addEventListener('click', () => unmaskMessageAtIndex(idx));
-
-      item.appendChild(label);
-      item.appendChild(btn);
-      maskPanelList.appendChild(item);
-    });
-  }
-
-  function maskMessageAtIndex(msgIdx, rowEl = null) {
-    const msgs = threadData.messages || [];
-    const msg = msgs[msgIdx];
-    if (!msg) return;
-
-    const prevMask = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
-    msg.mask = true;
-    saveMaskOverride(getMessageKey(msg, msgIdx), true);
-
-    const parent = rowEl ? rowEl.parentNode : null;
-    const nextSibling = rowEl ? rowEl.nextSibling : null;
-
-    if (rowEl) {
-      rowEl.classList.add('masking-out');
-      setTimeout(() => {
-        if (isMessageMasked(msg) && rowEl.parentNode) {
-          rowEl.remove();
+    function saveMaskOverride(msgKey, maskValue) {
+      try {
+        const all = loadAllSavedMasks();
+        if (!all[currentThreadKey] || typeof all[currentThreadKey] !== 'object') {
+          all[currentThreadKey] = {};
         }
-      }, 230);
+        const baseVal = Object.prototype.hasOwnProperty.call(baseMaskByKey, msgKey) ? baseMaskByKey[msgKey] : null;
+        if (maskValue === baseVal) {
+          delete all[currentThreadKey][msgKey];
+        } else {
+          all[currentThreadKey][msgKey] = maskValue;
+        }
+        localStorage.setItem(MASK_STORAGE_KEY, JSON.stringify(all));
+      } catch (e) { }
     }
 
-    lastMaskedAction = { msgIdx, prevMask, rowEl, parent, nextSibling };
-    populateStartSelector(msgs);
-    updateMaskedUI();
-
-    const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
-    showMaskToast(`Masked ${sender}'s message`);
-  }
-
-  function unmaskMessageAtIndex(msgIdx) {
-    const msgs = threadData.messages || [];
-    const msg = msgs[msgIdx];
-    if (!msg) return;
-    msg.mask = null;
-    saveMaskOverride(getMessageKey(msg, msgIdx), null);
-    populateStartSelector(msgs);
-    updateMaskedUI();
-  }
-
-  function unmaskAllMessages() {
-    const msgs = threadData.messages || [];
-    let clearedCount = 0;
-    msgs.forEach((msg, idx) => {
-      if (isMessageMasked(msg)) clearedCount++;
-      msg.mask = null;
-      saveMaskOverride(getMessageKey(msg, idx), null);
-    });
-    try {
-      if (localStorage.getItem('sms_player_last_thread')) {
-        localStorage.setItem('sms_player_last_thread', JSON.stringify(threadData));
-      }
-    } catch (e) {}
-    lastMaskedAction = null;
-    populateStartSelector(msgs);
-    updateMaskedUI();
-    showMaskToast(clearedCount > 0 ? `Unmasked all (${clearedCount}) messages` : 'All message masks cleared', false);
-  }
-
-  function exportThreadJson() {
-    const jsonStr = JSON.stringify(threadData, null, 2);
-    const blob = new Blob([jsonStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = currentFileName || 'Eulogy_Exercise_Clip.json';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
-
-  function formatSenderName(rawName, isOutgoing = false) {
-    let name = (rawName || "").trim();
-    if (!name || (isOutgoing && name === "Me")) return "Paul";
-
-    const lower = name.toLowerCase();
-    if (lower === "lil sis") return "Amy";
-    if (lower === "rene" || lower === "rene'" || lower.startsWith("rene ")) return "Rene'";
-
-    if (/^[+\d\s().-]+$/.test(name)) return name;
-    return name.split(/\s+/)[0];
-  }
-
-  // Distinct, high-contrast palettes — paired by index so each person keeps the same hue across themes
-  const darkSenderPalette = [
-    "#2563eb", // Royal Blue
-    "#e11d48", // Crimson Rose
-    "#059669", // Emerald Green
-    "#7c3aed", // Vivid Purple
-    "#d97706", // Warm Amber
-    "#0891b2", // Deep Cyan
-    "#c026d3", // Fuchsia
-    "#dc2626", // Brick Red
-    "#4f46e5", // Indigo
-    "#65a30d", // Olive Green
-    "#db2777", // Deep Pink
-    "#0d9488"  // Teal
-  ];
-
-  const lightSenderPalette = [
-    "#60a5fa", // Sky Blue
-    "#fb7185", // Soft Coral
-    "#34d399", // Mint Emerald
-    "#a78bfa", // Lavender Purple
-    "#fbbf24", // Golden Amber
-    "#22d3ee", // Bright Cyan
-    "#e879f9", // Fuchsia
-    "#f87171", // Light Red
-    "#818cf8", // Periwinkle Indigo
-    "#a3e635", // Lime Green
-    "#f472b6", // Pink
-    "#2dd4bf"  // Teal
-  ];
-
-  const senderColorIndexMap = new Map();
-
-  function assignParticipantColors(messages) {
-    senderColorIndexMap.clear();
-    const incomingParticipants = [];
-    (messages || []).forEach((m) => {
-      if (m.direction !== 'incoming') return;
-      const name = formatSenderName(m.sender, false);
-      if (!senderColorIndexMap.has(name)) {
-        senderColorIndexMap.set(name, senderColorIndexMap.size);
-        incomingParticipants.push(name);
-      }
-    });
-    (messages || []).forEach((m) => {
-      if (m.direction === 'incoming') return;
-      const name = formatSenderName(m.sender, true);
-      if (!senderColorIndexMap.has(name)) {
-        senderColorIndexMap.set(name, senderColorIndexMap.size);
-      }
-    });
-
-    const groupAvatarEl = document.getElementById('groupAvatar');
-    if (groupAvatarEl && incomingParticipants.length > 0) {
-      groupAvatarEl.innerHTML = '';
-      incomingParticipants.slice(0, 4).forEach((name) => {
-        const dot = document.createElement('span');
-        dot.className = 'ga-dot';
-        dot.dataset.sender = name;
-        dot.style.background = getSenderColor(name);
-        dot.textContent = getInitials(name);
-        groupAvatarEl.appendChild(dot);
+    function applySavedMasks(data) {
+      const all = loadAllSavedMasks();
+      const saved = all[currentThreadKey];
+      if (!saved || typeof saved !== 'object') return;
+      (data.messages || []).forEach((msg, idx) => {
+        const key = getMessageKey(msg, idx);
+        if (Object.prototype.hasOwnProperty.call(saved, key)) {
+          msg.mask = saved[key];
+        }
       });
     }
-  }
 
-  function getSenderColor(name) {
-    const key = (name || '?').trim();
-    if (!senderColorIndexMap.has(key)) {
-      senderColorIndexMap.set(key, senderColorIndexMap.size);
-    }
-    const idx = senderColorIndexMap.get(key);
-    const isDarkTheme = document.body.getAttribute('data-theme') === 'android-dark';
-    const palette = isDarkTheme ? lightSenderPalette : darkSenderPalette;
-    if (idx < palette.length) {
-      return palette[idx];
-    }
-    // Golden-angle fallback guarantees unique colors even for threads with 12+ participants
-    const hue = Math.round((idx * 137.508) % 360);
-    return isDarkTheme ? `hsl(${hue}, 82%, 68%)` : `hsl(${hue}, 72%, 42%)`;
-  }
-
-  function getInitials(name) {
-    const cleaned = (name || "?").replace(/[^a-zA-Z0-9\s]/g, '').trim();
-    if (!cleaned) return "?";
-    return cleaned[0].toUpperCase();
-  }
-
-  function normalizeEmojiPresentation(str) {
-    return (str || "").replace(/\u2764(?!\uFE0F)/g, '\u2764\uFE0F');
-  }
-
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  let swooshNoiseBuffer = null;
-  function getSwooshNoiseBuffer() {
-    if (swooshNoiseBuffer) return swooshNoiseBuffer;
-    const duration = 0.24;
-    const length = Math.floor(audioCtx.sampleRate * duration);
-    const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
-    const data = buffer.getChannelData(0);
-    // Slightly smoothed noise for a silky air-swoosh texture
-    let prev = 0;
-    for (let i = 0; i < length; i++) {
-      const white = Math.random() * 2 - 1;
-      prev = prev * 0.35 + white * 0.65;
-      data[i] = prev;
-    }
-    swooshNoiseBuffer = buffer;
-    return buffer;
-  }
-
-  function unlockAudio() {
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume().catch(() => {});
-    }
-  }
-  window.addEventListener('pointerdown', unlockAudio, { once: true });
-  window.addEventListener('keydown', unlockAudio, { once: true });
-
-  function playSwooshSound() {
-    if (!soundEnabled || audioCtx.state !== 'running') return;
-    const now = audioCtx.currentTime;
-
-    // 1. Filtered airy whoosh sweep
-    const noise = audioCtx.createBufferSource();
-    noise.buffer = getSwooshNoiseBuffer();
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.Q.setValueAtTime(2.0, now);
-    filter.frequency.setValueAtTime(480, now);
-    filter.frequency.exponentialRampToValueAtTime(2900, now + 0.14);
-    filter.frequency.exponentialRampToValueAtTime(1600, now + 0.22);
-
-    const noiseGain = audioCtx.createGain();
-    noiseGain.gain.setValueAtTime(0.001, now);
-    noiseGain.gain.linearRampToValueAtTime(0.14, now + 0.045);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.21);
-
-    noise.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(audioCtx.destination);
-    noise.start(now);
-    noise.stop(now + 0.22);
-
-    // 2. Soft tonal upward glide underneath for iOS-like polish
-    const osc = audioCtx.createOscillator();
-    const oscGain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(360, now);
-    osc.frequency.exponentialRampToValueAtTime(840, now + 0.15);
-
-    oscGain.gain.setValueAtTime(0.001, now);
-    oscGain.gain.linearRampToValueAtTime(0.045, now + 0.035);
-    oscGain.gain.exponentialRampToValueAtTime(0.0008, now + 0.18);
-
-    osc.connect(oscGain);
-    oscGain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.19);
-  }
-
-  function playPopSound(isIncoming) {
-    if (!soundEnabled || audioCtx.state !== 'running') return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(isIncoming ? 580 : 440, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(isIncoming ? 880 : 620, audioCtx.currentTime + 0.09);
-    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.11);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.12);
-  }
-
-  function isEmojiOnly(str) {
-    const cleaned = str.replace(/[\s\uFE0F]/g, '');
-    return /^(?:\p{Emoji_Presentation}|\p{Extended_Pictographic}){1,3}$/u.test(cleaned);
-  }
-
-  function updatePlaybackUI() {
-    if (isPlaying) {
-      playPauseBtn.textContent = '⏸ Pause';
-      playbackPill.textContent = '⏸ Pause';
-      playbackPill.classList.add('playing');
-    } else if (currentIndex >= threadData.messages.length && threadData.messages.length > 0) {
-      playPauseBtn.textContent = '↺ Replay';
-      playbackPill.textContent = '↺ Replay';
-      playbackPill.classList.remove('playing');
-    } else {
-      playPauseBtn.textContent = '▶ Play';
-      playbackPill.textContent = '▶ Play';
-      playbackPill.classList.remove('playing');
-    }
-  }
-
-  function wait(ms, token) {
-    return new Promise((resolve) => {
-      let elapsed = 0;
-      let lastTime = performance.now();
-      function check(now) {
-        if (token.cancelled) return resolve(false);
-        const dt = Math.min(100, Math.max(0, now - lastTime));
-        lastTime = now;
-        elapsed += dt * speedMultiplier;
-        if (elapsed >= ms) return resolve(true);
-        requestAnimationFrame(check);
+    function hideMaskToast() {
+      if (maskToastTimer) {
+        clearTimeout(maskToastTimer);
+        maskToastTimer = null;
       }
-      requestAnimationFrame(check);
-    });
-  }
-
-  const activeTypers = new Map();
-
-  function updateTypingStatus() {
-    const names = Array.from(activeTypers.keys());
-    if (names.length === 0) {
-      statusEl.textContent = getThemeChatLabel();
-    } else if (names.length === 1) {
-      statusEl.textContent = `${names[0]} is typing...`;
-    } else if (names.length === 2) {
-      statusEl.textContent = `${names[0]} and ${names[1]} are typing...`;
-    } else {
-      statusEl.textContent = `${names[0]}, ${names[1]}, and ${names.length - 2} more are typing...`;
-    }
-  }
-
-  function addTyping(senderName) {
-    const name = formatSenderName(senderName, false) || "Someone";
-    if (activeTypers.has(name)) {
-      repositionTypingIndicators();
-      return;
+      maskToast.classList.remove('visible');
     }
 
-    const wrap = document.createElement('div');
-    wrap.className = 'typing-wrap';
-    wrap.dataset.typingSender = name;
-
-    const label = document.createElement('div');
-    label.className = 'typing-sender';
-    label.dataset.sender = name;
-    label.style.color = getSenderColor(name);
-    label.textContent = name;
-    wrap.appendChild(label);
-
-    const row = document.createElement('div');
-    row.className = 'typing-row';
-    row.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-    wrap.appendChild(row);
-
-    activeTypers.set(name, wrap);
-    chatStream.appendChild(wrap);
-    updateTypingStatus();
-    chatStream.scrollTop = chatStream.scrollHeight;
-  }
-
-  function showTyping(senderName) {
-    removeTyping();
-    addTyping(senderName);
-  }
-
-  function removeTypingFor(senderName) {
-    const name = formatSenderName(senderName, false) || "Someone";
-    const wrap = activeTypers.get(name);
-    if (wrap) {
-      wrap.remove();
-      activeTypers.delete(name);
-      updateTypingStatus();
+    function showMaskToast(label, showUndo = true) {
+      maskToastText.textContent = label;
+      undoMaskBtn.style.display = showUndo ? '' : 'none';
+      maskToast.classList.add('visible');
+      if (maskToastTimer) clearTimeout(maskToastTimer);
+      maskToastTimer = setTimeout(() => {
+        maskToast.classList.remove('visible');
+        maskToastTimer = null;
+      }, 4500);
     }
-  }
 
-  function repositionTypingIndicators() {
-    if (activeTypers.size === 0) return;
-    activeTypers.forEach((wrap) => {
+    function updateMaskedUI() {
+      const msgs = threadData.messages || [];
+      const maskedCount = msgs.filter(isMessageMasked).length;
+      maskedBtn.textContent = `🙈 Masked: ${maskedCount}`;
+      ctxMaskedBadge.textContent = String(maskedCount);
+      if (maskPanel.classList.contains('open')) {
+        renderMaskPanel();
+      }
+    }
+
+    function renderMaskPanel() {
+      const msgs = threadData.messages || [];
+      maskPanelList.innerHTML = '';
+      const maskedEntries = msgs
+        .map((msg, idx) => ({ msg, idx }))
+        .filter(({ msg }) => isMessageMasked(msg));
+
+      if (maskedEntries.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'mask-panel-empty';
+        empty.textContent = 'No masked messages. Right-click any message in the chat to mask it.';
+        maskPanelList.appendChild(empty);
+        return;
+      }
+
+      maskedEntries.forEach(({ msg, idx }) => {
+        const item = document.createElement('div');
+        item.className = 'mask-panel-item';
+
+        const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
+        const label = document.createElement('div');
+        label.className = 'mask-panel-item-text';
+        label.title = `${sender}: ${msg.text}`;
+        label.textContent = `#${idx + 1} ${sender}: ${msg.text}`;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Unmask';
+        btn.addEventListener('click', () => unmaskMessageAtIndex(idx));
+
+        item.appendChild(label);
+        item.appendChild(btn);
+        maskPanelList.appendChild(item);
+      });
+    }
+
+    function maskMessageAtIndex(msgIdx, rowEl = null) {
+      const msgs = threadData.messages || [];
+      const msg = msgs[msgIdx];
+      if (!msg) return;
+
+      const prevMask = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
+      msg.mask = true;
+      saveMaskOverride(getMessageKey(msg, msgIdx), true);
+
+      const parent = rowEl ? rowEl.parentNode : null;
+      const nextSibling = rowEl ? rowEl.nextSibling : null;
+
+      if (rowEl) {
+        rowEl.classList.add('masking-out');
+        setTimeout(() => {
+          if (isMessageMasked(msg) && rowEl.parentNode) {
+            rowEl.remove();
+          }
+        }, 230);
+      }
+
+      lastMaskedAction = { msgIdx, prevMask, rowEl, parent, nextSibling };
+      populateStartSelector(msgs);
+      updateMaskedUI();
+
+      const sender = formatSenderName(msg.sender, msg.direction === 'outgoing');
+      showMaskToast(`Masked ${sender}'s message`);
+    }
+
+    function unmaskMessageAtIndex(msgIdx) {
+      const msgs = threadData.messages || [];
+      const msg = msgs[msgIdx];
+      if (!msg) return;
+      msg.mask = null;
+      saveMaskOverride(getMessageKey(msg, msgIdx), null);
+      populateStartSelector(msgs);
+      updateMaskedUI();
+    }
+
+    function unmaskAllMessages() {
+      const msgs = threadData.messages || [];
+      let clearedCount = 0;
+      msgs.forEach((msg, idx) => {
+        if (isMessageMasked(msg)) clearedCount++;
+        msg.mask = null;
+        saveMaskOverride(getMessageKey(msg, idx), null);
+      });
+      try {
+        if (localStorage.getItem('sms_player_last_thread')) {
+          localStorage.setItem('sms_player_last_thread', JSON.stringify(threadData));
+        }
+      } catch (e) { }
+      lastMaskedAction = null;
+      populateStartSelector(msgs);
+      updateMaskedUI();
+      showMaskToast(clearedCount > 0 ? `Unmasked all (${clearedCount}) messages` : 'All message masks cleared', false);
+    }
+
+    function exportThreadJson() {
+      const jsonStr = JSON.stringify(threadData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = currentFileName || 'Eulogy_Exercise_Clip.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function formatSenderName(rawName, isOutgoing = false) {
+      let name = (rawName || "").trim();
+      if (!name || (isOutgoing && name === "Me")) return "Paul";
+
+      const lower = name.toLowerCase();
+      if (lower === "lil sis") return "Amy";
+      if (lower === "rene" || lower === "rene'" || lower.startsWith("rene ")) return "Rene'";
+
+      if (/^[+\d\s().-]+$/.test(name)) return name;
+      return name.split(/\s+/)[0];
+    }
+
+    // Distinct, high-contrast palettes — paired by index so each person keeps the same hue across themes
+    const darkSenderPalette = [
+      "#2563eb", // Royal Blue
+      "#e11d48", // Crimson Rose
+      "#059669", // Emerald Green
+      "#7c3aed", // Vivid Purple
+      "#d97706", // Warm Amber
+      "#0891b2", // Deep Cyan
+      "#c026d3", // Fuchsia
+      "#dc2626", // Brick Red
+      "#4f46e5", // Indigo
+      "#65a30d", // Olive Green
+      "#db2777", // Deep Pink
+      "#0d9488"  // Teal
+    ];
+
+    const lightSenderPalette = [
+      "#60a5fa", // Sky Blue
+      "#fb7185", // Soft Coral
+      "#34d399", // Mint Emerald
+      "#a78bfa", // Lavender Purple
+      "#fbbf24", // Golden Amber
+      "#22d3ee", // Bright Cyan
+      "#e879f9", // Fuchsia
+      "#f87171", // Light Red
+      "#818cf8", // Periwinkle Indigo
+      "#a3e635", // Lime Green
+      "#f472b6", // Pink
+      "#2dd4bf"  // Teal
+    ];
+
+    const senderColorIndexMap = new Map();
+
+    function assignParticipantColors(messages) {
+      senderColorIndexMap.clear();
+      const incomingParticipants = [];
+      (messages || []).forEach((m) => {
+        if (m.direction !== 'incoming') return;
+        const name = formatSenderName(m.sender, false);
+        if (!senderColorIndexMap.has(name)) {
+          senderColorIndexMap.set(name, senderColorIndexMap.size);
+          incomingParticipants.push(name);
+        }
+      });
+      (messages || []).forEach((m) => {
+        if (m.direction === 'incoming') return;
+        const name = formatSenderName(m.sender, true);
+        if (!senderColorIndexMap.has(name)) {
+          senderColorIndexMap.set(name, senderColorIndexMap.size);
+        }
+      });
+
+      const groupAvatarEl = document.getElementById('groupAvatar');
+      if (groupAvatarEl && incomingParticipants.length > 0) {
+        groupAvatarEl.innerHTML = '';
+        incomingParticipants.slice(0, 4).forEach((name) => {
+          const dot = document.createElement('span');
+          dot.className = 'ga-dot';
+          dot.dataset.sender = name;
+          dot.style.background = getSenderColor(name);
+          dot.textContent = getInitials(name);
+          groupAvatarEl.appendChild(dot);
+        });
+      }
+    }
+
+    function getSenderColor(name) {
+      const key = (name || '?').trim();
+      if (!senderColorIndexMap.has(key)) {
+        senderColorIndexMap.set(key, senderColorIndexMap.size);
+      }
+      const idx = senderColorIndexMap.get(key);
+      const isDarkTheme = document.body.getAttribute('data-theme') === 'android-dark';
+      const palette = isDarkTheme ? lightSenderPalette : darkSenderPalette;
+      if (idx < palette.length) {
+        return palette[idx];
+      }
+      // Golden-angle fallback guarantees unique colors even for threads with 12+ participants
+      const hue = Math.round((idx * 137.508) % 360);
+      return isDarkTheme ? `hsl(${hue}, 82%, 68%)` : `hsl(${hue}, 72%, 42%)`;
+    }
+
+    function getInitials(name) {
+      const cleaned = (name || "?").replace(/[^a-zA-Z0-9\s]/g, '').trim();
+      if (!cleaned) return "?";
+      return cleaned[0].toUpperCase();
+    }
+
+    function normalizeEmojiPresentation(str) {
+      return (str || "").replace(/\u2764(?!\uFE0F)/g, '\u2764\uFE0F');
+    }
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let swooshNoiseBuffer = null;
+    function getSwooshNoiseBuffer() {
+      if (swooshNoiseBuffer) return swooshNoiseBuffer;
+      const duration = 0.24;
+      const length = Math.floor(audioCtx.sampleRate * duration);
+      const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      // Slightly smoothed noise for a silky air-swoosh texture
+      let prev = 0;
+      for (let i = 0; i < length; i++) {
+        const white = Math.random() * 2 - 1;
+        prev = prev * 0.35 + white * 0.65;
+        data[i] = prev;
+      }
+      swooshNoiseBuffer = buffer;
+      return buffer;
+    }
+
+    function unlockAudio() {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => { });
+      }
+    }
+    window.addEventListener('pointerdown', unlockAudio, { once: true });
+    window.addEventListener('keydown', unlockAudio, { once: true });
+
+    function playSwooshSound() {
+      if (!soundEnabled || audioCtx.state !== 'running') return;
+      const now = audioCtx.currentTime;
+
+      // 1. Filtered airy whoosh sweep
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = getSwooshNoiseBuffer();
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.setValueAtTime(2.0, now);
+      filter.frequency.setValueAtTime(480, now);
+      filter.frequency.exponentialRampToValueAtTime(2900, now + 0.14);
+      filter.frequency.exponentialRampToValueAtTime(1600, now + 0.22);
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.001, now);
+      noiseGain.gain.linearRampToValueAtTime(0.14, now + 0.045);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.21);
+
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(audioCtx.destination);
+      noise.start(now);
+      noise.stop(now + 0.22);
+
+      // 2. Soft tonal upward glide underneath for iOS-like polish
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(360, now);
+      osc.frequency.exponentialRampToValueAtTime(840, now + 0.15);
+
+      oscGain.gain.setValueAtTime(0.001, now);
+      oscGain.gain.linearRampToValueAtTime(0.045, now + 0.035);
+      oscGain.gain.exponentialRampToValueAtTime(0.0008, now + 0.18);
+
+      osc.connect(oscGain);
+      oscGain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.19);
+    }
+
+    function playPopSound(isIncoming) {
+      if (!soundEnabled || audioCtx.state !== 'running') return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(isIncoming ? 580 : 440, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(isIncoming ? 880 : 620, audioCtx.currentTime + 0.09);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.11);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.12);
+    }
+
+    function isEmojiOnly(str) {
+      const cleaned = str.replace(/[\s\uFE0F]/g, '');
+      return /^(?:\p{Emoji_Presentation}|\p{Extended_Pictographic}){1,3}$/u.test(cleaned);
+    }
+
+    function updatePlaybackUI() {
+      if (isPlaying) {
+        playPauseBtn.textContent = '⏸ Pause';
+        playbackPill.textContent = '⏸ Pause';
+        playbackPill.classList.add('playing');
+      } else if (currentIndex >= threadData.messages.length && threadData.messages.length > 0) {
+        playPauseBtn.textContent = '↺ Replay';
+        playbackPill.textContent = '↺ Replay';
+        playbackPill.classList.remove('playing');
+      } else {
+        playPauseBtn.textContent = '▶ Play';
+        playbackPill.textContent = '▶ Play';
+        playbackPill.classList.remove('playing');
+      }
+    }
+
+    function wait(ms, token) {
+      return new Promise((resolve) => {
+        let elapsed = 0;
+        let lastTime = performance.now();
+        function check(now) {
+          if (token.cancelled) return resolve(false);
+          const dt = Math.min(100, Math.max(0, now - lastTime));
+          lastTime = now;
+          elapsed += dt * speedMultiplier;
+          if (elapsed >= ms) return resolve(true);
+          requestAnimationFrame(check);
+        }
+        requestAnimationFrame(check);
+      });
+    }
+
+    const activeTypers = new Map();
+
+    function updateTypingStatus() {
+      const names = Array.from(activeTypers.keys());
+      if (names.length === 0) {
+        statusEl.textContent = getThemeChatLabel();
+      } else if (names.length === 1) {
+        statusEl.textContent = `${names[0]} is typing...`;
+      } else if (names.length === 2) {
+        statusEl.textContent = `${names[0]} and ${names[1]} are typing...`;
+      } else {
+        statusEl.textContent = `${names[0]}, ${names[1]}, and ${names.length - 2} more are typing...`;
+      }
+    }
+
+    function addTyping(senderName) {
+      const name = formatSenderName(senderName, false) || "Someone";
+      if (activeTypers.has(name)) {
+        repositionTypingIndicators();
+        return;
+      }
+
+      const wrap = document.createElement('div');
+      wrap.className = 'typing-wrap';
+      wrap.dataset.typingSender = name;
+
+      const label = document.createElement('div');
+      label.className = 'typing-sender';
+      label.dataset.sender = name;
+      label.style.color = getSenderColor(name);
+      label.textContent = name;
+      wrap.appendChild(label);
+
+      const row = document.createElement('div');
+      row.className = 'typing-row';
+      row.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+      wrap.appendChild(row);
+
+      activeTypers.set(name, wrap);
       chatStream.appendChild(wrap);
-    });
-  }
-
-  function findNextUnmaskedIndex(fromIdx) {
-    const msgs = threadData.messages || [];
-    for (let i = fromIdx; i < msgs.length; i++) {
-      if (!isMessageMasked(msgs[i])) return i;
-    }
-    return -1;
-  }
-
-  function pickOtherIncomingSender(excludeName) {
-    const msgs = threadData.messages || [];
-    const candidates = new Set();
-    for (let i = 0; i < msgs.length; i++) {
-      const m = msgs[i];
-      if (m.direction !== 'incoming' || isMessageMasked(m)) continue;
-      const n = formatSenderName(m.sender || "Rene'", false) || "Someone";
-      if (n !== excludeName && !activeTypers.has(n)) candidates.add(n);
-    }
-    const list = Array.from(candidates);
-    if (list.length === 0) return null;
-    return list[Math.floor(Math.random() * list.length)];
-  }
-
-  let keyClickNoiseBuffer = null;
-  function getKeyClickNoiseBuffer() {
-    if (keyClickNoiseBuffer) return keyClickNoiseBuffer;
-    const duration = 0.025;
-    const length = Math.floor(audioCtx.sampleRate * duration);
-    const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < length; i++) {
-      const env = Math.exp(-i / (length * 0.28));
-      data[i] = (Math.random() * 2 - 1) * env;
-    }
-    keyClickNoiseBuffer = buffer;
-    return buffer;
-  }
-
-  function playKeyClickSound(kind = 'key') {
-    if (!soundEnabled || audioCtx.state !== 'running') return;
-    const now = audioCtx.currentTime;
-    const isBackspace = kind === 'backspace';
-    const isSpace = kind === 'space';
-
-    // 1. Crisp percussive click transient (iOS keyboard tap feel)
-    const noise = audioCtx.createBufferSource();
-    noise.buffer = getKeyClickNoiseBuffer();
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.Q.setValueAtTime(isBackspace ? 1.8 : 2.4, now);
-    const filterFreq = isBackspace
-      ? (1050 + Math.random() * 180)
-      : isSpace
-        ? (1380 + Math.random() * 180)
-        : (2150 + Math.random() * 520);
-    filter.frequency.setValueAtTime(filterFreq, now);
-
-    const noiseGain = audioCtx.createGain();
-    const peakGain = isBackspace ? 0.2 : (isSpace ? 0.19 : 0.17);
-    noiseGain.gain.setValueAtTime(peakGain, now);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + (isBackspace ? 0.022 : 0.017));
-
-    noise.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(audioCtx.destination);
-    noise.start(now);
-    noise.stop(now + 0.025);
-
-    // 2. Subtle woody "tock" body underneath the click
-    const osc = audioCtx.createOscillator();
-    const oscGain = audioCtx.createGain();
-    osc.type = 'triangle';
-    const startFreq = isBackspace
-      ? (540 + Math.random() * 80)
-      : isSpace
-        ? (680 + Math.random() * 90)
-        : (1020 + Math.random() * 220);
-    const endFreq = isBackspace ? 190 : (isSpace ? 240 : 340);
-    osc.frequency.setValueAtTime(startFreq, now);
-    osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.016);
-
-    oscGain.gain.setValueAtTime(isBackspace ? 0.08 : 0.065, now);
-    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
-
-    osc.connect(oscGain);
-    oscGain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.02);
-  }
-
-  const QWERTY_NEIGHBORS = {
-    q: 'wa', w: 'qeas', e: 'wrsd', r: 'etdf', t: 'ryfg', y: 'tugh', u: 'yihj', i: 'uojk', o: 'ipkl', p: 'ol',
-    a: 'qwsz', s: 'wedxza', d: 'erfcxs', f: 'rtgvcd', g: 'tyhbvf', h: 'yujnbg', j: 'uikmnh', k: 'iolmj', l: 'opk',
-    z: 'asx', x: 'zsdc', c: 'xdfv', v: 'cfgb', b: 'vghn', n: 'bhjm', m: 'njk'
-  };
-
-  function getNearbyTypoChar(ch) {
-    const lower = ch.toLowerCase();
-    const neighbors = QWERTY_NEIGHBORS[lower];
-    if (!neighbors) return null;
-    const pick = neighbors[Math.floor(Math.random() * neighbors.length)];
-    return ch === ch.toUpperCase() && ch !== lower ? pick.toUpperCase() : pick;
-  }
-
-  function getGraphemes(str) {
-    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-      const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
-      return Array.from(seg.segment(str), s => s.segment);
-    }
-    return Array.from(str);
-  }
-
-  function clearComposerTyping() {
-    composerPill.classList.remove('typing');
-    composerText.textContent = getThemeComposerPlaceholder();
-    composerText.classList.add('placeholder');
-    composerActionIcon.classList.remove('send-ready', 'sending');
-    composerPill.scrollTop = 0;
-  }
-
-  async function typeOutgoingMessage(rawText, token, typingCallbacks = null) {
-    const displayText = normalizeEmojiPresentation(rawText || '');
-    const chars = getGraphemes(displayText);
-    const onMidTyping = typeof typingCallbacks === 'function' ? typingCallbacks : (typingCallbacks && typingCallbacks.onMidTyping);
-    const onLateTyping = typingCallbacks && typeof typingCallbacks === 'object' ? typingCallbacks.onLateTyping : null;
-    const midPoint = Math.max(1, Math.floor(chars.length * (0.34 + Math.random() * 0.16)));
-    const latePoint = Math.max(midPoint + 2, Math.floor(chars.length * (0.68 + Math.random() * 0.14)));
-    let midTriggered = false;
-    let lateTriggered = false;
-
-    composerPill.classList.add('typing');
-    composerText.textContent = '';
-    composerText.classList.remove('placeholder');
-    composerActionIcon.classList.remove('send-ready', 'sending');
-
-    // Brief focus beat with blinking caret before the first keystroke
-    if (!(await wait(240, token))) {
-      clearComposerTyping();
-      return false;
+      updateTypingStatus();
+      chatStream.scrollTop = chatStream.scrollHeight;
     }
 
-    // Consistent human keystroke cadence with light jitter so total typing time scales naturally with length
-    const BASE_KEYSTROKE_MS = 64;
-    const KEYSTROKE_JITTER_MS = 18; // +/- 18ms around base (~46-82ms per key)
-    // Full 11% typo rate on short messages, tapering down to half (5.5%) on longer messages
-    const longFactor = Math.min(1, Math.max(0, (chars.length - 30) / 25));
-    const typoRate = 0.11 * (1 - 0.5 * longFactor);
-    const baseCooldown = Math.round(5 + 5 * longFactor);
-    let typed = '';
-    let typoCooldown = 0;
-
-    function nextKeystrokeDelay(prevChar, currChar) {
-      let d = BASE_KEYSTROKE_MS + (Math.random() * 2 - 1) * KEYSTROKE_JITTER_MS;
-      if (prevChar && /[.!?]/.test(prevChar)) d += 95;
-      else if (prevChar && /[,;:]/.test(prevChar)) d += 55;
-      else if (currChar === ' ') d += 18;
-      return d;
+    function showTyping(senderName) {
+      removeTyping();
+      addTyping(senderName);
     }
 
-    async function appendVisibleChar(c, delayMs) {
-      if (!(await wait(delayMs, token))) {
+    function removeTypingFor(senderName) {
+      const name = formatSenderName(senderName, false) || "Someone";
+      const wrap = activeTypers.get(name);
+      if (wrap) {
+        wrap.remove();
+        activeTypers.delete(name);
+        updateTypingStatus();
+      }
+    }
+
+    function repositionTypingIndicators() {
+      if (activeTypers.size === 0) return;
+      activeTypers.forEach((wrap) => {
+        chatStream.appendChild(wrap);
+      });
+    }
+
+    function findNextUnmaskedIndex(fromIdx) {
+      const msgs = threadData.messages || [];
+      for (let i = fromIdx; i < msgs.length; i++) {
+        if (!isMessageMasked(msgs[i])) return i;
+      }
+      return -1;
+    }
+
+    function pickOtherIncomingSender(excludeName) {
+      const msgs = threadData.messages || [];
+      const candidates = new Set();
+      for (let i = 0; i < msgs.length; i++) {
+        const m = msgs[i];
+        if (m.direction !== 'incoming' || isMessageMasked(m)) continue;
+        const n = formatSenderName(m.sender || "Rene'", false) || "Someone";
+        if (n !== excludeName && !activeTypers.has(n)) candidates.add(n);
+      }
+      const list = Array.from(candidates);
+      if (list.length === 0) return null;
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    let keyClickNoiseBuffer = null;
+    function getKeyClickNoiseBuffer() {
+      if (keyClickNoiseBuffer) return keyClickNoiseBuffer;
+      const duration = 0.025;
+      const length = Math.floor(audioCtx.sampleRate * duration);
+      const buffer = audioCtx.createBuffer(1, length, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < length; i++) {
+        const env = Math.exp(-i / (length * 0.28));
+        data[i] = (Math.random() * 2 - 1) * env;
+      }
+      keyClickNoiseBuffer = buffer;
+      return buffer;
+    }
+
+    function playKeyClickSound(kind = 'key') {
+      if (!soundEnabled || audioCtx.state !== 'running') return;
+      const now = audioCtx.currentTime;
+      const isBackspace = kind === 'backspace';
+      const isSpace = kind === 'space';
+
+      // 1. Crisp percussive click transient (iOS keyboard tap feel)
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = getKeyClickNoiseBuffer();
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.setValueAtTime(isBackspace ? 1.8 : 2.4, now);
+      const filterFreq = isBackspace
+        ? (1050 + Math.random() * 180)
+        : isSpace
+          ? (1380 + Math.random() * 180)
+          : (2150 + Math.random() * 520);
+      filter.frequency.setValueAtTime(filterFreq, now);
+
+      const noiseGain = audioCtx.createGain();
+      const peakGain = isBackspace ? 0.2 : (isSpace ? 0.19 : 0.17);
+      noiseGain.gain.setValueAtTime(peakGain, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + (isBackspace ? 0.022 : 0.017));
+
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(audioCtx.destination);
+      noise.start(now);
+      noise.stop(now + 0.025);
+
+      // 2. Subtle woody "tock" body underneath the click
+      const osc = audioCtx.createOscillator();
+      const oscGain = audioCtx.createGain();
+      osc.type = 'triangle';
+      const startFreq = isBackspace
+        ? (540 + Math.random() * 80)
+        : isSpace
+          ? (680 + Math.random() * 90)
+          : (1020 + Math.random() * 220);
+      const endFreq = isBackspace ? 190 : (isSpace ? 240 : 340);
+      osc.frequency.setValueAtTime(startFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.016);
+
+      oscGain.gain.setValueAtTime(isBackspace ? 0.08 : 0.065, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
+
+      osc.connect(oscGain);
+      oscGain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    }
+
+    const QWERTY_NEIGHBORS = {
+      q: 'wa', w: 'qeas', e: 'wrsd', r: 'etdf', t: 'ryfg', y: 'tugh', u: 'yihj', i: 'uojk', o: 'ipkl', p: 'ol',
+      a: 'qwsz', s: 'wedxza', d: 'erfcxs', f: 'rtgvcd', g: 'tyhbvf', h: 'yujnbg', j: 'uikmnh', k: 'iolmj', l: 'opk',
+      z: 'asx', x: 'zsdc', c: 'xdfv', v: 'cfgb', b: 'vghn', n: 'bhjm', m: 'njk'
+    };
+
+    function getNearbyTypoChar(ch) {
+      const lower = ch.toLowerCase();
+      const neighbors = QWERTY_NEIGHBORS[lower];
+      if (!neighbors) return null;
+      const pick = neighbors[Math.floor(Math.random() * neighbors.length)];
+      return ch === ch.toUpperCase() && ch !== lower ? pick.toUpperCase() : pick;
+    }
+
+    function getGraphemes(str) {
+      if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+        const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+        return Array.from(seg.segment(str), s => s.segment);
+      }
+      return Array.from(str);
+    }
+
+    function clearComposerTyping() {
+      composerPill.classList.remove('typing');
+      composerText.textContent = getThemeComposerPlaceholder();
+      composerText.classList.add('placeholder');
+      composerActionIcon.classList.remove('send-ready', 'sending');
+      composerPill.scrollTop = 0;
+    }
+
+    async function typeOutgoingMessage(rawText, token, typingCallbacks = null) {
+      const displayText = normalizeEmojiPresentation(rawText || '');
+      const chars = getGraphemes(displayText);
+      const onMidTyping = typeof typingCallbacks === 'function' ? typingCallbacks : (typingCallbacks && typingCallbacks.onMidTyping);
+      const onLateTyping = typingCallbacks && typeof typingCallbacks === 'object' ? typingCallbacks.onLateTyping : null;
+      const midPoint = Math.max(1, Math.floor(chars.length * (0.34 + Math.random() * 0.16)));
+      const latePoint = Math.max(midPoint + 2, Math.floor(chars.length * (0.68 + Math.random() * 0.14)));
+      let midTriggered = false;
+      let lateTriggered = false;
+
+      composerPill.classList.add('typing');
+      composerText.textContent = '';
+      composerText.classList.remove('placeholder');
+      composerActionIcon.classList.remove('send-ready', 'sending');
+
+      // Brief focus beat with blinking caret before the first keystroke
+      if (!(await wait(240, token))) {
         clearComposerTyping();
         return false;
       }
-      composerText.textContent += c;
-      composerActionIcon.classList.add('send-ready');
-      composerPill.scrollTop = composerPill.scrollHeight;
-      playKeyClickSound(c === ' ' ? 'space' : 'key');
-      return true;
-    }
 
-    async function backspaceChars(count) {
-      let current = getGraphemes(composerText.textContent);
-      for (let b = 0; b < count; b++) {
-        const bsDelay = 68 + Math.random() * 26;
-        if (!(await wait(bsDelay, token))) {
+      // Consistent human keystroke cadence with light jitter so total typing time scales naturally with length
+      const BASE_KEYSTROKE_MS = 64;
+      const KEYSTROKE_JITTER_MS = 18; // +/- 18ms around base (~46-82ms per key)
+      // Full 11% typo rate on short messages, tapering down to half (5.5%) on longer messages
+      const longFactor = Math.min(1, Math.max(0, (chars.length - 30) / 25));
+      const typoRate = 0.11 * (1 - 0.5 * longFactor);
+      const baseCooldown = Math.round(5 + 5 * longFactor);
+      let typed = '';
+      let typoCooldown = 0;
+
+      function nextKeystrokeDelay(prevChar, currChar) {
+        let d = BASE_KEYSTROKE_MS + (Math.random() * 2 - 1) * KEYSTROKE_JITTER_MS;
+        if (prevChar && /[.!?]/.test(prevChar)) d += 95;
+        else if (prevChar && /[,;:]/.test(prevChar)) d += 55;
+        else if (currChar === ' ') d += 18;
+        return d;
+      }
+
+      async function appendVisibleChar(c, delayMs) {
+        if (!(await wait(delayMs, token))) {
           clearComposerTyping();
           return false;
         }
-        current.pop();
-        composerText.textContent = current.join('');
-        if (current.length === 0) composerActionIcon.classList.remove('send-ready');
+        composerText.textContent += c;
+        composerActionIcon.classList.add('send-ready');
         composerPill.scrollTop = composerPill.scrollHeight;
-        playKeyClickSound('backspace');
+        playKeyClickSound(c === ' ' ? 'space' : 'key');
+        return true;
       }
-      return true;
-    }
 
-    for (let i = 0; i < chars.length; i++) {
-      const ch = chars[i];
-      let delay = nextKeystrokeDelay(i > 0 ? chars[i - 1] : '', ch);
-
-      const isEligibleLetter = /^[a-zA-Z]$/.test(ch);
-      if (isEligibleLetter && typoCooldown <= 0 && Math.random() < typoRate) {
-        const wrongChar = getNearbyTypoChar(ch);
-        if (wrongChar) {
-          const remaining = chars.length - 1 - i;
-          // ~45% multi-char overshoot / transposition before noticing; ~55% quick single-char slip
-          const doMulti = remaining >= 2 && Math.random() < 0.45;
-          const mistakeSeq = [];
-
-          if (doMulti) {
-            const nextCh = chars[i + 1];
-            const canTranspose = /^[a-zA-Z]$/.test(nextCh) && nextCh.toLowerCase() !== ch.toLowerCase();
-            if (canTranspose && Math.random() < 0.4) {
-              // e.g. typing "teh" instead of "the"
-              mistakeSeq.push(nextCh, ch);
-              if (remaining >= 2 && Math.random() < 0.65) {
-                mistakeSeq.push(chars[i + 2]);
-              }
-            } else {
-              // Wrong key + keep typing 1-3 characters before catching it
-              mistakeSeq.push(wrongChar);
-              const maxOvershoot = Math.min(3, remaining);
-              const overshoot = 1 + Math.floor(Math.random() * maxOvershoot);
-              for (let k = 1; k <= overshoot; k++) {
-                mistakeSeq.push(chars[i + k]);
-              }
-            }
-          } else {
-            mistakeSeq.push(wrongChar);
-          }
-
-          for (let m = 0; m < mistakeSeq.length; m++) {
-            const stepDelay = m === 0 ? delay : nextKeystrokeDelay(mistakeSeq[m - 1], mistakeSeq[m]);
-            if (!(await appendVisibleChar(mistakeSeq[m], stepDelay))) return false;
-          }
-
-          // Human "wait, oops" notice pause before hitting Backspace
-          const noticePause = doMulti ? (210 + Math.random() * 130) : (135 + Math.random() * 90);
-          if (!(await wait(noticePause, token))) {
+      async function backspaceChars(count) {
+        let current = getGraphemes(composerText.textContent);
+        for (let b = 0; b < count; b++) {
+          const bsDelay = 68 + Math.random() * 26;
+          if (!(await wait(bsDelay, token))) {
             clearComposerTyping();
             return false;
           }
-
-          if (!(await backspaceChars(mistakeSeq.length))) return false;
-          composerText.textContent = typed;
-
-          // Short beat before typing the corrected letter
-          delay = 85 + Math.random() * 45;
-          typoCooldown = baseCooldown + Math.floor(Math.random() * 4);
+          current.pop();
+          composerText.textContent = current.join('');
+          if (current.length === 0) composerActionIcon.classList.remove('send-ready');
+          composerPill.scrollTop = composerPill.scrollHeight;
+          playKeyClickSound('backspace');
         }
-      } else if (typoCooldown > 0) {
-        typoCooldown--;
+        return true;
       }
 
-      if (!(await appendVisibleChar(ch, delay))) return false;
-      typed += ch;
+      for (let i = 0; i < chars.length; i++) {
+        const ch = chars[i];
+        let delay = nextKeystrokeDelay(i > 0 ? chars[i - 1] : '', ch);
 
-      if (onMidTyping && !midTriggered && i + 1 >= midPoint) {
+        const isEligibleLetter = /^[a-zA-Z]$/.test(ch);
+        if (isEligibleLetter && typoCooldown <= 0 && Math.random() < typoRate) {
+          const wrongChar = getNearbyTypoChar(ch);
+          if (wrongChar) {
+            const remaining = chars.length - 1 - i;
+            // ~45% multi-char overshoot / transposition before noticing; ~55% quick single-char slip
+            const doMulti = remaining >= 2 && Math.random() < 0.45;
+            const mistakeSeq = [];
+
+            if (doMulti) {
+              const nextCh = chars[i + 1];
+              const canTranspose = /^[a-zA-Z]$/.test(nextCh) && nextCh.toLowerCase() !== ch.toLowerCase();
+              if (canTranspose && Math.random() < 0.4) {
+                // e.g. typing "teh" instead of "the"
+                mistakeSeq.push(nextCh, ch);
+                if (remaining >= 2 && Math.random() < 0.65) {
+                  mistakeSeq.push(chars[i + 2]);
+                }
+              } else {
+                // Wrong key + keep typing 1-3 characters before catching it
+                mistakeSeq.push(wrongChar);
+                const maxOvershoot = Math.min(3, remaining);
+                const overshoot = 1 + Math.floor(Math.random() * maxOvershoot);
+                for (let k = 1; k <= overshoot; k++) {
+                  mistakeSeq.push(chars[i + k]);
+                }
+              }
+            } else {
+              mistakeSeq.push(wrongChar);
+            }
+
+            for (let m = 0; m < mistakeSeq.length; m++) {
+              const stepDelay = m === 0 ? delay : nextKeystrokeDelay(mistakeSeq[m - 1], mistakeSeq[m]);
+              if (!(await appendVisibleChar(mistakeSeq[m], stepDelay))) return false;
+            }
+
+            // Human "wait, oops" notice pause before hitting Backspace
+            const noticePause = doMulti ? (210 + Math.random() * 130) : (135 + Math.random() * 90);
+            if (!(await wait(noticePause, token))) {
+              clearComposerTyping();
+              return false;
+            }
+
+            if (!(await backspaceChars(mistakeSeq.length))) return false;
+            composerText.textContent = typed;
+
+            // Short beat before typing the corrected letter
+            delay = 85 + Math.random() * 45;
+            typoCooldown = baseCooldown + Math.floor(Math.random() * 4);
+          }
+        } else if (typoCooldown > 0) {
+          typoCooldown--;
+        }
+
+        if (!(await appendVisibleChar(ch, delay))) return false;
+        typed += ch;
+
+        if (onMidTyping && !midTriggered && i + 1 >= midPoint) {
+          midTriggered = true;
+          onMidTyping();
+        }
+        if (onLateTyping && !lateTriggered && i + 1 >= latePoint) {
+          lateTriggered = true;
+          onLateTyping();
+        }
+      }
+
+      if (onMidTyping && !midTriggered) {
         midTriggered = true;
         onMidTyping();
       }
-      if (onLateTyping && !lateTriggered && i + 1 >= latePoint) {
+      if (onLateTyping && !lateTriggered) {
         lateTriggered = true;
         onLateTyping();
       }
-    }
 
-    if (onMidTyping && !midTriggered) {
-      midTriggered = true;
-      onMidTyping();
-    }
-    if (onLateTyping && !lateTriggered) {
-      lateTriggered = true;
-      onLateTyping();
-    }
+      // Ensure exact message integrity before sending
+      composerText.textContent = displayText;
 
-    // Ensure exact message integrity before sending
-    composerText.textContent = displayText;
-
-    // Brief pause before tapping Send
-    if (!(await wait(260, token))) {
-      clearComposerTyping();
-      return false;
-    }
-
-    composerActionIcon.classList.add('sending');
-    if (!(await wait(140, token))) {
-      clearComposerTyping();
-      return false;
-    }
-
-    clearComposerTyping();
-    return true;
-  }
-
-  function removeTyping() {
-    activeTypers.forEach((wrap) => wrap.remove());
-    activeTypers.clear();
-    statusEl.textContent = getThemeChatLabel();
-  }
-
-  function trimOldMessages() {
-    const rows = chatStream.querySelectorAll('.msg-row');
-    if (rows.length < MAX_DOM_MESSAGES) return;
-
-    const streamTop = chatStream.getBoundingClientRect().top;
-    const prevBehavior = chatStream.style.scrollBehavior;
-    let adjusted = false;
-
-    for (let i = 0; i <= rows.length - MAX_DOM_MESSAGES; i++) {
-      const oldest = rows[i];
-      if (oldest.getBoundingClientRect().bottom >= streamTop - 100) break;
-
-      if (!adjusted) {
-        chatStream.style.scrollBehavior = 'auto';
-        adjusted = true;
+      // Brief pause before tapping Send
+      if (!(await wait(260, token))) {
+        clearComposerTyping();
+        return false;
       }
 
-      const prevScrollHeight = chatStream.scrollHeight;
-      const prevScrollTop = chatStream.scrollTop;
-      oldest.remove();
-      const removedHeight = prevScrollHeight - chatStream.scrollHeight;
-      if (removedHeight > 0) {
-        chatStream.scrollTop = Math.max(0, prevScrollTop - removedHeight);
+      composerActionIcon.classList.add('sending');
+      if (!(await wait(140, token))) {
+        clearComposerTyping();
+        return false;
+      }
+
+      clearComposerTyping();
+      return true;
+    }
+
+    function removeTyping() {
+      activeTypers.forEach((wrap) => wrap.remove());
+      activeTypers.clear();
+      statusEl.textContent = getThemeChatLabel();
+    }
+
+    function trimOldMessages() {
+      const rows = chatStream.querySelectorAll('.msg-row');
+      if (rows.length < MAX_DOM_MESSAGES) return;
+
+      const streamTop = chatStream.getBoundingClientRect().top;
+      const prevBehavior = chatStream.style.scrollBehavior;
+      let adjusted = false;
+
+      for (let i = 0; i <= rows.length - MAX_DOM_MESSAGES; i++) {
+        const oldest = rows[i];
+        if (oldest.getBoundingClientRect().bottom >= streamTop - 100) break;
+
+        if (!adjusted) {
+          chatStream.style.scrollBehavior = 'auto';
+          adjusted = true;
+        }
+
+        const prevScrollHeight = chatStream.scrollHeight;
+        const prevScrollTop = chatStream.scrollTop;
+        oldest.remove();
+        const removedHeight = prevScrollHeight - chatStream.scrollHeight;
+        if (removedHeight > 0) {
+          chatStream.scrollTop = Math.max(0, prevScrollTop - removedHeight);
+        }
+      }
+
+      if (adjusted) {
+        void chatStream.offsetHeight;
+        chatStream.style.scrollBehavior = prevBehavior;
       }
     }
 
-    if (adjusted) {
-      void chatStream.offsetHeight;
-      chatStream.style.scrollBehavior = prevBehavior;
-    }
-  }
+    function renderMessage(msg, msgIdx) {
+      trimOldMessages();
+      const row = document.createElement('div');
+      row.className = `msg-row ${msg.direction}`;
+      if (typeof msgIdx === 'number') {
+        row.dataset.msgIndex = String(msgIdx);
+        row.title = 'Right-click to mask this message';
+        row.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeContextMenu();
+          maskMessageAtIndex(msgIdx, row);
+        });
+      }
 
-  function renderMessage(msg, msgIdx) {
-    trimOldMessages();
-    const row = document.createElement('div');
-    row.className = `msg-row ${msg.direction}`;
-    if (typeof msgIdx === 'number') {
-      row.dataset.msgIndex = String(msgIdx);
-      row.title = 'Right-click to mask this message';
-      row.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        closeContextMenu();
-        maskMessageAtIndex(msgIdx, row);
+      const senderName = formatSenderName(msg.sender, msg.direction === 'outgoing');
+      const senderColor = getSenderColor(senderName);
+      const displayText = normalizeEmojiPresentation(msg.text);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'bubble-wrap';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble' + (isEmojiOnly(displayText) ? ' jumbo' : '');
+      bubble.textContent = displayText;
+      wrap.appendChild(bubble);
+
+      const reactionsBar = document.createElement('div');
+      reactionsBar.className = 'reactions-bar';
+      wrap.appendChild(reactionsBar);
+
+      if (msg.direction === 'incoming') {
+        const layout = document.createElement('div');
+        layout.className = 'incoming-layout';
+
+        const miniAvatar = document.createElement('div');
+        miniAvatar.className = 'mini-avatar';
+        miniAvatar.dataset.sender = senderName;
+        miniAvatar.style.background = senderColor;
+        miniAvatar.textContent = getInitials(senderName);
+        layout.appendChild(miniAvatar);
+
+        const col = document.createElement('div');
+        col.className = 'incoming-col';
+
+        const label = document.createElement('div');
+        label.className = 'sender-label';
+        label.dataset.sender = senderName;
+        label.style.color = senderColor;
+        label.textContent = senderName;
+        col.appendChild(label);
+
+        col.appendChild(wrap);
+
+        if (msg.time) {
+          const ts = document.createElement('div');
+          ts.className = 'timestamp';
+          ts.textContent = msg.time;
+          col.appendChild(ts);
+        }
+
+        layout.appendChild(col);
+        row.appendChild(layout);
+      } else {
+        row.appendChild(wrap);
+
+        if (msg.time) {
+          const ts = document.createElement('div');
+          ts.className = 'timestamp';
+          ts.textContent = msg.time;
+          row.appendChild(ts);
+        }
+      }
+
+      chatStream.appendChild(row);
+      repositionTypingIndicators();
+      chatStream.scrollTop = chatStream.scrollHeight;
+      if (msg.direction === 'incoming') playSwooshSound();
+      else playPopSound(false);
+      return { row, reactionsBar };
+    }
+
+    function refreshRenderedSenderColors() {
+      document.querySelectorAll('.sender-label[data-sender], .typing-sender[data-sender]').forEach(el => {
+        el.style.color = getSenderColor(el.dataset.sender);
+      });
+      document.querySelectorAll('.mini-avatar[data-sender], .ga-dot[data-sender]').forEach(el => {
+        el.style.background = getSenderColor(el.dataset.sender);
       });
     }
 
-    const senderName = formatSenderName(msg.sender, msg.direction === 'outgoing');
-    const senderColor = getSenderColor(senderName);
-    const displayText = normalizeEmojiPresentation(msg.text);
+    async function runPlayback() {
+      cancelToken.cancelled = true;
+      const token = { cancelled: false };
+      cancelToken = token;
 
-    const wrap = document.createElement('div');
-    wrap.className = 'bubble-wrap';
-
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble' + (isEmojiOnly(displayText) ? ' jumbo' : '');
-    bubble.textContent = displayText;
-    wrap.appendChild(bubble);
-
-    const reactionsBar = document.createElement('div');
-    reactionsBar.className = 'reactions-bar';
-    wrap.appendChild(reactionsBar);
-
-    if (msg.direction === 'incoming') {
-      const layout = document.createElement('div');
-      layout.className = 'incoming-layout';
-
-      const miniAvatar = document.createElement('div');
-      miniAvatar.className = 'mini-avatar';
-      miniAvatar.dataset.sender = senderName;
-      miniAvatar.style.background = senderColor;
-      miniAvatar.textContent = getInitials(senderName);
-      layout.appendChild(miniAvatar);
-
-      const col = document.createElement('div');
-      col.className = 'incoming-col';
-
-      const label = document.createElement('div');
-      label.className = 'sender-label';
-      label.dataset.sender = senderName;
-      label.style.color = senderColor;
-      label.textContent = senderName;
-      col.appendChild(label);
-
-      col.appendChild(wrap);
-
-      if (msg.time) {
-        const ts = document.createElement('div');
-        ts.className = 'timestamp';
-        ts.textContent = msg.time;
-        col.appendChild(ts);
+      function getSimultaneousTypingChance(textLen) {
+        // ~26% on short messages (<= 25 chars), scaling smoothly up to ~72% on long messages (90+ chars)
+        const t = Math.min(1, Math.max(0, (textLen - 25) / 65));
+        return 0.26 + t * 0.46;
       }
 
-      layout.appendChild(col);
-      row.appendChild(layout);
-    } else {
-      row.appendChild(wrap);
-
-      if (msg.time) {
-        const ts = document.createElement('div');
-        ts.className = 'timestamp';
-        ts.textContent = msg.time;
-        row.appendChild(ts);
+      function getThirdTyperChance(textLen) {
+        // ~20% on short messages, scaling up to ~48% on long messages
+        const t = Math.min(1, Math.max(0, (textLen - 25) / 65));
+        return 0.2 + t * 0.28;
       }
-    }
 
-    chatStream.appendChild(row);
-    repositionTypingIndicators();
-    chatStream.scrollTop = chatStream.scrollHeight;
-    if (msg.direction === 'incoming') playSwooshSound();
-    else playPopSound(false);
-    return { row, reactionsBar };
-  }
-
-  function refreshRenderedSenderColors() {
-    document.querySelectorAll('.sender-label[data-sender], .typing-sender[data-sender]').forEach(el => {
-      el.style.color = getSenderColor(el.dataset.sender);
-    });
-    document.querySelectorAll('.mini-avatar[data-sender], .ga-dot[data-sender]').forEach(el => {
-      el.style.background = getSenderColor(el.dataset.sender);
-    });
-  }
-
-  async function runPlayback() {
-    cancelToken.cancelled = true;
-    const token = { cancelled: false };
-    cancelToken = token;
-
-    function getSimultaneousTypingChance(textLen) {
-      // ~26% on short messages (<= 25 chars), scaling smoothly up to ~72% on long messages (90+ chars)
-      const t = Math.min(1, Math.max(0, (textLen - 25) / 65));
-      return 0.26 + t * 0.46;
-    }
-
-    function getThirdTyperChance(textLen) {
-      // ~20% on short messages, scaling up to ~48% on long messages
-      const t = Math.min(1, Math.max(0, (textLen - 25) / 65));
-      return 0.2 + t * 0.28;
-    }
-
-    function getThinkingPauseChance(textLen) {
-      // Rare (~2%) on short messages, scaling smoothly up to ~18% on long messages (100+ chars)
-      const t = Math.min(1, Math.max(0, (textLen - 25) / 75));
-      return 0.02 + t * 0.16;
-    }
-
-    async function waitWithOptionalThinkingPause(senderName, durationMs, doThink, token) {
-      if (!doThink || durationMs < 1100) {
-        return wait(durationMs, token);
+      function getThinkingPauseChance(textLen) {
+        // Rare (~2%) on short messages, scaling smoothly up to ~18% on long messages (100+ chars)
+        const t = Math.min(1, Math.max(0, (textLen - 25) / 75));
+        return 0.02 + t * 0.16;
       }
-      const split = 0.35 + Math.random() * 0.28;
-      const beforeMs = Math.round(durationMs * split);
-      const afterMs = Math.max(500, durationMs - beforeMs);
-      if (!(await wait(beforeMs, token))) return false;
-      // Typing dots disappear briefly like the sender paused to think
-      removeTypingFor(senderName);
-      const thinkMs = Math.round(950 + Math.random() * 1250);
-      if (!(await wait(thinkMs, token))) return false;
-      // Resume typing dots
-      addTyping(senderName);
-      return wait(afterMs, token);
-    }
 
-    function appendReactionPill(rowEl, reactionsBarEl, emoji) {
-      rowEl.classList.add('has-reactions');
-      const pill = document.createElement('span');
-      pill.className = 'reaction-pill';
-      pill.textContent = normalizeEmojiPresentation(emoji);
-      reactionsBarEl.appendChild(pill);
-      playPopSound(true);
-      if (chatStream.scrollHeight - chatStream.scrollTop - chatStream.clientHeight < 140) {
-        chatStream.scrollTop = chatStream.scrollHeight;
-      }
-    }
-
-    // Maps msgIdx -> senderName for real upcoming incoming messages that already started typing
-    const preStartedTypers = new Map();
-
-    while (isPlaying) {
-      while (currentIndex < threadData.messages.length && isPlaying) {
-        const msgIdx = currentIndex;
-        const msg = threadData.messages[msgIdx];
-
-        if (isMessageMasked(msg)) {
-          if (preStartedTypers.has(msgIdx)) {
-            removeTypingFor(preStartedTypers.get(msgIdx));
-            preStartedTypers.delete(msgIdx);
-          }
-          currentIndex++;
-          continue;
+      async function waitWithOptionalThinkingPause(senderName, durationMs, doThink, token) {
+        if (!doThink || durationMs < 1100) {
+          return wait(durationMs, token);
         }
+        const split = 0.35 + Math.random() * 0.28;
+        const beforeMs = Math.round(durationMs * split);
+        const afterMs = Math.max(500, durationMs - beforeMs);
+        if (!(await wait(beforeMs, token))) return false;
+        // Typing dots disappear briefly like the sender paused to think
+        removeTypingFor(senderName);
+        const thinkMs = Math.round(950 + Math.random() * 1250);
+        if (!(await wait(thinkMs, token))) return false;
+        // Resume typing dots
+        addTyping(senderName);
+        return wait(afterMs, token);
+      }
 
-        const textLen = (msg.text || '').length;
-        const firstUnmaskedIdx = findNextUnmaskedIndex(0);
-        const allowSimultaneous = msgIdx > firstUnmaskedIdx;
-        const simChance = allowSimultaneous ? getSimultaneousTypingChance(textLen) : 0;
-        const thirdChance = allowSimultaneous ? getThirdTyperChance(textLen) : 0;
+      function appendReactionPill(rowEl, reactionsBarEl, emoji) {
+        rowEl.classList.add('has-reactions');
+        const pill = document.createElement('span');
+        pill.className = 'reaction-pill';
+        pill.textContent = normalizeEmojiPresentation(emoji);
+        reactionsBarEl.appendChild(pill);
+        playPopSound(true);
+        if (chatStream.scrollHeight - chatStream.scrollTop - chatStream.clientHeight < 140) {
+          chatStream.scrollTop = chatStream.scrollHeight;
+        }
+      }
 
-        // Peek ahead at the next 1–2 real unmasked messages (only ever pre-start real upcoming senders!)
-        const next1Idx = findNextUnmaskedIndex(msgIdx + 1);
-        const next1Msg = next1Idx !== -1 ? threadData.messages[next1Idx] : null;
-        const next1Sender = (next1Msg && next1Msg.direction === 'incoming')
-          ? (formatSenderName(next1Msg.sender || "Rene'", false) || "Someone")
-          : null;
+      // Maps msgIdx -> senderName for real upcoming incoming messages that already started typing
+      const preStartedTypers = new Map();
 
-        const next2Idx = next1Idx !== -1 ? findNextUnmaskedIndex(next1Idx + 1) : -1;
-        const next2Msg = next2Idx !== -1 ? threadData.messages[next2Idx] : null;
-        const next2Sender = (next2Msg && next2Msg.direction === 'incoming')
-          ? (formatSenderName(next2Msg.sender || "Rene'", false) || "Someone")
-          : null;
+      while (isPlaying) {
+        while (currentIndex < threadData.messages.length && isPlaying) {
+          const msgIdx = currentIndex;
+          const msg = threadData.messages[msgIdx];
 
-        if (msg.direction === 'incoming') {
-          const senderName = formatSenderName(msg.sender || "Rene'", false) || "Someone";
-          const baseTyping = Math.min(4200, Math.max(1200, textLen * 55));
-          let typingDuration = Math.round(baseTyping * (0.88 + Math.random() * 0.24));
-
-          if (preStartedTypers.has(msgIdx)) {
-            // Already visibly typing from overlap with an earlier message
-            addTyping(senderName);
-            typingDuration = Math.max(700, Math.round(typingDuration * 0.55));
-            preStartedTypers.delete(msgIdx);
-          } else {
-            addTyping(senderName);
+          if (isMessageMasked(msg)) {
+            if (preStartedTypers.has(msgIdx)) {
+              removeTypingFor(preStartedTypers.get(msgIdx));
+              preStartedTypers.delete(msgIdx);
+            }
+            currentIndex++;
+            continue;
           }
 
-          const canPreStartNext1 = Boolean(
-            next1Sender &&
-            next1Sender !== senderName &&
-            !preStartedTypers.has(next1Idx) &&
-            !activeTypers.has(next1Sender)
-          );
+          const textLen = (msg.text || '').length;
+          const firstUnmaskedIdx = findNextUnmaskedIndex(0);
+          const allowSimultaneous = msgIdx > firstUnmaskedIdx;
+          const simChance = allowSimultaneous ? getSimultaneousTypingChance(textLen) : 0;
+          const thirdChance = allowSimultaneous ? getThirdTyperChance(textLen) : 0;
 
-          const doThinkPause = Math.random() < getThinkingPauseChance(textLen);
+          // Peek ahead at the next 1–2 real unmasked messages (only ever pre-start real upcoming senders!)
+          const next1Idx = findNextUnmaskedIndex(msgIdx + 1);
+          const next1Msg = next1Idx !== -1 ? threadData.messages[next1Idx] : null;
+          const next1Sender = (next1Msg && next1Msg.direction === 'incoming')
+            ? (formatSenderName(next1Msg.sender || "Rene'", false) || "Someone")
+            : null;
 
-          if (canPreStartNext1 && Math.random() < simChance) {
-            const splitRatio = 0.25 + Math.random() * 0.25;
-            const firstPart = Math.round(typingDuration * splitRatio);
-            const secondPart = Math.max(550, typingDuration - firstPart);
+          const next2Idx = next1Idx !== -1 ? findNextUnmaskedIndex(next1Idx + 1) : -1;
+          const next2Msg = next2Idx !== -1 ? threadData.messages[next2Idx] : null;
+          const next2Sender = (next2Msg && next2Msg.direction === 'incoming')
+            ? (formatSenderName(next2Msg.sender || "Rene'", false) || "Someone")
+            : null;
 
-            if (!(await wait(firstPart, token))) return;
-            addTyping(next1Sender);
-            preStartedTypers.set(next1Idx, next1Sender);
+          if (msg.direction === 'incoming') {
+            const senderName = formatSenderName(msg.sender || "Rene'", false) || "Someone";
+            const baseTyping = Math.min(4200, Math.max(1200, textLen * 55));
+            let typingDuration = Math.round(baseTyping * (0.88 + Math.random() * 0.24));
 
-            // If the message right after next1 is ALSO a real incoming message from a 3rd distinct person
-            const canPreStartNext2 = Boolean(
-              next2Sender &&
-              next2Sender !== senderName &&
-              next2Sender !== next1Sender &&
-              !preStartedTypers.has(next2Idx) &&
-              !activeTypers.has(next2Sender)
+            if (preStartedTypers.has(msgIdx)) {
+              // Already visibly typing from overlap with an earlier message
+              addTyping(senderName);
+              typingDuration = Math.max(700, Math.round(typingDuration * 0.55));
+              preStartedTypers.delete(msgIdx);
+            } else {
+              addTyping(senderName);
+            }
+
+            const canPreStartNext1 = Boolean(
+              next1Sender &&
+              next1Sender !== senderName &&
+              !preStartedTypers.has(next1Idx) &&
+              !activeTypers.has(next1Sender)
             );
 
-            if (canPreStartNext2 && secondPart >= 750 && Math.random() < thirdChance) {
-              const midWait = Math.round(secondPart * 0.45);
-              if (!(await wait(midWait, token))) return;
-              addTyping(next2Sender);
-              preStartedTypers.set(next2Idx, next2Sender);
-              if (!(await waitWithOptionalThinkingPause(senderName, secondPart - midWait, doThinkPause, token))) return;
-            } else {
-              if (!(await waitWithOptionalThinkingPause(senderName, secondPart, doThinkPause, token))) return;
-            }
-          } else {
-            if (!(await waitWithOptionalThinkingPause(senderName, typingDuration, doThinkPause, token))) return;
-          }
+            const doThinkPause = Math.random() < getThinkingPauseChance(textLen);
 
-          removeTypingFor(senderName);
-        } else {
-          // Outgoing message: only pre-start real upcoming incoming sender(s) while you type
-          let onMidTyping = null;
-          let onLateTyping = null;
+            if (canPreStartNext1 && Math.random() < simChance) {
+              const splitRatio = 0.25 + Math.random() * 0.25;
+              const firstPart = Math.round(typingDuration * splitRatio);
+              const secondPart = Math.max(550, typingDuration - firstPart);
 
-          const canPreStartNext1 = Boolean(
-            next1Sender &&
-            !preStartedTypers.has(next1Idx) &&
-            !activeTypers.has(next1Sender)
-          );
-
-          if (canPreStartNext1 && Math.random() < simChance) {
-            onMidTyping = () => {
+              if (!(await wait(firstPart, token))) return;
               addTyping(next1Sender);
               preStartedTypers.set(next1Idx, next1Sender);
-            };
 
-            const canPreStartNext2 = Boolean(
-              next2Sender &&
-              next2Sender !== next1Sender &&
-              !preStartedTypers.has(next2Idx) &&
-              !activeTypers.has(next2Sender)
-            );
+              // If the message right after next1 is ALSO a real incoming message from a 3rd distinct person
+              const canPreStartNext2 = Boolean(
+                next2Sender &&
+                next2Sender !== senderName &&
+                next2Sender !== next1Sender &&
+                !preStartedTypers.has(next2Idx) &&
+                !activeTypers.has(next2Sender)
+              );
 
-            if (canPreStartNext2 && textLen >= 45 && Math.random() < thirdChance) {
-              onLateTyping = () => {
+              if (canPreStartNext2 && secondPart >= 750 && Math.random() < thirdChance) {
+                const midWait = Math.round(secondPart * 0.45);
+                if (!(await wait(midWait, token))) return;
                 addTyping(next2Sender);
                 preStartedTypers.set(next2Idx, next2Sender);
-              };
-            }
-          }
-
-          const ok = await typeOutgoingMessage(msg.text, token, { onMidTyping, onLateTyping });
-          if (!ok) return;
-        }
-
-        if (isMessageMasked(msg)) {
-          currentIndex++;
-          continue;
-        }
-
-        const { row, reactionsBar } = renderMessage(msg, msgIdx);
-
-        if (msg.reactions && msg.reactions.length > 0) {
-          const readBonus = Math.min(900, Math.round(textLen * 12));
-          const roll = Math.random();
-
-          if (roll < 0.32) {
-            // Delayed "catch-up" reaction: arrives asynchronously 3–6.5s later while chat keeps moving
-            const reactionsCopy = msg.reactions.slice();
-            (async () => {
-              let initialDelay = Math.round(2800 + readBonus + Math.random() * 3400);
-              for (let rIdx = 0; rIdx < reactionsCopy.length; rIdx++) {
-                const waitMs = rIdx === 0 ? initialDelay : Math.round(700 + Math.random() * 1400);
-                if (!(await wait(waitMs, token))) return;
-                if (!row.isConnected || isMessageMasked(msg)) return;
-                appendReactionPill(row, reactionsBar, reactionsCopy[rIdx].emoji);
+                if (!(await waitWithOptionalThinkingPause(senderName, secondPart - midWait, doThinkPause, token))) return;
+              } else {
+                if (!(await waitWithOptionalThinkingPause(senderName, secondPart, doThinkPause, token))) return;
               }
-            })();
+            } else {
+              if (!(await waitWithOptionalThinkingPause(senderName, typingDuration, doThinkPause, token))) return;
+            }
+
+            removeTypingFor(senderName);
           } else {
-            // Inline reaction: either a longer "taking a moment to read/react" pause (~22%) or brisk (~46%)
-            const isThoughtful = roll < 0.54;
-            for (let rIdx = 0; rIdx < msg.reactions.length; rIdx++) {
-              const r = msg.reactions[rIdx];
-              const base = rIdx === 0 ? (isThoughtful ? 1900 + readBonus : 650 + Math.round(readBonus * 0.4)) : 600;
-              const spread = rIdx === 0 ? (isThoughtful ? 1700 : 1350) : 1100;
-              const reactionDelay = Math.round(base + Math.random() * spread);
-              const ok = await wait(reactionDelay, token);
-              if (!ok) return;
-              if (isMessageMasked(msg)) break;
-              appendReactionPill(row, reactionsBar, r.emoji);
+            // Outgoing message: only pre-start real upcoming incoming sender(s) while you type
+            let onMidTyping = null;
+            let onLateTyping = null;
+
+            const canPreStartNext1 = Boolean(
+              next1Sender &&
+              !preStartedTypers.has(next1Idx) &&
+              !activeTypers.has(next1Sender)
+            );
+
+            if (canPreStartNext1 && Math.random() < simChance) {
+              onMidTyping = () => {
+                addTyping(next1Sender);
+                preStartedTypers.set(next1Idx, next1Sender);
+              };
+
+              const canPreStartNext2 = Boolean(
+                next2Sender &&
+                next2Sender !== next1Sender &&
+                !preStartedTypers.has(next2Idx) &&
+                !activeTypers.has(next2Sender)
+              );
+
+              if (canPreStartNext2 && textLen >= 45 && Math.random() < thirdChance) {
+                onLateTyping = () => {
+                  addTyping(next2Sender);
+                  preStartedTypers.set(next2Idx, next2Sender);
+                };
+              }
+            }
+
+            const ok = await typeOutgoingMessage(msg.text, token, { onMidTyping, onLateTyping });
+            if (!ok) return;
+          }
+
+          if (isMessageMasked(msg)) {
+            currentIndex++;
+            continue;
+          }
+
+          const { row, reactionsBar } = renderMessage(msg, msgIdx);
+
+          if (msg.reactions && msg.reactions.length > 0) {
+            const readBonus = Math.min(900, Math.round(textLen * 12));
+            const roll = Math.random();
+
+            if (roll < 0.32) {
+              // Delayed "catch-up" reaction: arrives asynchronously 3–6.5s later while chat keeps moving
+              const reactionsCopy = msg.reactions.slice();
+              (async () => {
+                let initialDelay = Math.round(2800 + readBonus + Math.random() * 3400);
+                for (let rIdx = 0; rIdx < reactionsCopy.length; rIdx++) {
+                  const waitMs = rIdx === 0 ? initialDelay : Math.round(700 + Math.random() * 1400);
+                  if (!(await wait(waitMs, token))) return;
+                  if (!row.isConnected || isMessageMasked(msg)) return;
+                  appendReactionPill(row, reactionsBar, reactionsCopy[rIdx].emoji);
+                }
+              })();
+            } else {
+              // Inline reaction: either a longer "taking a moment to read/react" pause (~22%) or brisk (~46%)
+              const isThoughtful = roll < 0.54;
+              for (let rIdx = 0; rIdx < msg.reactions.length; rIdx++) {
+                const r = msg.reactions[rIdx];
+                const base = rIdx === 0 ? (isThoughtful ? 1900 + readBonus : 650 + Math.round(readBonus * 0.4)) : 600;
+                const spread = rIdx === 0 ? (isThoughtful ? 1700 : 1350) : 1100;
+                const reactionDelay = Math.round(base + Math.random() * spread);
+                const ok = await wait(reactionDelay, token);
+                if (!ok) return;
+                if (isMessageMasked(msg)) break;
+                appendReactionPill(row, reactionsBar, r.emoji);
+              }
+            }
+          }
+
+          currentIndex++;
+          if (!isMessageMasked(msg)) {
+            if (preStartedTypers.size > 0) {
+              // Next real sender is already actively typing below, give a slightly wider natural beat
+              const overlapPause = Math.round(480 + Math.random() * 770);
+              if (!(await wait(overlapPause, token))) return;
+            } else {
+              const basePause = Math.min(3400, Math.max(1700, textLen * 34));
+              const jitteredPause = Math.round(basePause * (0.62 + Math.random() * 0.86));
+              const extraBeat = Math.random() < 0.18 ? Math.round(600 + Math.random() * 700) : 0;
+              const pauseBetween = await wait(jitteredPause + extraBeat, token);
+              if (!pauseBetween) return;
             }
           }
         }
 
-        currentIndex++;
-        if (!isMessageMasked(msg)) {
-          if (preStartedTypers.size > 0) {
-            // Next real sender is already actively typing below, give a slightly wider natural beat
-            const overlapPause = Math.round(480 + Math.random() * 770);
-            if (!(await wait(overlapPause, token))) return;
-          } else {
-            const basePause = Math.min(3400, Math.max(1700, textLen * 34));
-            const jitteredPause = Math.round(basePause * (0.62 + Math.random() * 0.86));
-            const extraBeat = Math.random() < 0.18 ? Math.round(600 + Math.random() * 700) : 0;
-            const pauseBetween = await wait(jitteredPause + extraBeat, token);
-            if (!pauseBetween) return;
+        if (!isPlaying) return;
+
+        removeTyping();
+        preStartedTypers.clear();
+
+        if (autoLoop && threadData.messages.length > 0) {
+          const hasAnyUnmasked = threadData.messages.some(m => !isMessageMasked(m));
+          if (!hasAnyUnmasked) {
+            isPlaying = false;
+            updatePlaybackUI();
+            return;
           }
-        }
-      }
-
-      if (!isPlaying) return;
-
-      removeTyping();
-      preStartedTypers.clear();
-
-      if (autoLoop && threadData.messages.length > 0) {
-        const hasAnyUnmasked = threadData.messages.some(m => !isMessageMasked(m));
-        if (!hasAnyUnmasked) {
+          // Seamlessly wrap back to the start without clearing the stream
+          const nextStart = startIndex < threadData.messages.length ? startIndex : 0;
+          const hasUnmaskedFromStart = threadData.messages.slice(nextStart).some(m => !isMessageMasked(m));
+          currentIndex = hasUnmaskedFromStart ? nextStart : 0;
+        } else {
           isPlaying = false;
           updatePlaybackUI();
           return;
         }
-        // Seamlessly wrap back to the start without clearing the stream
-        const nextStart = startIndex < threadData.messages.length ? startIndex : 0;
-        const hasUnmaskedFromStart = threadData.messages.slice(nextStart).some(m => !isMessageMasked(m));
-        currentIndex = hasUnmaskedFromStart ? nextStart : 0;
-      } else {
-        isPlaying = false;
-        updatePlaybackUI();
-        return;
       }
     }
-  }
 
-  function populateStartSelector(messages) {
-    startSelect.innerHTML = '';
-    messages.forEach((m, idx) => {
-      const opt = document.createElement('option');
-      opt.value = idx;
-      const maskedTag = isMessageMasked(m) ? '🚫 ' : '';
-      const timeTag = m.time ? `[${m.time}] ` : '';
-      const displaySender = formatSenderName(m.sender, m.direction === 'outgoing');
-      const preview = m.text.length > 26 ? m.text.slice(0, 26) + '…' : m.text;
-      opt.textContent = `${maskedTag}#${idx + 1} ${timeTag}${displaySender}: ${preview}`;
-      startSelect.appendChild(opt);
-    });
-    startSelect.value = String(startIndex);
-  }
+    function populateStartSelector(messages) {
+      startSelect.innerHTML = '';
+      messages.forEach((m, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        const maskedTag = isMessageMasked(m) ? '🚫 ' : '';
+        const timeTag = m.time ? `[${m.time}] ` : '';
+        const displaySender = formatSenderName(m.sender, m.direction === 'outgoing');
+        const preview = m.text.length > 26 ? m.text.slice(0, 26) + '…' : m.text;
+        opt.textContent = `${maskedTag}#${idx + 1} ${timeTag}${displaySender}: ${preview}`;
+        startSelect.appendChild(opt);
+      });
+      startSelect.value = String(startIndex);
+    }
 
-  function resetToStartPoint() {
-    isPlaying = false;
-    cancelToken.cancelled = true;
-    removeTyping();
-    clearComposerTyping();
-    currentIndex = startIndex;
-    chatStream.innerHTML = '';
-    updatePlaybackUI();
-  }
+    function resetToStartPoint() {
+      isPlaying = false;
+      cancelToken.cancelled = true;
+      removeTyping();
+      clearComposerTyping();
+      currentIndex = startIndex;
+      chatStream.innerHTML = '';
+      updatePlaybackUI();
+    }
 
-  function togglePlayback() {
-    unlockAudio();
-    if (currentIndex >= threadData.messages.length) {
+    function togglePlayback() {
+      unlockAudio();
+      if (currentIndex >= threadData.messages.length) {
+        resetToStartPoint();
+      }
+      isPlaying = !isPlaying;
+      updatePlaybackUI();
+      if (isPlaying) runPlayback();
+      else { cancelToken.cancelled = true; removeTyping(); clearComposerTyping(); }
+    }
+
+    function loadThread(data, persist = false, sourceHint = '') {
+      threadData = data;
+      const msgs = data.messages || [];
+
+      if (sourceHint && sourceHint.endsWith('.json')) {
+        currentFileName = sourceHint;
+      }
+      currentThreadKey = computeThreadKey(data, sourceHint);
+      baseMaskByKey = {};
+      msgs.forEach((msg, idx) => {
+        baseMaskByKey[getMessageKey(msg, idx)] = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
+      });
+      applySavedMasks(data);
+      lastMaskedAction = null;
+      hideMaskToast();
+
+      const customTitle = data.title && data.title !== "Family Thread" ? data.title : DEFAULT_THREAD_NAME;
+      threadTitleEl.textContent = normalizeEmojiPresentation(customTitle);
+
+      assignParticipantColors(msgs);
+      startIndex = 0;
+      populateStartSelector(msgs);
+      updateMaskedUI();
       resetToStartPoint();
+      if (persist) {
+        try { localStorage.setItem('sms_player_last_thread', JSON.stringify(data)); } catch (e) { }
+      }
     }
-    isPlaying = !isPlaying;
-    updatePlaybackUI();
-    if (isPlaying) runPlayback();
-    else { cancelToken.cancelled = true; removeTyping(); clearComposerTyping(); }
-  }
 
-  function loadThread(data, persist = false, sourceHint = '') {
-    threadData = data;
-    const msgs = data.messages || [];
-
-    if (sourceHint && sourceHint.endsWith('.json')) {
-      currentFileName = sourceHint;
-    }
-    currentThreadKey = computeThreadKey(data, sourceHint);
-    baseMaskByKey = {};
-    msgs.forEach((msg, idx) => {
-      baseMaskByKey[getMessageKey(msg, idx)] = Object.prototype.hasOwnProperty.call(msg, 'mask') ? msg.mask : null;
+    document.getElementById('headerMenuBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      toolbar.classList.toggle('hidden');
     });
-    applySavedMasks(data);
-    lastMaskedAction = null;
-    hideMaskToast();
 
-    const customTitle = data.title && data.title !== "Family Thread" ? data.title : DEFAULT_THREAD_NAME;
-    threadTitleEl.textContent = normalizeEmojiPresentation(customTitle);
+    window.addEventListener('contextmenu', (e) => {
+      if (e.target.closest('.msg-row, .mask-panel, .mask-toast')) return;
+      e.preventDefault();
+      openContextMenu(e.clientX, e.clientY);
+    });
 
-    assignParticipantColors(msgs);
-    startIndex = 0;
-    populateStartSelector(msgs);
-    updateMaskedUI();
-    resetToStartPoint();
-    if (persist) {
-      try { localStorage.setItem('sms_player_last_thread', JSON.stringify(data)); } catch (e) {}
-    }
-  }
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('#ctxMenu')) closeContextMenu();
+    });
 
-  document.getElementById('headerMenuBtn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toolbar.classList.toggle('hidden');
-  });
+    ctxMenu.addEventListener('click', (e) => e.stopPropagation());
 
-  window.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('.msg-row, .mask-panel, .mask-toast')) return;
-    e.preventDefault();
-    openContextMenu(e.clientX, e.clientY);
-  });
+    ctxUnmaskAllBtn.addEventListener('click', () => {
+      closeContextMenu();
+      unmaskAllMessages();
+    });
 
-  window.addEventListener('click', (e) => {
-    if (!e.target.closest('#ctxMenu')) closeContextMenu();
-  });
+    ctxManageMasksBtn.addEventListener('click', () => {
+      closeContextMenu();
+      renderMaskPanel();
+      maskPanel.classList.add('open');
+    });
 
-  ctxMenu.addEventListener('click', (e) => e.stopPropagation());
+    ctxExportJsonBtn.addEventListener('click', () => {
+      closeContextMenu();
+      exportThreadJson();
+    });
 
-  ctxUnmaskAllBtn.addEventListener('click', () => {
-    closeContextMenu();
-    unmaskAllMessages();
-  });
+    ctxToggleToolbarBtn.addEventListener('click', () => {
+      closeContextMenu();
+      toolbar.classList.toggle('hidden');
+    });
 
-  ctxManageMasksBtn.addEventListener('click', () => {
-    closeContextMenu();
-    renderMaskPanel();
-    maskPanel.classList.add('open');
-  });
+    maskToast.addEventListener('click', (e) => e.stopPropagation());
 
-  ctxExportJsonBtn.addEventListener('click', () => {
-    closeContextMenu();
-    exportThreadJson();
-  });
-
-  ctxToggleToolbarBtn.addEventListener('click', () => {
-    closeContextMenu();
-    toolbar.classList.toggle('hidden');
-  });
-
-  maskToast.addEventListener('click', (e) => e.stopPropagation());
-
-  undoMaskBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (!lastMaskedAction) return;
-    const { msgIdx, prevMask, rowEl, parent, nextSibling } = lastMaskedAction;
-    const msg = (threadData.messages || [])[msgIdx];
-    if (msg) {
-      msg.mask = prevMask;
-      saveMaskOverride(getMessageKey(msg, msgIdx), prevMask);
-      if (rowEl && parent && parent.isConnected) {
-        rowEl.classList.remove('masking-out');
-        if (!rowEl.parentNode) {
-          if (nextSibling && nextSibling.parentNode === parent) {
-            parent.insertBefore(rowEl, nextSibling);
-          } else {
-            parent.appendChild(rowEl);
+    undoMaskBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!lastMaskedAction) return;
+      const { msgIdx, prevMask, rowEl, parent, nextSibling } = lastMaskedAction;
+      const msg = (threadData.messages || [])[msgIdx];
+      if (msg) {
+        msg.mask = prevMask;
+        saveMaskOverride(getMessageKey(msg, msgIdx), prevMask);
+        if (rowEl && parent && parent.isConnected) {
+          rowEl.classList.remove('masking-out');
+          if (!rowEl.parentNode) {
+            if (nextSibling && nextSibling.parentNode === parent) {
+              parent.insertBefore(rowEl, nextSibling);
+            } else {
+              parent.appendChild(rowEl);
+            }
           }
         }
+        populateStartSelector(threadData.messages);
+        updateMaskedUI();
       }
-      populateStartSelector(threadData.messages);
-      updateMaskedUI();
-    }
-    lastMaskedAction = null;
-    hideMaskToast();
-  });
+      lastMaskedAction = null;
+      hideMaskToast();
+    });
 
-  maskedBtn.addEventListener('click', () => {
-    renderMaskPanel();
-    maskPanel.classList.toggle('open');
-  });
+    maskedBtn.addEventListener('click', () => {
+      renderMaskPanel();
+      maskPanel.classList.toggle('open');
+    });
 
-  closeMaskPanelBtn.addEventListener('click', () => {
-    maskPanel.classList.remove('open');
-  });
+    closeMaskPanelBtn.addEventListener('click', () => {
+      maskPanel.classList.remove('open');
+    });
 
-  unmaskAllBtn.addEventListener('click', unmaskAllMessages);
-  exportJsonBtn.addEventListener('click', exportThreadJson);
-  panelExportJsonBtn.addEventListener('click', exportThreadJson);
+    unmaskAllBtn.addEventListener('click', unmaskAllMessages);
+    exportJsonBtn.addEventListener('click', exportThreadJson);
+    panelExportJsonBtn.addEventListener('click', exportThreadJson);
 
-  themeSelect.addEventListener('change', (e) => {
-    document.body.setAttribute('data-theme', e.target.value);
-    refreshRenderedSenderColors();
-    syncThemeLabels();
-  });
+    themeSelect.addEventListener('change', (e) => {
+      document.body.setAttribute('data-theme', e.target.value);
+      refreshRenderedSenderColors();
+      syncThemeLabels();
+    });
 
-  startSelect.addEventListener('change', (e) => {
-    startIndex = parseInt(e.target.value, 10) || 0;
-    resetToStartPoint();
-  });
+    startSelect.addEventListener('change', (e) => {
+      startIndex = parseInt(e.target.value, 10) || 0;
+      resetToStartPoint();
+    });
 
-  speedSlider.addEventListener('input', (e) => {
-    speedMultiplier = parseFloat(e.target.value);
-    speedValue.textContent = `${speedMultiplier.toFixed(2)}x`;
-  });
+    speedSlider.addEventListener('input', (e) => {
+      speedMultiplier = parseFloat(e.target.value);
+      speedValue.textContent = `${speedMultiplier.toFixed(2)}x`;
+    });
 
-  playPauseBtn.addEventListener('click', togglePlayback);
-  playbackPill.addEventListener('click', togglePlayback);
-  chatStream.addEventListener('click', () => {
-    if (ctxMenu.classList.contains('open')) {
-      closeContextMenu();
-      return;
-    }
-    togglePlayback();
-  });
-
-  document.getElementById('restartBtn').addEventListener('click', () => {
-    resetToStartPoint();
-    isPlaying = true;
-    updatePlaybackUI();
-    runPlayback();
-  });
-
-  document.getElementById('loopBtn').addEventListener('click', (e) => {
-    autoLoop = !autoLoop;
-    e.target.textContent = autoLoop ? '🔁 Loop: On' : '➡️ Loop: Off';
-  });
-
-  document.getElementById('soundBtn').addEventListener('click', (e) => {
-    soundEnabled = !soundEnabled;
-    e.target.textContent = soundEnabled ? '🔊 Sound: On' : '🔇 Sound: Off';
-  });
-
-  document.getElementById('cleanBtn').addEventListener('click', () => {
-    toolbar.classList.add('hidden');
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (ctxMenu.classList.contains('open')) closeContextMenu();
-      else if (maskPanel.classList.contains('open')) maskPanel.classList.remove('open');
-      else toolbar.classList.toggle('hidden');
-    }
-    if (e.code === 'Space' && document.activeElement !== speedSlider && !maskPanel.classList.contains('open')) {
-      e.preventDefault();
+    playPauseBtn.addEventListener('click', togglePlayback);
+    playbackPill.addEventListener('click', togglePlayback);
+    chatStream.addEventListener('click', () => {
+      if (ctxMenu.classList.contains('open')) {
+        closeContextMenu();
+        return;
+      }
       togglePlayback();
-    }
-  });
+    });
 
-  document.getElementById('fileInput').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      try {
-        const parsed = JSON.parse(evt.target.result);
-        const normalized = Array.isArray(parsed)
-          ? { title: file.name.replace('.json', ''), messages: parsed }
-          : parsed;
-        loadThread(normalized, true, file.name);
-      } catch (err) {
-        alert("Invalid JSON file.");
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      resetToStartPoint();
+      isPlaying = true;
+      updatePlaybackUI();
+      runPlayback();
+    });
+
+    document.getElementById('loopBtn').addEventListener('click', (e) => {
+      autoLoop = !autoLoop;
+      e.target.textContent = autoLoop ? '🔁 Loop: On' : '➡️ Loop: Off';
+    });
+
+    document.getElementById('soundBtn').addEventListener('click', (e) => {
+      soundEnabled = !soundEnabled;
+      e.target.textContent = soundEnabled ? '🔊 Sound: On' : '🔇 Sound: Off';
+    });
+
+    document.getElementById('cleanBtn').addEventListener('click', () => {
+      toolbar.classList.add('hidden');
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (ctxMenu.classList.contains('open')) closeContextMenu();
+        else if (maskPanel.classList.contains('open')) maskPanel.classList.remove('open');
+        else toolbar.classList.toggle('hidden');
       }
-    };
-    reader.readAsText(file);
-  });
-
-  fetch('./Eulogy_Exercise_Clip.json')
-    .then(res => {
-      if (!res.ok) throw new Error('Hosted JSON not found');
-      return res.json();
-    })
-    .then(data => {
-      const normalized = Array.isArray(data) ? { title: "Family Thread", messages: data } : data;
-      loadThread(normalized, false, 'Eulogy_Exercise_Clip.json');
-      setTimeout(() => {
-        if (!isPlaying) togglePlayback();
-      }, 900);
-    })
-    .catch(() => {
-      try {
-        const saved = localStorage.getItem('sms_player_last_thread');
-        if (saved) loadThread(JSON.parse(saved), false, 'saved_local');
-        else loadThread(defaultDemoData, false, 'demo');
-      } catch (e) {
-        loadThread(defaultDemoData, false, 'demo');
+      if (e.code === 'Space' && document.activeElement !== speedSlider && !maskPanel.classList.contains('open')) {
+        e.preventDefault();
+        togglePlayback();
       }
     });
-</script>
+
+    document.getElementById('fileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const parsed = JSON.parse(evt.target.result);
+          const normalized = Array.isArray(parsed)
+            ? { title: file.name.replace('.json', ''), messages: parsed }
+            : parsed;
+          loadThread(normalized, true, file.name);
+        } catch (err) {
+          alert("Invalid JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    fetch('./Eulogy_Exercise_Clip.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Hosted JSON not found');
+        return res.json();
+      })
+      .then(data => {
+        const normalized = Array.isArray(data) ? { title: "Family Thread", messages: data } : data;
+        loadThread(normalized, false, 'Eulogy_Exercise_Clip.json');
+        setTimeout(() => {
+          if (!isPlaying) togglePlayback();
+        }, 900);
+      })
+      .catch(() => {
+        try {
+          const saved = localStorage.getItem('sms_player_last_thread');
+          if (saved) loadThread(JSON.parse(saved), false, 'saved_local');
+          else loadThread(defaultDemoData, false, 'demo');
+        } catch (e) {
+          loadThread(defaultDemoData, false, 'demo');
+        }
+      });
+  </script>
 </body>
+
 </html>
